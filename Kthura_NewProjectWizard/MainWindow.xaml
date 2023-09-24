@@ -1,0 +1,49 @@
+﻿<Window x:Class="Kthura_NewProjectWizard.MainWindow"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:local="clr-namespace:Kthura_NewProjectWizard"
+		mc:Ignorable="d"
+		Title="Kthura - Quick Project Creation Wizard" Height="450" Width="800">
+	<Grid>
+		<Grid.Background>
+			<ImageBrush ImageSource="/Back.png"/>
+		</Grid.Background>
+		<Image Source="/Kthura.png" Width="120" Height="120" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+		<Grid Margin="120,0,0,0">
+			<Label Content="New Kthura Project" VerticalAlignment="Top" Foreground="#00ffff" FontSize="20" FontFamily="Arial" HorizontalAlignment="Center" />
+			<Label Content="Name Project:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,40,0,0" Foreground="#ffb400" />
+			<TextBox x:Name="NameProject" Foreground="white" Background="#0b000f" Margin="200,40,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" Height="20" TextChanged="NameProject_TextChanged"/>
+			<Label Content="Author:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,60,0,0" Foreground="#ffb400" />
+			<TextBox x:Name="NameAuthor" Foreground="white" Background="#0b000f" Margin="200,60,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" Height="20" TextChanged="NameAuthor_TextChanged"/>
+			<Label Content="InternalProject:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,80,0,0" Foreground="#ffb400" />
+			<CheckBox x:Name="InternalProject" Foreground="white" Margin="200,80,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" Height="20" IsChecked="True" Content="Yes" Checked="InternalProject_Checked" Unchecked="InternalProject_Checked" />
+			<Label Content="Maps Directory:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,100,0,0" Foreground="#ffb400" />
+			<TextBox x:Name="DirMaps" Foreground="white" Background="#0b000f" Margin="200,100,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" Height="20" TextChanged="MapsDir_TextChanged" />
+			<Button x:Name="DirMaps_Pick" Content="..." Width="50" Height="20" Margin="520,100,0,0" Click="DirMaps_Pick_Hit" HorizontalAlignment="Left" VerticalAlignment="Top" />
+			<Label Content="Textures Directory:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,120,0,0" Foreground="#ffb400" />
+			<TextBox x:Name="TexMaps" Foreground="white" Background="#0b000f" Margin="200,120,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" Height="20" TextChanged="MapsTex_TextChanged" />
+			<Button x:Name="TexMaps_Pick" Content="..." Width="50" Height="20" Margin="520,120,0,0" Click="DirTex_Pick_Hit" HorizontalAlignment="Left" VerticalAlignment="Top" />
+			<Label Content="Texture Dir Merging:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,140,0,0" Foreground="#ffb400" />
+			<CheckBox x:Name="TexMerge" Foreground="white" Margin="200,140,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" Height="20" IsChecked="False" Content="No" Checked="TexMerge_Checked" Unchecked="TexMerge_Checked" />
+			<Label Content="General Data:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,160,0,0" Foreground="#ffb400" />
+			<TextBox x:Name="GenData" AcceptsReturn="True" Foreground="white" Background="#0b000f" Margin="200,160,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" Height="100" TextChanged="Type_GenData" />
+<!-- Last -->
+            <Button x:Name="GaanMetDieBanaan" Content="Create" Width="140" Height="60" FontFamily="Arial" FontSize="30pt" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="GaanMetDieBanaan_Actie">
+                <Button.Foreground>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFFFB400"/>
+                        <GradientStop Color="#FF191200" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Foreground>
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="Lime" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+        </Grid>
+	</Grid>
+</Window>
