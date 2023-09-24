@@ -1,0 +1,7 @@
+Exe
+bin
+obj
+MKL*
+*.MKL.*
+.vs
+
