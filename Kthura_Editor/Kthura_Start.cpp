@@ -33,11 +33,20 @@
 #include "builddate.hpp"
 #include "headers/ConfigCLI.hpp"
 #include "headers/Project.hpp"
+#include "headers/Glob.hpp"
+#include "headers/UserInterface.hpp"
+#include "../SupJCR/SupJCR.hpp"
+
+#include <JCR6_Core.hpp>
+
+#include <TQSG.hpp>
 
 using namespace Slyvina;
 using namespace Units;
 using namespace Kthura;
 using namespace Editor;
+using namespace Launcher;
+using namespace TQSG;
 
 int main(int ac, char** arg) {
 #ifdef ERROR_CATCHING
@@ -52,10 +61,15 @@ int main(int ac, char** arg) {
 		QCol->Doing("Platform", Platform());
 		QCol->Doing("PlatformX", Platform(false));
 		QCol->Doing("Kthura Dir", MyDir);
-		QCol->Doing("Called from", ChReplace(CurrentDir(), '\\', '/'));
+		QCol->Doing("Called from", ChReplace(CurrentDir(), '\\', '/'));		
+
 		if (!CLIParse(ac, arg)) return 1;
 		std::cout << "\n\n";
 		QCol->Doing("Loading map", MapFile());
+		QCol->Doing("Initizing", "Graphics Window");
+		Graphics(WW(), WH(), "Kthura Map Editor - (c) Jeroen P. Broks"); Cls(); Flip();
+		UserInterFace_Init();
+		UserInterface_Run();
 #ifdef ERROR_CATCHING
 	} catch (std::runtime_error	e) {
 		QCol->Error(e.what());

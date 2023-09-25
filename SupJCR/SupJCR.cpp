@@ -51,9 +51,10 @@ namespace Slyvina {
 					QCol->Doing("Analyzing", "Kthura.JCR");
 					STEDA = sJCR6::JCR6_Dir(d + "/Kthura.JCR");
 					STEDA_ID = ParseGINIE(STEDA->GetString("ID/ID.ini"));
-					QCol->Doing("Checking", "Kthura.JCR");
-					if (Lower(STEDA_ID->Value("ID", "Sig")) != "893f304d4") { QCol->Error("Kthura.JCR signature incorrect!"); exit(255); }
+					//QCol->Doing("Checking", "Kthura.JCR");
+					//if (Lower(STEDA_ID->Value("ID", "Sig")) != "893f304d4") { QCol->Error("Kthura.JCR signature incorrect!"); exit(255); }
 					QCol->Doing("JCR file build", STEDA_ID->Value("Build", "Date"));
+					Loaded = true;
 				}
 				return STEDA;
 			}

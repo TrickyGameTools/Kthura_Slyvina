@@ -168,6 +168,8 @@
     <ClCompile Include="source\CLI_Config.cpp" />
     <ClCompile Include="source\Glob.cpp" />
     <ClCompile Include="source\Project.cpp" />
+    <ClCompile Include="source\Resource.cpp" />
+    <ClCompile Include="source\UserInterface.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="..\..\..\Libs\TQSL\SDL2\libjpeg-9.dll">
@@ -214,6 +216,8 @@
     <ClInclude Include="headers\ConfigCLI.hpp" />
     <ClInclude Include="headers\Glob.hpp" />
     <ClInclude Include="headers\Project.hpp" />
+    <ClInclude Include="headers\Resource.hpp" />
+    <ClInclude Include="headers\UserInterface.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

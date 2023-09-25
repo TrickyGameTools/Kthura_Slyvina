@@ -40,6 +40,10 @@ namespace Slyvina {
 			static string _Project;
 			static string _Map;
 
+			std::string ExeDir() {
+				return ExtractDir(CLIDat.myexe);
+			}
+
 			string ProjectName() { return _Project; }
 			string MapName() { return _Map; }
 

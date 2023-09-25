@@ -1,6 +1,6 @@
 // Lic:
 // Kthura
-// Command Line Interface decided configuration (header)
+// User Interface (header)
 // 
 // 
 // 
@@ -23,17 +23,19 @@
 // 
 // Version: 23.09.25
 // EndLic
+
 #pragma once
-#include <string>
 
 namespace Slyvina {
 	namespace Kthura {
 		namespace Editor {
-			std::string ExeDir();
-			std::string ProjectName();
-			std::string MapName();
-			std::string Decipher(std::string inp);
-			bool CLIParse(int c, char** a);
+
+			extern bool Application_Ended;
+
+			void UserInterFace_Init();
+			void UserInterface_Run();
+
+			
 		}
 	}
 }
