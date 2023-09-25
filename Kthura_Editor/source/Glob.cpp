@@ -1,6 +1,6 @@
 // Lic:
 // Kthura
-// Launcher Global Data
+// Glob
 // 
 // 
 // 
