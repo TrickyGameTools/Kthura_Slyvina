@@ -114,8 +114,8 @@ namespace Slyvina {
 				selMap->ClearItems();
 				edtMapButton->Enabled = false;
 				if (haveprj->Visible) {
-					auto PGINIE{ LoadUGINIE(ProjectsDir() + "/" + selPrj->ItemText() + "/" + selPrj->ItemText() + ".ini") };
-					auto MapDir{ AVolPath(Dirry(PGINIE->Value("Directory","Maps"))) }; QCol->Doing("Getting tree of ", MapDir);
+					auto PGINIE{ LoadUGINIE(ProjectsDir() + "/" + selPrj->ItemText() + "/" + selPrj->ItemText() + ".Project.ini") };
+					auto MapDir{ AVolPath(Dirry(PGINIE->Value("Paths.Windows","Maps"))) }; QCol->Doing("Getting tree of ", MapDir);
 					auto mDir{ GetTree(MapDir) };
 					for (auto mFile : *mDir) selMap->AddItem(mFile);
 				}
