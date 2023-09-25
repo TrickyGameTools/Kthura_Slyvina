@@ -76,7 +76,8 @@ namespace Slyvina {
 				cmd = ChReplace(cmd, '/', '\\'); // Guarantee cmd support in Windows!
 #endif
 				Cls();
-				SetColor(255, 0, 0);
+				//SetColor(255, 0, 0);
+				SetColor(180, 0, 255);
 				j19gadget::GetDefaultFont()->Text("External call in session...", floor(ScreenWidth() / 2), floor(ScreenHeight() / 2), Align::Center, Align::Center);
 				Flip();
 				auto ret = system(cmd.c_str());
@@ -99,7 +100,7 @@ namespace Slyvina {
 			}
 
 			static void ActNewProject(j19gadget* j, j19action a) {
-				std::string cmd{ MyDir + "/NewProjectWizard.exe" };
+				std::string cmd{ MyDir + "/Kthura_NewProjectWizard.exe" };
 				if (!FileExists(cmd)) {
 					Notify("The wizard (" + cmd + ") could not be found");
 					return;
@@ -115,7 +116,7 @@ namespace Slyvina {
 				edtMapButton->Enabled = false;
 				if (haveprj->Visible) {
 					auto PGINIE{ LoadUGINIE(ProjectsDir() + "/" + selPrj->ItemText() + "/" + selPrj->ItemText() + ".Project.ini") };
-					auto MapDir{ AVolPath(Dirry(PGINIE->Value("Paths.Windows","Maps"))) }; QCol->Doing("Getting tree of ", MapDir);
+					auto MapDir{ AVolPath(Dirry(PGINIE->Value("","Maps"))) }; QCol->Doing("Getting tree of ", MapDir);
 					auto mDir{ GetTree(MapDir) };
 					for (auto mFile : *mDir) selMap->AddItem(mFile);
 				}
