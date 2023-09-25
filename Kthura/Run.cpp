@@ -116,7 +116,12 @@ namespace Slyvina {
 				edtMapButton->Enabled = false;
 				if (haveprj->Visible) {
 					auto PGINIE{ LoadUGINIE(ProjectsDir() + "/" + selPrj->ItemText() + "/" + selPrj->ItemText() + ".Project.ini") };
-					auto MapDir{ AVolPath(Dirry(PGINIE->Value("","Maps"))) }; QCol->Doing("Getting tree of ", MapDir);
+					auto MapDir{ AVolPath(Dirry(PGINIE->Value("Paths.Windows","Maps"))) }; QCol->Doing("Getting tree of ", MapDir);
+					if (MapDir == "") {
+						QCol->Error("No Map Dir!");
+						haveprj->Visible = false;
+						return;
+					}
 					auto mDir{ GetTree(MapDir) };
 					for (auto mFile : *mDir) selMap->AddItem(mFile);
 				}
@@ -131,7 +136,7 @@ namespace Slyvina {
 				// This looks needlessly complicated, and frankly, it is....
 				// However in Windows, execution commands are mostly taken over cmd 
 				// which is quite primitive and will me quite a load of errors, so this way I hope to prevent that
-				static std::string Editor = TrSPrintF("%s/SuperTed_Editor.exe", MyDir.c_str());
+				static std::string Editor = TrSPrintF("%s/Kthura_Editor.exe", MyDir.c_str());
 				if (!FileExists(Editor)) { Err("Editor (" + Editor + ") not found"); return; }
 				std::string pP{ "" };
 				std::string pM{ "" };
