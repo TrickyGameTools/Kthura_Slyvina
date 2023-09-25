@@ -31,6 +31,7 @@
 #include <TQSG.hpp>
 #include <TQSE.hpp>
 
+#include "../headers/UserInterface.hpp"
 #include "../headers/Resource.hpp"
 
 using namespace Slyvina;
@@ -48,11 +49,11 @@ namespace Slyvina {
 			j19gadget* _WorkScreen;
 			j19gadget* _Screen;
 
-
+#pragma region Main
 			void UserInterFace_Init() {
 				auto RJ{ Resource() };
-				QCol->Doing("Initizing", "User Interface");				
-				j19gadget::SetDefaultFont(RJ,"DOSFont.jfbf");
+				QCol->Doing("Initizing", "User Interface");
+				j19gadget::SetDefaultFont(RJ, "DOSFont.jfbf");
 				// auto DE{ RJ->Entries() }; for (auto k : *DE) std::cout << "RJ Entry: " << k->Name() << "\n";
 				_Screen = Screen();
 				_WorkScreen = WorkScreen();
@@ -70,6 +71,43 @@ namespace Slyvina {
 					_Screen->Draw();
 					Flip();
 				} while (!Application_Ended);
+			}
+#pragma endregion
+
+			std::map<std::string, UI> UI::Stage{};
+			
+			void UI::AddStage(std::string st) {
+				Stage[Upper(st)] = UI(Upper(st));
+			}
+			bool UI::HaveStage(std::string st) {
+				return Stage.count(Upper(st));
+			}
+			bool UI::NewStage(std::string st) {
+				if (HaveStage(st))
+					return false;
+				else {
+					AddStage(st);
+					return true;
+				}
+			}
+			UI* UI::GetStage(std::string st) {
+				if (HaveStage(st)) return &Stage[Upper(st)];
+				return nullptr;
+			}
+			void UI::GoToStage(std::string st) {
+				if (!HaveStage(st)) {
+					QCol->Error("INTERNAL ERROR! Non-existent stage: " + st);
+					QCol->Yellow("Please report this!");
+					QCol->Reset();
+					exit(5);
+				}
+				_Current = &Stage[Upper(st)];
+				if (_Current->Arrive) _Current->Arrive();
+			}
+
+			UI::UI(std::string name) {
+				_Name = name;
+				MainGadget = CreatePanel(0, 0, WorkScreen()->W(), WorkScreen()->Y(),WorkScreen());
 			}
 		}
 	}

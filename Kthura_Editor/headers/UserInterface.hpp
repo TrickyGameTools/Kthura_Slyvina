@@ -25,6 +25,7 @@
 // EndLic
 
 #pragma once
+#include <june19.hpp>
 
 namespace Slyvina {
 	namespace Kthura {
@@ -35,7 +36,36 @@ namespace Slyvina {
 			void UserInterFace_Init();
 			void UserInterface_Run();
 
-			
+			typedef void(*UIV)();
+
+			class UI;
+
+			class UI {
+			private:
+				//static bool _initialized;
+				//static TrickyUnits::TQSG_AutoImage Mouse;
+				static std::map<std::string, UI> Stage;
+				std::string _Name{};
+				UI(std::string name);
+				static UI* _Current;
+			public:
+				inline UI() {};
+
+				//static void Crash(std::string m);
+
+				June19::j19gadget* MainGadget{ nullptr };
+				//UIV PreJune{ nullptr };
+				//UIV PostJune{ nullptr };
+				UIV Arrive{ nullptr };
+
+				static void AddStage(std::string st);
+				static bool HaveStage(std::string st);
+				static bool NewStage(std::string st);
+				static UI* GetStage(std::string st);
+				static inline UI* CurrentStage() { return _Current; }
+				static void GoToStage(std::string st);
+
+			};
 		}
 	}
 }
