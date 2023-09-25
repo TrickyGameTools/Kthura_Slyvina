@@ -23,6 +23,30 @@
 // 
 // Version: 23.09.25
 // EndLic
-int main() {
+
+#include <SlyvStream.hpp>
+#include <SlyvString.hpp>
+#include <SlyvQCol.hpp>
+
+#include "builddate.hpp"
+#include "headers/ConfigCLI.hpp"
+
+using namespace Slyvina;
+using namespace Units;
+using namespace Kthura;
+using namespace Editor;
+
+int main(int ac, char** arg) {
+	auto MyDir = ChReplace(ExtractDir(arg[0]), '\\', '/');
+	// Start
+	QCol->LGreen("Kthura - Editor\n");
+	QCol->Magenta("(c) 2015, 2016, 2017, 2019, 2021, 2023 Jeroen P. Broks - Released under the terms of the GPL3\n\n");
+	QCol->Doing("Coded by", "Jeroen P. Broks");
+	QCol->Doing("Build", SuperTed_BuildDate);
+	QCol->Doing("Platform", Platform());
+	QCol->Doing("PlatformX", Platform(false));
+	QCol->Doing("Kthura Dir", MyDir);
+	QCol->Doing("Called from", ChReplace(CurrentDir(), '\\', '/'));
+	if (!CLIParse(ac, arg)) return 1;
 	return 0;
 }
