@@ -24,6 +24,8 @@
 // Version: 23.09.25
 // EndLic
 
+#define ERROR_CATCHING
+
 #include <SlyvStream.hpp>
 #include <SlyvString.hpp>
 #include <SlyvQCol.hpp>
@@ -38,18 +40,26 @@ using namespace Kthura;
 using namespace Editor;
 
 int main(int ac, char** arg) {
-	auto MyDir = ChReplace(ExtractDir(arg[0]), '\\', '/');
-	// Start
-	QCol->LGreen("Kthura - Editor\n");
-	QCol->Magenta("(c) 2015, 2016, 2017, 2019, 2021, 2023 Jeroen P. Broks - Released under the terms of the GPL3\n\n");
-	QCol->Doing("Coded by", "Jeroen P. Broks");
-	QCol->Doing("Build", SuperTed_BuildDate);
-	QCol->Doing("Platform", Platform());
-	QCol->Doing("PlatformX", Platform(false));
-	QCol->Doing("Kthura Dir", MyDir);
-	QCol->Doing("Called from", ChReplace(CurrentDir(), '\\', '/'));
-	if (!CLIParse(ac, arg)) return 1;
-	std::cout << "\n\n";
-	QCol->Doing("Loading map", MapFile());
-	return 0;
+#ifdef ERROR_CATCHING
+	try {
+#endif
+		auto MyDir = ChReplace(ExtractDir(arg[0]), '\\', '/');
+		// Start
+		QCol->LGreen("Kthura - Editor\n");
+		QCol->Magenta("(c) 2015, 2016, 2017, 2019, 2021, 2023 Jeroen P. Broks - Released under the terms of the GPL3\n\n");
+		QCol->Doing("Coded by", "Jeroen P. Broks");
+		QCol->Doing("Build", SuperTed_BuildDate);
+		QCol->Doing("Platform", Platform());
+		QCol->Doing("PlatformX", Platform(false));
+		QCol->Doing("Kthura Dir", MyDir);
+		QCol->Doing("Called from", ChReplace(CurrentDir(), '\\', '/'));
+		if (!CLIParse(ac, arg)) return 1;
+		std::cout << "\n\n";
+		QCol->Doing("Loading map", MapFile());
+#ifdef ERROR_CATCHING
+	} catch (std::runtime_error	e) {
+		QCol->Error(e.what());
+	}
+#endif
+		return 0;
 }
