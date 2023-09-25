@@ -13,10 +13,45 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Copy">
+      <UniqueIdentifier>{00775490-703f-4bbd-bb3d-b32fa859a14e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Copy\SDL2">
+      <UniqueIdentifier>{d2957109-1600-4a0e-8c44-829c50ee1ead}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Copy\zlib">
+      <UniqueIdentifier>{cd85b07e-7d95-46fc-8770-af3fb888af7c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Kthura_Start.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="..\..\..\Libs\TQSL\SDL2\libjpeg-9.dll">
+      <Filter>Copy\SDL2</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\Libs\TQSL\SDL2\libpng16-16.dll">
+      <Filter>Copy\SDL2</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\Libs\TQSL\SDL2\libtiff-5.dll">
+      <Filter>Copy\SDL2</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\Libs\TQSL\SDL2\libwebp-7.dll">
+      <Filter>Copy\SDL2</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\Libs\TQSL\SDL2\SDL2.dll">
+      <Filter>Copy\SDL2</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\Libs\TQSL\SDL2\SDL2_image.dll">
+      <Filter>Copy\SDL2</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\Libs\TQSL\SDL2\zlib1.dll">
+      <Filter>Copy\SDL2</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\Libs\JCR6\3rdParty\zlib\zlib.dll">
+      <Filter>Copy\zlib</Filter>
+    </CopyFileToFolders>
   </ItemGroup>
 </Project>
