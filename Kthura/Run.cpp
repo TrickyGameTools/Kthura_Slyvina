@@ -91,7 +91,10 @@ namespace Slyvina {
 			static void ActRenewProjectList(j19gadget* j, j19action a) {
 				auto List = FileList(ProjectsDir(), DirWant::Directories);
 				selPrj->ClearItems();
-				for (auto F : *List) selPrj->AddItem(F);
+				for (auto F : *List) {
+					if (FileExists(ProjectsDir() + "/" + F + "/" + F + ".Project.ini"))
+						selPrj->AddItem(F);
+				}
 				PCheck(j, a);
 			}
 
