@@ -24,9 +24,18 @@
 // Version: 23.09.25
 // EndLic
 #pragma once
+#include <SlyvGINIE.hpp>
 namespace Slyvina {
 	namespace Kthura {
 		namespace Editor {
+			std::string ProjectDir();
+			std::string ProjectFile();
+			Units::GINIE Project();
+			inline std::string Project(std::string cat, std::string key) { return Project()->Value(cat, key); }
+			inline void Project(std::string cat, std::string key, std::string value) { Project()->Value(cat, key, value); }
+
+			inline std::string MapDir();
+			std::string MapFile();
 
 		}
 	}
