@@ -6,3 +6,4 @@ MKL*
 *.MKL.*
 .vs
 
+Kthura/builddate.hpp
