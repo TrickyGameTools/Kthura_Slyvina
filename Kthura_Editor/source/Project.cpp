@@ -23,3 +23,13 @@
 // 
 // Version: 23.09.25
 // EndLic
+#include "../headers/ConfigCLI.hpp"
+#include "../headers/Project.hpp"
+
+namespace Slyvina {
+	namespace Kthura {
+		namespace Editor {
+
+		}
+	}
+}
