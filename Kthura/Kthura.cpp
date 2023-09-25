@@ -47,12 +47,12 @@ int main(int ac, char** arg) {
 	MyDir = ChReplace(ExtractDir(arg[0]), '\\', '/');
 	// Start
 	QCol->LGreen("Kthura - Launcher\n");
-	QCol->Magenta("(c) 2015, 2016, 2017, 2019, 2021 Jeroen P. Broks - Released under the terms of the GPL3\n\n");
+	QCol->Magenta("(c) 2015, 2016, 2017, 2019, 2021, 2023 Jeroen P. Broks - Released under the terms of the GPL3\n\n");
 	QCol->Doing("Coded by", "Jeroen P. Broks");
 	QCol->Doing("Build", SuperTed_BuildDate);
 	QCol->Doing("Platform", Platform());
 	QCol->Doing("PlatformX", Platform(false));
-	QCol->Doing("SuperTed Dir", MyDir);
+	QCol->Doing("Kthura Dir", MyDir);
 	QCol->Doing("Called from", ChReplace(CurrentDir(), '\\', '/'));
 	QCol->Doing("Project Dir", ProjectsDir());
 	JAS = STED_Assets(MyDir);
