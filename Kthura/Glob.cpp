@@ -81,10 +81,10 @@ namespace Slyvina {
 			}
 
 			int WW() {
-				return AskInt(_globalconfig, "Launcher", "Width", "Preffered Window width for launcher:", 1200);
+				return AskInt(_globalconfig, "Launcher", "Width", "Prefered Window width for launcher:", 1200);
 			}
 			int WH() {
-				return AskInt(_globalconfig, "Launcher", "Height", "Preffered Window Height for launcher:", 800);
+				return AskInt(_globalconfig, "Launcher", "Height", "Prefered Window Height for launcher:", 800);
 			}
 
 		}

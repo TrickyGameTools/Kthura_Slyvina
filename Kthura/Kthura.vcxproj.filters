@@ -37,6 +37,9 @@
     <Filter Include="Copy\SDL2">
       <UniqueIdentifier>{cdcf97aa-ae5b-423f-af8a-7eb44498b93c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Copy\zlib">
+      <UniqueIdentifier>{b77fada2-f6c9-4338-88e3-8992ba884751}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Kthura.cpp">
@@ -167,6 +170,9 @@
   <ItemGroup>
     <CopyFileToFolders Include="..\..\..\Libs\TQSL\SDL2\libjpeg-9.dll">
       <Filter>Copy\SDL2</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\Libs\JCR6\3rdParty\zlib\zlib.dll">
+      <Filter>Copy\zlib</Filter>
     </CopyFileToFolders>
   </ItemGroup>
 </Project>

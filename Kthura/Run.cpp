@@ -166,7 +166,7 @@ namespace Slyvina {
 
 			void CreateUI() {
 				QCol->Doing("Configuring", "Font");
-				j19gadget::SetDefaultFont(JAS, "Fonts/DOS.jfbf");
+				j19gadget::SetDefaultFont(JAS, "DOSFont.jfbf");
 				QCol->Doing("Creating", "User Interface");
 				UI = WorkScreen();
 				auto h = UI->H(), dh = (int)ceil(h * 0.25);
@@ -221,13 +221,13 @@ namespace Slyvina {
 
 			void LoadBackGround() {
 				QCol->Doing("Loading", "Background image");
-				Background = LoadImage(JAS, "IMG/Background.png");
+				Background = LoadImage(JAS, "Back.png");
 				auto a{ JCR6::Last()->ErrorMessage };
 				std::string b{ SDL_GetError() };
 				if (a != "" && Upper(Trim(a)) != "OK") Err("JCR6 ERROR>" + a);
 				if (b != "") Err("SDL2 ERROR>" + b);
 				if (!Background->Frames()) Err("For some reasons beyond me, the background didn't load");
-				Bear = LoadImage(JAS, "IMG/Teddybear.png");
+				Bear = LoadImage(JAS, "Kthura.png");  // Changing the name of thie variable will only get me more work
 			}
 
 			bool Run() {
