@@ -30,6 +30,7 @@
 
 #include "builddate.hpp"
 #include "headers/ConfigCLI.hpp"
+#include "headers/Project.hpp"
 
 using namespace Slyvina;
 using namespace Units;
@@ -48,5 +49,7 @@ int main(int ac, char** arg) {
 	QCol->Doing("Kthura Dir", MyDir);
 	QCol->Doing("Called from", ChReplace(CurrentDir(), '\\', '/'));
 	if (!CLIParse(ac, arg)) return 1;
+	std::cout << "\n\n";
+	QCol->Doing("Loading map", MapFile());
 	return 0;
 }
