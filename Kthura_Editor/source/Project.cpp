@@ -23,13 +23,51 @@
 // 
 // Version: 23.09.25
 // EndLic
+
+#include <SlyvQCol.hpp>
+
 #include "../headers/ConfigCLI.hpp"
 #include "../headers/Project.hpp"
+#include "../headers/Glob.hpp"
+
+using namespace Slyvina::Units;
+
 
 namespace Slyvina {
 	namespace Kthura {
 		namespace Editor {
+			using namespace Launcher;
+			GINIE _PrjCfg{ nullptr };
 
+			std::string ProjectDir() { return ProjectsDir() + "/" + ProjectName(); }
+			std::string ProjectFile() { return ProjectDir() + "/" + ProjectName() + ".Project.ini"; }
+
+			Units::GINIE Project() {
+				if (!_PrjCfg) {
+					QCol->Doing("Loading", ProjectFile());
+					_PrjCfg = LoadGINIE(ProjectFile(), ProjectFile(), "Kthura Project\n" + ProjectFile());
+					if (!_PrjCfg) {
+						QCol->Error("Project file (" + ProjectFile() + ") not read properly!");
+						exit(2);
+					}
+					//std::cout << (int)_PrjCfg.get() << "\n";
+					return _PrjCfg;
+				}
+			}
+			std::string MapDir() {
+				/* Doesn't work for NO REASON AT ALL!
+				auto FuckYou{ Project() }; std::cout << (int)FuckYou.get() << std::endl;
+				 FuckYou->Value(
+					 "Paths." + Platform(), 
+					 "Maps", 
+					 ChReplace(Project("Paths." + Platform(), "Maps"), '\\', '/')
+				 ); 
+				 */
+				 return ChReplace( Project("Paths." + Platform(), "Maps"),'\\','/');
+			}
+			std::string MapFile() {
+				return MapDir() + "/" + MapName();
+			}
 		}
 	}
 }
