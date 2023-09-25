@@ -31,6 +31,12 @@
     <Filter Include="Source Files\Slyvina\June19">
       <UniqueIdentifier>{f38b8a19-ed40-4a4d-a270-3140fb49470a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Copy">
+      <UniqueIdentifier>{1a3e813a-77bd-47af-8836-3fac6a6567ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Copy\SDL2">
+      <UniqueIdentifier>{cdcf97aa-ae5b-423f-af8a-7eb44498b93c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Kthura.cpp">
@@ -137,5 +143,30 @@
     <ClInclude Include="builddate.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Libs\TQSL\SDL2\libpng16-16.dll">
+      <Filter>Copy\SDL2</Filter>
+    </None>
+    <None Include="..\..\..\Libs\TQSL\SDL2\libtiff-5.dll">
+      <Filter>Copy\SDL2</Filter>
+    </None>
+    <None Include="..\..\..\Libs\TQSL\SDL2\libwebp-7.dll">
+      <Filter>Copy\SDL2</Filter>
+    </None>
+    <None Include="..\..\..\Libs\TQSL\SDL2\SDL2.dll">
+      <Filter>Copy\SDL2</Filter>
+    </None>
+    <None Include="..\..\..\Libs\TQSL\SDL2\SDL2_image.dll">
+      <Filter>Copy\SDL2</Filter>
+    </None>
+    <None Include="..\..\..\Libs\TQSL\SDL2\zlib1.dll">
+      <Filter>Copy\SDL2</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="..\..\..\Libs\TQSL\SDL2\libjpeg-9.dll">
+      <Filter>Copy\SDL2</Filter>
+    </CopyFileToFolders>
   </ItemGroup>
 </Project>

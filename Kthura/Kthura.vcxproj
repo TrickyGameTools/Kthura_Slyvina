@@ -173,6 +173,29 @@
     <ClInclude Include="Glob.hpp" />
     <ClInclude Include="Run.hpp" />
   </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="..\..\..\Libs\TQSL\SDL2\libjpeg-9.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\Libs\TQSL\SDL2\libpng16-16.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\Libs\TQSL\SDL2\libtiff-5.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\Libs\TQSL\SDL2\libwebp-7.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\Libs\TQSL\SDL2\SDL2.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\Libs\TQSL\SDL2\SDL2_image.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\Libs\TQSL\SDL2\zlib1.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
