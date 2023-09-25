@@ -29,7 +29,7 @@
 #include <SlyvQCol.hpp>
 
 namespace Slyvina {
-	namespace SuperTed {
+	namespace Kthura {
 		namespace SupJCR6 {
 
 			Slyvina::JCR6::JT_Dir STED_Assets(std::string d);

@@ -30,7 +30,7 @@
 #include <JCR6_Core.hpp>
 
 namespace Slyvina {
-	namespace SuperTed {
+	namespace Kthura {
 		namespace Launcher {
 			extern std::string MyDir;
 			extern JCR6::JT_Dir JAS;

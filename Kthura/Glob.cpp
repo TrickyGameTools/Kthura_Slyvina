@@ -41,12 +41,12 @@ using namespace Slyvina::Units;
 using namespace Slyvina::JCR6;
 
 namespace Slyvina {
-	namespace SuperTed {
+	namespace Kthura {
 		namespace Launcher {
 			std::string MyDir{ "." };
 			JT_Dir JAS{ nullptr };
 
-			static const char* gfile = "$AppSupport$/SuperTed.ini";
+			static const char* gfile = "$AppSupport$/Kthura.ini";
 			static GINIE _globalconfig{};
 			//static map<string, string> AltMountRegister;
 

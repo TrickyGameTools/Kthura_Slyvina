@@ -25,7 +25,7 @@
 // EndLic
 #pragma once
 namespace Slyvina {
-	namespace SuperTed {
+	namespace Kthura {
 		namespace Launcher {
 			void LoadBackGround();
 			void CreateUI();

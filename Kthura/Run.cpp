@@ -51,7 +51,7 @@ namespace Slyvina {
 	using namespace TQSG;
 	using namespace TQSE;
 
-	namespace SuperTed {
+	namespace Kthura {
 		namespace Launcher {
 			static TImage Background{ nullptr };
 			static TImage Bear{ nullptr };
