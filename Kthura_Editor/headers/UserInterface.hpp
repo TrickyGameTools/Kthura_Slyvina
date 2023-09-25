@@ -54,8 +54,8 @@ namespace Slyvina {
 				//static void Crash(std::string m);
 
 				June19::j19gadget* MainGadget{ nullptr };
-				//UIV PreJune{ nullptr };
-				//UIV PostJune{ nullptr };
+				UIV PreJune{ nullptr };
+				UIV PostJune{ nullptr };
 				UIV Arrive{ nullptr };
 
 				static void AddStage(std::string st);
