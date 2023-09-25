@@ -129,6 +129,9 @@
     <ClCompile Include="source\CLI_Config.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\Project.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="..\..\..\Libs\TQSL\SDL2\libjpeg-9.dll">
@@ -161,6 +164,9 @@
       <Filter>Source Files\SupJCR</Filter>
     </ClInclude>
     <ClInclude Include="headers\ConfigCLI.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\Project.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
