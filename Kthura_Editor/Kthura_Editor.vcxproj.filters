@@ -22,9 +22,111 @@
     <Filter Include="Copy\zlib">
       <UniqueIdentifier>{cd85b07e-7d95-46fc-8770-af3fb888af7c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Slyvina">
+      <UniqueIdentifier>{07654042-9735-47c6-8eee-07a904a884fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Slyvina\Units">
+      <UniqueIdentifier>{21ba4a52-f898-439b-8772-2c514a5467e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Slyvina\JCR6">
+      <UniqueIdentifier>{c034a36c-5e71-48f8-984d-e7a83b25e2b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Slyvina\TQSL">
+      <UniqueIdentifier>{c2d24cf2-7c52-4d0a-8421-779dd676b113}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Slyvina\June19">
+      <UniqueIdentifier>{2dfdfbab-005f-4a55-97a2-1501214d3d2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SupJCR">
+      <UniqueIdentifier>{26aaf029-9061-4021-a0ae-704881398d02}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Kthura_Start.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Units\Source\SlyvArgParse.cpp">
+      <Filter>Source Files\Slyvina\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Units\Source\SlyvBank.cpp">
+      <Filter>Source Files\Slyvina\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Units\Source\SlyvDir.cpp">
+      <Filter>Source Files\Slyvina\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Units\Source\SlyvDirry.cpp">
+      <Filter>Source Files\Slyvina\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Units\Source\SlyvMD5.cpp">
+      <Filter>Source Files\Slyvina\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Units\Source\SlyvQCol.cpp">
+      <Filter>Source Files\Slyvina\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Units\Source\SlyvSTOI.cpp">
+      <Filter>Source Files\Slyvina\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Units\Source\SlyvStream.cpp">
+      <Filter>Source Files\Slyvina\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Units\Source\SlyvString.cpp">
+      <Filter>Source Files\Slyvina\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Units\Source\SlyvTime.cpp">
+      <Filter>Source Files\Slyvina\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Units\Source\SlyvVolumes.cpp">
+      <Filter>Source Files\Slyvina\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Units\Source\SlyvAsk.cpp">
+      <Filter>Source Files\Slyvina\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\JCR6\Source\JCR6_Core.cpp">
+      <Filter>Source Files\Slyvina\JCR6</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\JCR6\Source\JCR6_zlib.cpp">
+      <Filter>Source Files\Slyvina\JCR6</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\TQSL\Source\TQSE.cpp">
+      <Filter>Source Files\Slyvina\TQSL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\TQSL\Source\TQSG.cpp">
+      <Filter>Source Files\Slyvina\TQSL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\June19\src\june19_button.cpp">
+      <Filter>Source Files\Slyvina\June19</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\June19\src\june19_checkbox.cpp">
+      <Filter>Source Files\Slyvina\June19</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\June19\src\june19_core.cpp">
+      <Filter>Source Files\Slyvina\June19</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\June19\src\june19_label.cpp">
+      <Filter>Source Files\Slyvina\June19</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\June19\src\june19_listbox.cpp">
+      <Filter>Source Files\Slyvina\June19</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\June19\src\june19_picture.cpp">
+      <Filter>Source Files\Slyvina\June19</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\June19\src\june19_radio.cpp">
+      <Filter>Source Files\Slyvina\June19</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\June19\src\june19_scrollbar.cpp">
+      <Filter>Source Files\Slyvina\June19</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\June19\src\june19_tabber.cpp">
+      <Filter>Source Files\Slyvina\June19</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\June19\src\june19_textfield.cpp">
+      <Filter>Source Files\Slyvina\June19</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SupJCR\SupJCR.cpp">
+      <Filter>Source Files\SupJCR</Filter>
+    </ClCompile>
+    <ClCompile Include="source\CLI_Config.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -53,5 +155,13 @@
     <CopyFileToFolders Include="..\..\..\Libs\JCR6\3rdParty\zlib\zlib.dll">
       <Filter>Copy\zlib</Filter>
     </CopyFileToFolders>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\SupJCR\SupJCR.hpp">
+      <Filter>Source Files\SupJCR</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\ConfigCLI.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
