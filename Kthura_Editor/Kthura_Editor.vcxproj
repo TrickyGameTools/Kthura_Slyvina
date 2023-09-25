@@ -166,6 +166,7 @@
     <ClCompile Include="..\SupJCR\SupJCR.cpp" />
     <ClCompile Include="Kthura_Start.cpp" />
     <ClCompile Include="source\CLI_Config.cpp" />
+    <ClCompile Include="source\Glob.cpp" />
     <ClCompile Include="source\Project.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -211,6 +212,7 @@
   <ItemGroup>
     <ClInclude Include="..\SupJCR\SupJCR.hpp" />
     <ClInclude Include="headers\ConfigCLI.hpp" />
+    <ClInclude Include="headers\Glob.hpp" />
     <ClInclude Include="headers\Project.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
