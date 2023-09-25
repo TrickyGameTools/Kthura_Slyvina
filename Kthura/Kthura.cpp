@@ -4,7 +4,7 @@
 // 
 // 
 // 
-// (c) Jeroen P. Broks, 2015, 2016, 2017, 2019, 2021
+// (c) Jeroen P. Broks, 2015, 2016, 2017, 2019, 2021, 2023
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -46,8 +46,8 @@ using namespace Slyvina::SuperTed::SupJCR6;
 int main(int ac, char** arg) {
 	MyDir = ChReplace(ExtractDir(arg[0]), '\\', '/');
 	// Start
-	QCol->LGreen("SuperTed - Launcher\n");
-	QCol->Magenta("(c) 2022 Jeroen P. Broks - Released under the terms of the GPL3\n\n");
+	QCol->LGreen("Kthura - Launcher\n");
+	QCol->Magenta("(c) 2015, 2016, 2017, 2019, 2021 Jeroen P. Broks - Released under the terms of the GPL3\n\n");
 	QCol->Doing("Coded by", "Jeroen P. Broks");
 	QCol->Doing("Build", SuperTed_BuildDate);
 	QCol->Doing("Platform", Platform());
@@ -59,7 +59,7 @@ int main(int ac, char** arg) {
 	QCol->Doing("Initizing", "SDL2 and TQSG"); 
 	Graphics(
 		WW(), WH(),
-		"SuperTed - Launcher - (c) Jeroen P. Broks"
+		"Kthura - Launcher - (c) Jeroen P. Broks"
 	); 
 	Cls(); Flip();
 	//QCol->Doing("Initizing", "TQSE"); TQSE_Init();

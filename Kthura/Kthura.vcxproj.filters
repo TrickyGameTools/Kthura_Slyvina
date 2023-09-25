@@ -13,10 +13,21 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\SupJCR">
+      <UniqueIdentifier>{e48f2d1b-b447-4c9f-9a30-28a58c1dae87}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Kthura.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\SupJCR\SupJCR.cpp">
+      <Filter>Source Files\SupJCR</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\SupJCR\SupJCR.hpp">
+      <Filter>Source Files\SupJCR</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
