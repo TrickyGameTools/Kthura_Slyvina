@@ -26,6 +26,7 @@
 #include <TQSE.hpp>
 #include <SlyvQCol.hpp>
 #include <SlyvHSVRGB.hpp>
+#include "../headers/ConfigCLI.hpp"
 #include "../headers/UI_MainEditor_Class.hpp"
 #include "../headers/UI_Layers.hpp"
 #include "../headers/Resource.hpp"
@@ -40,6 +41,7 @@ namespace Slyvina {
 			using namespace Units;
 			using namespace June19;
 			using namespace TQSG;
+			using namespace TQSE;
 
 #pragma region Locals
 			static j19gadget* MapPanel{nullptr };
@@ -382,7 +384,14 @@ namespace Slyvina {
 					for (int x = (ScrollX % GX); x <= MapPanel->W(); x += GX) Line(MapPanel->DrawX() + x, 0, MapPanel->DrawX() + x, ScreenHeight());
 					for (int y = (ScrollY % GY); y <= MapPanel->H(); y += GY) Line(0, MapPanel->DrawY() + y, ScreenWidth(), MapPanel->DrawY() + y);
 				}
-				
+				string coords{ "" };
+				if (MouseX() >= MapPanel->DrawX() && MouseY() >= MapPanel->DrawY() && MouseX() < MapPanel->DrawX() + MapPanel->W() && MouseY() < MapPanel->DrawY() + MapPanel->H()) {
+					int
+						MX{ (MouseX() - MapPanel->DrawX())+ScrollX },
+						MY{ (MouseY() - MapPanel->DrawY())+ScrollY };
+					coords = TrSPrintF("Mouse(%4d,%4d)", MX, MY);
+				}
+				j19gadget::StatusText(ProjectName() + "::" + MapName() + "\t" + coords+"\tScroll"+TrSPrintF("(%4d,%4d)",ScrollX,ScrollY));
 			}
 #pragma endregion
 
