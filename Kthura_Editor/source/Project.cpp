@@ -37,23 +37,27 @@ namespace Slyvina {
 	namespace Kthura {
 		namespace Editor {
 			using namespace Launcher;
-			GINIE _PrjCfg{ nullptr };
+			UGINIE _PrjCfg{ nullptr };
 
 			std::string ProjectDir() { return ProjectsDir() + "/" + ProjectName(); }
 			std::string ProjectFile() { return ProjectDir() + "/" + ProjectName() + ".Project.ini"; }
 
-			Units::GINIE Project() {
+			Units::RawGINIE* Project() {
 				if (!_PrjCfg) {
 					QCol->Doing("Loading", ProjectFile());
-					_PrjCfg = LoadGINIE(ProjectFile(), ProjectFile(), "Kthura Project\n" + ProjectFile());
+					_PrjCfg = LoadUGINIE(ProjectFile(), ProjectFile(), "Kthura Project\n" + ProjectFile());
 					if (!_PrjCfg) {
 						QCol->Error("Project file (" + ProjectFile() + ") not read properly!");
 						exit(2);
 					}
-					//std::cout << (int)_PrjCfg.get() << "\n";
-					return _PrjCfg;
+					//std::cout << (int)_PrjCfg.get() << "\n";					
+					return _PrjCfg.get();;
 				}
 			}
+			std::string Project(std::string cat, std::string key) { return Project()->Value(cat, key); }
+
+			void Project(std::string cat, std::string key, std::string value) { Project()->Value(cat, key, value); }
+			
 			std::string MapDir() {
 				/* Doesn't work for NO REASON AT ALL!
 				auto FuckYou{ Project() }; std::cout << (int)FuckYou.get() << std::endl;
@@ -63,9 +67,13 @@ namespace Slyvina {
 					 ChReplace(Project("Paths." + Platform(), "Maps"), '\\', '/')
 				 ); 
 				 */
-				 return ChReplace( Project("Paths." + Platform(), "Maps"),'\\','/');
+				
+				auto prj{ Project() }; if (!prj) QCol->Error("For some reason the GINIE data did not load");
+				auto ret{ prj->Value("Paths." + Platform(), "Maps") };
+				return ChReplace(ret, '\\', '/');
 			}
-			std::string MapFile() {
+
+			std::string MapFile() {				
 				return MapDir() + "/" + MapName();
 			}
 		}

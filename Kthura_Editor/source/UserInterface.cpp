@@ -34,6 +34,7 @@
 #include "../headers/UserInterface.hpp"
 #include "../headers/UI_MainEditor_Class.hpp"
 #include "../headers/Resource.hpp"
+#include "../headers/UI_Layers.hpp"
 
 using namespace Slyvina;
 using namespace June19;
@@ -50,6 +51,17 @@ namespace Slyvina {
 			j19gadget* _WorkScreen;
 			j19gadget* _Screen;
 
+#pragma region "PullDownMenu CallBacks"
+			
+			static void PDM_ToggleGrid(j19gadget*, j19action) { DrawGrid = !DrawGrid; }
+			static void PDM_ScrollUp(j19gadget* , j19action) { ScrollY -= CurrentLayer()->gridy / 2; }
+			static void PDM_ScrollDn(j19gadget* , j19action) { ScrollY += CurrentLayer()->gridy / 2; }
+			static void PDM_ScrollLf(j19gadget* , j19action) { ScrollX -= CurrentLayer()->gridx / 2; }
+			static void PDM_ScrollRg(j19gadget* , j19action) { ScrollX += CurrentLayer()->gridx / 2; }
+
+			
+#pragma endregion
+
 #pragma region Main
 			void UserInterFace_Init() {
 				auto RJ{ Resource() };
@@ -58,12 +70,22 @@ namespace Slyvina {
 				// auto DE{ RJ->Entries() }; for (auto k : *DE) std::cout << "RJ Entry: " << k->Name() << "\n";
 				_Screen = Screen();
 				_WorkScreen = WorkScreen();
-				_WorkScreen->AddMenu("File");
+				auto pdm = _WorkScreen->AddMenu("File");
+				pdm = _WorkScreen->AddMenu("Layers");
+				pdm->AddItem("New layer", PDM_NewLayer, SDLK_n);
+				pdm = _WorkScreen->AddMenu("Grid");
+				pdm->AddItem("Toggle Draw Grid", PDM_ToggleGrid, SDLK_d);
+				pdm = _WorkScreen->AddMenu("Scroll");
+				pdm->AddItem("Scroll Up", PDM_ScrollUp, SDLK_UP);
+				pdm->AddItem("Scroll Down", PDM_ScrollDn, SDLK_DOWN);
+				pdm->AddItem("Scroll Left", PDM_ScrollLf, SDLK_LEFT);
+				pdm->AddItem("Scroll Right", PDM_ScrollRg, SDLK_RIGHT);
 				_WorkScreen->SetForeground(0, 180, 255);
 				_WorkScreen->SetBackground(180, 0, 255, 255);
 				j19gadget::StatusText("Welcome to Kthura!");
 
 				InitMainEditor();
+				UI::GoToStage("Editor");
 			}
 
 			void UserInterface_Run() {
@@ -71,6 +93,7 @@ namespace Slyvina {
 					Cls();
 					Poll();
 					if (AppTerminate()) Application_Ended = true;
+					if (UI::CurrentStage() && UI::CurrentStage()->PreJune) UI::CurrentStage()->PreJune();
 					_Screen->Draw();
 					Flip();
 				} while (!Application_Ended);

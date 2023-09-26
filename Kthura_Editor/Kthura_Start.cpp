@@ -35,6 +35,7 @@
 #include "headers/Project.hpp"
 #include "headers/Glob.hpp"
 #include "headers/UserInterface.hpp"
+#include "headers/MapData.hpp"
 #include "../SupJCR/SupJCR.hpp"
 
 #include <JCR6_Core.hpp>
@@ -65,9 +66,11 @@ int main(int ac, char** arg) {
 
 		if (!CLIParse(ac, arg)) return 1;
 		std::cout << "\n\n";
-		QCol->Doing("Loading map", MapFile());
+		//QCol->Doing("Loading map", MapFile());
 		QCol->Doing("Initizing", "Graphics Window");
 		Graphics(WW(), WH(), "Kthura Map Editor - (c) Jeroen P. Broks"); Cls(); Flip();
+		MapData->MapFile = MapFile();
+		MapData->Load();
 		UserInterFace_Init();
 		UserInterface_Run();
 #ifdef ERROR_CATCHING

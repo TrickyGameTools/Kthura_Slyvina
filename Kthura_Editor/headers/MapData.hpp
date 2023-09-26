@@ -1,5 +1,6 @@
 #pragma once
 
+#include <SlyvGINIE.hpp>
 
 #include <Kthura_Core.hpp>
 
@@ -13,6 +14,13 @@ namespace Slyvina {
 			class TMapData {
 			private:
 			public:
+				std::string MapFile{};
+				Kthura TheMap{ nullptr };
+				UGINIE TextureSettings{ nullptr };
+				std::string TextureSettingsDir();
+				std::string TextureSettingsFile();
+
+				void Load();
 			};
 
 		}

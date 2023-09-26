@@ -162,6 +162,12 @@
     <ClCompile Include="source\MapData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Libs\JCR6\Source\JCR6_Write.cpp">
+      <Filter>Source Files\Slyvina\JCR6</Filter>
+    </ClCompile>
+    <ClCompile Include="source\UI_Layers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="..\..\..\Libs\TQSL\SDL2\libjpeg-9.dll">
@@ -224,6 +230,9 @@
       <Filter>Header Files\Slyvina\Kthura</Filter>
     </ClInclude>
     <ClInclude Include="headers\MapData.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\UI_Layers.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

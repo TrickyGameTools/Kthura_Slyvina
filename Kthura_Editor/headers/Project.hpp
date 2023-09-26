@@ -30,9 +30,9 @@ namespace Slyvina {
 		namespace Editor {
 			std::string ProjectDir();
 			std::string ProjectFile();
-			Units::GINIE Project();
-			inline std::string Project(std::string cat, std::string key) { return Project()->Value(cat, key); }
-			inline void Project(std::string cat, std::string key, std::string value) { Project()->Value(cat, key, value); }
+			Units::RawGINIE* Project();
+			std::string Project(std::string cat, std::string key);
+			void Project(std::string cat, std::string key, std::string value);
 
 			inline std::string MapDir();
 			std::string MapFile();

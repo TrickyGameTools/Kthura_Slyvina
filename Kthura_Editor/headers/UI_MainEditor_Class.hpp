@@ -41,6 +41,9 @@ namespace Slyvina {
 			extern June19::j19gadget* LayerSelector;
 			extern June19::j19gadget* Mascotte;
 
+			extern bool DrawGrid;
+			extern int ScrollX, ScrollY;
+
 			class UIE;
 
 			class UIE {
@@ -86,9 +89,6 @@ namespace Slyvina {
 					* AutoTexIns{ nullptr },
 					* Visible{ nullptr },
 					* Labels{ nullptr }, * Tag{ nullptr };
-
-
-
 			};
 
 

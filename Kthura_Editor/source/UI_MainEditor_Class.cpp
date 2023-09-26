@@ -27,7 +27,10 @@
 #include <SlyvQCol.hpp>
 #include <SlyvHSVRGB.hpp>
 #include "../headers/UI_MainEditor_Class.hpp"
+#include "../headers/UI_Layers.hpp"
 #include "../headers/Resource.hpp"
+
+
 
 namespace Slyvina {
 	namespace Kthura {
@@ -36,12 +39,23 @@ namespace Slyvina {
 			using namespace std;
 			using namespace Units;
 			using namespace June19;
+			using namespace TQSG;
+
+#pragma region Locals
+			static j19gadget* MapPanel{nullptr };
+#pragma endregion
 
 #pragma region "Left Sidebar"
 			June19::j19gadget* SidebarLeft{nullptr};
 			June19::j19gadget* LayerSelector{nullptr};
 			June19::j19gadget* Mascotte{nullptr};
-#pragma enregion
+#pragma endregion
+
+
+#pragma region "General globals"
+			int ScrollX{ 0 }, ScrollY{ 0 };
+			bool DrawGrid{ true };
+#pragma endregion
 
 
 #pragma region "Laziness functions"
@@ -349,6 +363,29 @@ namespace Slyvina {
 			}
 #pragma endregion
 
+#pragma region "Global Callbacks"
+			static void MainEditorBack() {
+				uint32
+					GX{ CurrentLayer()->gridx },
+					GY{ CurrentLayer()->gridy };
+				//SetColor(255, 255, 255);  Mascotte->Image()->Draw(500, 500); // Debug
+				if (ScrollX < 0) {
+					SetColor(255, 0, 0);
+					Rect(MapPanel->DrawX(), MapPanel->DrawY(), abs(ScrollX), MapPanel->H());
+				}
+				if (ScrollY < 0) {
+					SetColor(255, 0, 0);
+					Rect(MapPanel->DrawX(), MapPanel->DrawY(), MapPanel->W(), abs(ScrollY));
+				}
+				SetColor(100, 100, 100, 255);
+				if (DrawGrid) {
+					for (int x = (ScrollX % GX); x <= MapPanel->W(); x += GX) Line(MapPanel->DrawX() + x, 0, MapPanel->DrawX() + x, ScreenHeight());
+					for (int y = (ScrollY % GY); y <= MapPanel->H(); y += GY) Line(0, MapPanel->DrawY() + y, ScreenWidth(), MapPanel->DrawY() + y);
+				}
+				
+			}
+#pragma endregion
+
 			void InitMainEditor() {
 				// Tiled Area
 				auto citem{ UIE::NewArea("TiledArea") };
@@ -367,8 +404,11 @@ namespace Slyvina {
 
 				// Other
 
+				// Modify
+
 				// Left
 				auto IMascotte{ TQSG::LoadImage(Resource(),"Kthura.png") };
+				UIE::EditorPanel()->BA = 0;
 				SidebarLeft = CreatePanel(0, 0, 125, UIE::EditorPanel()->H(), UIE::EditorPanel());
 				LayerSelector = CreateListBox(2, 2, 121, UIE::EditorPanel()->H() - IMascotte->Height(), UIE::EditorPanel());
 				SidebarLeft->SetBackground(111, 0, 127);
@@ -376,6 +416,15 @@ namespace Slyvina {
 				LayerSelector->SetBackground(0, 18, 25);
 				Mascotte = CreatePicture(0, UIE::EditorPanel()->H() - IMascotte->Height(), IMascotte->Width(), IMascotte->Height(),UIE::EditorPanel());
 				Mascotte->Image(IMascotte);
+				UpdateLayerSelector();
+
+				MapPanel = CreatePanel(SidebarLeft->W(), 0, UIE::SideBarRight()->X() - SidebarLeft->W(), UIE::EditorPanel()->H(), UIE::EditorPanel());
+				MapPanel->Visible = false; // only needed for measuring
+
+
+				// Crude callbacks
+				auto ES{ UI::GetStage("Editor") };
+				ES->PreJune = MainEditorBack;
 			}
 		}
 	}

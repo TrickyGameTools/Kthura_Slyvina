@@ -83,9 +83,11 @@ namespace Slyvina {
 			}
 
 			int WW() {
+				LoadGlobalConfig();
 				return AskInt(_globalconfig, "Editor", "Width", "Prefered Window width for editor:", (int)(floor(TQSG::DesktopWidth() * .98)));
 			}
 			int WH() {
+				LoadGlobalConfig();
 				return AskInt(_globalconfig, "Editor", "Height", "Prefered Window height for editor:", (int)(floor(TQSG::DesktopHeight()*.85)));
 			}
 
