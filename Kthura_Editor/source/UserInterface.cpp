@@ -32,6 +32,7 @@
 #include <TQSE.hpp>
 
 #include "../headers/UserInterface.hpp"
+#include "../headers/UI_MainEditor_Class.hpp"
 #include "../headers/Resource.hpp"
 
 using namespace Slyvina;
@@ -61,6 +62,8 @@ namespace Slyvina {
 				_WorkScreen->SetForeground(0, 180, 255);
 				_WorkScreen->SetBackground(180, 0, 255, 255);
 				j19gadget::StatusText("Welcome to Kthura!");
+
+				InitMainEditor();
 			}
 
 			void UserInterface_Run() {
@@ -74,6 +77,7 @@ namespace Slyvina {
 			}
 #pragma endregion
 
+			UI* UI::_Current{nullptr};
 			std::map<std::string, UI> UI::Stage{};
 			
 			void UI::AddStage(std::string st) {
@@ -95,19 +99,23 @@ namespace Slyvina {
 				return nullptr;
 			}
 			void UI::GoToStage(std::string st) {
+				Trans2Upper(st);
 				if (!HaveStage(st)) {
 					QCol->Error("INTERNAL ERROR! Non-existent stage: " + st);
 					QCol->Yellow("Please report this!");
 					QCol->Reset();
 					exit(5);
 				}
-				_Current = &Stage[Upper(st)];
+				for (auto si : Stage) 
+					Stage[si.first].MainGadget->Visible = false;
+				_Current = &Stage[st];
+				_Current->MainGadget->Visible = true;				
 				if (_Current->Arrive) _Current->Arrive();
 			}
 
 			UI::UI(std::string name) {
 				_Name = name;
-				MainGadget = CreatePanel(0, 0, WorkScreen()->W(), WorkScreen()->Y(),WorkScreen());
+				MainGadget = CreatePanel(0, 0, WorkScreen()->W(), WorkScreen()->H(),WorkScreen());
 			}
 		}
 	}
