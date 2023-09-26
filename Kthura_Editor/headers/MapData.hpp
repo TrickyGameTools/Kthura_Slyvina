@@ -39,6 +39,7 @@ namespace Slyvina {
 			class TMapData {
 			private:
 			public:
+				TMapData();
 				std::string MapFile{};
 				Kthura TheMap{ nullptr };
 				UGINIE TextureSettings{ nullptr };

@@ -27,6 +27,7 @@
 #include <SlyvStream.hpp>
 #include <SlyvQCol.hpp>
 #include <SlyvTime.hpp>
+#include <TQSE.hpp>
 
 #include "../builddate.hpp"
 
@@ -39,7 +40,21 @@ using namespace Slyvina::Units;
 namespace Slyvina {
 	namespace Kthura {
 		namespace Editor {
+
+			void KthuraInPaniek(std::string msg,std::string xdata) {
+				TQSE::Notify("KTHURA THREW AN ERROR!\n\n" + msg + "\n\n\n" + xdata);
+				QCol->Error(msg);
+				QCol->Cyan(xdata);
+				QCol->Reset();
+				exit(8);
+			}
+
 			std::unique_ptr<TMapData> MapData{new TMapData()};
+
+			TMapData::TMapData() {
+				
+				KthuraPanic = KthuraInPaniek;
+			}
 
 			std::string TMapData::TextureSettingsDir() {
 				return AVolPath(ProjectDir() + "/Texures_Settings");

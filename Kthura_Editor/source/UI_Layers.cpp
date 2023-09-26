@@ -40,6 +40,7 @@ namespace Slyvina {
 
 #pragma region Variables
 			enum class LayAct{Unknown,Create,Rename};
+			LayAct Act{ LayAct::Unknown };
 
 			static UI* LayerStage{nullptr};
 			static j19gadget
@@ -69,6 +70,25 @@ namespace Slyvina {
 				LS->SelectItem(SL);
 			}
 			KthuraLayer* CurrentLayer() { return MapData->TheMap->Layer(CurrentLayerTag); }
+
+			void Act_LayerSelector(June19::j19gadget*, June19::j19action) {
+				auto Item{ LayerSelector->SelectedItem() };
+				if (Item < 0) return;
+				CurrentLayerTag = LayerSelector->ItemText();
+			}
+
+			void Act_RemoveLayer(June19::j19gadget*, June19::j19action) {
+				auto L{ MapData->TheMap->Layers() };
+				if (L->size() < 2) {
+					TQSE::Notify("You cannot remove any layers when there's only one left");
+					return;
+				}
+				if (TQSE::Yes("Are you sure you wish to remove Layer " + CurrentLayerTag + "?")) {
+					MapData->TheMap->KillLayer(CurrentLayerTag);
+					CurrentLayerTag = "";
+					UpdateLayerSelector();
+				}
+			}
 #pragma endregion
 
 #pragma region Callbacks
@@ -81,6 +101,31 @@ namespace Slyvina {
 			static void ActCancel(j19gadget*, j19action) {
 				UI::GoToStage("Editor");
 			}
+			static void ActOkay(j19gadget*, j19action) {
+				switch (Act) {
+				case LayAct::Unknown:
+					TQSE::Notify("INTERNAL ERROR!\n\nPlease report\n\nLayer Act set to enum value \"LayAct::Unknown\"");
+					QCol->Error("Internal error!");
+					exit(6);
+					return;
+				case LayAct::Create:
+					QCol->Doing("Creating Layer", LayerTextField->Text);
+					MapData->TheMap->NewLayer(LayerTextField->Text);
+					CurrentLayerTag = LayerTextField->Text;
+					UpdateLayerSelector();
+					UI::GoToStage("Editor");
+					return;
+				case LayAct::Rename:
+					QCol->Doing("Renaming layer", CurrentLayerTag, "\t");
+					QCol->Doing("to", LayerTextField->Text);
+					MapData->TheMap->RenameLayer(CurrentLayerTag, LayerTextField->Text);
+					CurrentLayerTag = LayerTextField->Text;
+					UpdateLayerSelector();
+					UI::GoToStage("Editor");
+					return;
+				}
+			}
+
 #pragma endregion
 
 #pragma region "Navigate here"
@@ -99,6 +144,7 @@ namespace Slyvina {
 					LayerOkay->SetForeground(0, 255, 0);
 					LayerOkay->SetBackground(0, 25, 0);
 					LayerOkay->CBDraw = UpdateOkay;
+					LayerOkay->CBAction = ActOkay;
 					LayerCancel = CreateButton("Cancel", 0, 150, LayerPanel);
 					LayerCancel->SetForeground(255, 0, 0);
 					LayerCancel->SetBackground(25, 0, 0);
@@ -111,7 +157,20 @@ namespace Slyvina {
 				QCol->Doing("Request", "Create a new layer");
 				CreateLayerStage();
 				LayerCaption->Caption = "Please enter a name for the new layer";
+				LayerTextField->Text = "";
 				UI::GoToStage("Layers");
+				Act = LayAct::Create;
+			}
+
+			void PDM_RenameLayer(June19::j19gadget*, June19::j19action) {
+				if (CurrentLayerTag == "") return;
+				QCol->Doing("Request", "Rename layer: "+CurrentLayerTag);
+				CreateLayerStage();
+				LayerCaption->Caption = "Please enter a new name for layer: "+CurrentLayerTag;
+				LayerTextField->Text = CurrentLayerTag;
+				UI::GoToStage("Layers");
+				Act = LayAct::Rename;
+
 			}
 		}
 #pragma endregion

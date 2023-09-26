@@ -414,6 +414,7 @@ namespace Slyvina {
 				SidebarLeft->SetBackground(111, 0, 127);
 				LayerSelector->SetForeground(0, 180, 255);
 				LayerSelector->SetBackground(0, 18, 25);
+				LayerSelector->CBAction = Act_LayerSelector;
 				Mascotte = CreatePicture(0, UIE::EditorPanel()->H() - IMascotte->Height(), IMascotte->Width(), IMascotte->Height(),UIE::EditorPanel());
 				Mascotte->Image(IMascotte);
 				UpdateLayerSelector();

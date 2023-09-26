@@ -73,6 +73,8 @@ namespace Slyvina {
 				auto pdm = _WorkScreen->AddMenu("File");
 				pdm = _WorkScreen->AddMenu("Layers");
 				pdm->AddItem("New layer", PDM_NewLayer, SDLK_n);
+				pdm->AddItem("Rename Layer", PDM_RenameLayer, SDLK_KP_5);
+				pdm->AddItem("Remove Layer", Act_RemoveLayer, SDLK_KP_PERIOD);
 				pdm = _WorkScreen->AddMenu("Grid");
 				pdm->AddItem("Toggle Draw Grid", PDM_ToggleGrid, SDLK_d);
 				pdm = _WorkScreen->AddMenu("Scroll");

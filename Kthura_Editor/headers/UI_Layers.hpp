@@ -41,6 +41,9 @@ namespace Slyvina {
 			KthuraLayer* CurrentLayer();
 
 			void PDM_NewLayer(June19::j19gadget*, June19::j19action);
+			void PDM_RenameLayer(June19::j19gadget*, June19::j19action);
+			void Act_LayerSelector(June19::j19gadget*, June19::j19action);
+			void Act_RemoveLayer(June19::j19gadget*, June19::j19action);
 
 		}
 	}
