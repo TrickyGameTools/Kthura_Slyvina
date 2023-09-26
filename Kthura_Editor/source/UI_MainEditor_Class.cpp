@@ -361,6 +361,7 @@ namespace Slyvina {
 				CreateLabel("Tag:", 0, 375, CX, 20, OptionsPanel);
 				Tag = CreateButton("...", CX, 372, OptionsPanel);
 				Amber(Tag);
+				Tag->Enabled = false;
 
 			}
 #pragma endregion
