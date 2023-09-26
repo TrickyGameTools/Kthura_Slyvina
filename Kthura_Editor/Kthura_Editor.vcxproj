@@ -72,7 +72,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)\Exe</OutDir>
-    <IncludePath>E:\Projects\Applications\Slyvina\Libs\June19\head;E:\Projects\Applications\Slyvina\Libs\JCR6\3rdParty\zlib;E:\Projects\Applications\Slyvina\Libs\TQSL\SDL2\include;E:\Projects\Applications\Slyvina\Libs\JCR6\Headers;E:\Projects\Applications\Slyvina\Libs\TQSL\Headers;E:\Projects\Applications\Slyvina\Libs\Units\Headers;$(IncludePath)</IncludePath>
+    <IncludePath>E:\Projects\Applications\Slyvina\Libs\Kthura\Headers;E:\Projects\Applications\Slyvina\Libs\June19\head;E:\Projects\Applications\Slyvina\Libs\JCR6\3rdParty\zlib;E:\Projects\Applications\Slyvina\Libs\TQSL\SDL2\include;E:\Projects\Applications\Slyvina\Libs\JCR6\Headers;E:\Projects\Applications\Slyvina\Libs\TQSL\Headers;E:\Projects\Applications\Slyvina\Libs\Units\Headers;$(IncludePath)</IncludePath>
     <LibraryWPath>$(WindowsSDK_MetadataPath);</LibraryWPath>
     <LibraryPath>E:\Projects\Applications\Slyvina\Libs\TQSL\SDL2\;E:\Projects\Applications\Slyvina\Libs\JCR6\3rdParty\zlib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
@@ -149,6 +149,8 @@
     <ClCompile Include="..\..\..\Libs\June19\src\june19_scrollbar.cpp" />
     <ClCompile Include="..\..\..\Libs\June19\src\june19_tabber.cpp" />
     <ClCompile Include="..\..\..\Libs\June19\src\june19_textfield.cpp" />
+    <ClCompile Include="..\..\..\Libs\Kthura\Source\Kthura_Core.cpp" />
+    <ClCompile Include="..\..\..\Libs\Kthura\Source\Kthura_Save.cpp" />
     <ClCompile Include="..\..\..\Libs\TQSL\Source\TQSE.cpp" />
     <ClCompile Include="..\..\..\Libs\TQSL\Source\TQSG.cpp" />
     <ClCompile Include="..\..\..\Libs\Units\Source\SlyvArgParse.cpp" />
@@ -167,6 +169,7 @@
     <ClCompile Include="Kthura_Start.cpp" />
     <ClCompile Include="source\CLI_Config.cpp" />
     <ClCompile Include="source\Glob.cpp" />
+    <ClCompile Include="source\MapData.cpp" />
     <ClCompile Include="source\Project.cpp" />
     <ClCompile Include="source\Resource.cpp" />
     <ClCompile Include="source\UI_MainEditor_Class.cpp" />
@@ -213,9 +216,13 @@
     </CopyFileToFolders>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\Libs\Kthura\Headers\Kthura_Core.hpp" />
+    <ClInclude Include="..\..\..\Libs\Kthura\Headers\Kthura_Export_XML.hpp" />
+    <ClInclude Include="..\..\..\Libs\Kthura\Headers\Kthura_Save.hpp" />
     <ClInclude Include="..\SupJCR\SupJCR.hpp" />
     <ClInclude Include="headers\ConfigCLI.hpp" />
     <ClInclude Include="headers\Glob.hpp" />
+    <ClInclude Include="headers\MapData.hpp" />
     <ClInclude Include="headers\Project.hpp" />
     <ClInclude Include="headers\Resource.hpp" />
     <ClInclude Include="headers\UI_MainEditor_Class.hpp" />

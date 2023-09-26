@@ -40,6 +40,15 @@
     <Filter Include="Source Files\SupJCR">
       <UniqueIdentifier>{26aaf029-9061-4021-a0ae-704881398d02}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Slyvina">
+      <UniqueIdentifier>{f68463fc-585b-4638-a87d-e3f3d7c9d225}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Slyvina\Kthura">
+      <UniqueIdentifier>{45a0af08-9ffe-4790-b49d-7bea2f823b1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Slyvina\Kthura">
+      <UniqueIdentifier>{8e385569-52ad-4a89-9f27-cac7bf122a24}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Kthura_Start.cpp">
@@ -144,6 +153,15 @@
     <ClCompile Include="source\UI_MainEditor_Class.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Kthura\Source\Kthura_Core.cpp">
+      <Filter>Source Files\Slyvina\Kthura</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Kthura\Source\Kthura_Save.cpp">
+      <Filter>Source Files\Slyvina\Kthura</Filter>
+    </ClCompile>
+    <ClCompile Include="source\MapData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="..\..\..\Libs\TQSL\SDL2\libjpeg-9.dll">
@@ -194,6 +212,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Libs\Kthura\Headers\Kthura_Core.hpp">
+      <Filter>Header Files\Slyvina\Kthura</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Libs\Kthura\Headers\Kthura_Export_XML.hpp">
+      <Filter>Header Files\Slyvina\Kthura</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Libs\Kthura\Headers\Kthura_Save.hpp">
+      <Filter>Header Files\Slyvina\Kthura</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\MapData.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
