@@ -173,6 +173,7 @@ namespace Slyvina {
 			std::map<std::string, UIE> UIE::_Register{};
 			//std::map<std::string, j19gadget*> UIE::RadioButtons{};
 			int UIE::NextY {0};
+			std::map<UIEType, UIEAct> UIEAct::Reg{};
 #pragma endregion
 
 #pragma region "UIE Methods"		

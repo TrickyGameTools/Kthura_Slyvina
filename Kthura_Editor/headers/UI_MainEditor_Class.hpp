@@ -45,6 +45,8 @@ namespace Slyvina {
 			extern int ScrollX, ScrollY;
 
 			class UIE;
+			class UIEAct;
+
 
 			class UIE {
 			private:
@@ -91,6 +93,15 @@ namespace Slyvina {
 					* Labels{ nullptr }, * Tag{ nullptr };
 			};
 
+			typedef void(*UIEMouseCB)(int X, Y);
+
+			class UIEAct {
+			private:
+			public:
+				static std::map<UIEType, UIEAct> Reg;
+				UIEMouseCB Pressed{ nullptr };
+				UIEMouseCB Released{ nullptr };
+			};
 
 			void InitMainEditor();
 		}
