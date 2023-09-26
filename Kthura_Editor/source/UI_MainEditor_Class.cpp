@@ -1,7 +1,33 @@
+// Lic:
+// Kthura
+// Main Editor Base Class
+// 
+// 
+// 
+// (c) Jeroen P. Broks, 2015, 2016, 2017, 2019, 2021, 2023
+// 
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+// 
+// Please note that some references to data like pictures or audio, do not automatically
+// fall under this licenses. Mostly this is noted in the respective files.
+// 
+// Version: 23.09.26
+// EndLic
 #include <TQSE.hpp>
 #include <SlyvQCol.hpp>
 #include <SlyvHSVRGB.hpp>
 #include "../headers/UI_MainEditor_Class.hpp"
+#include "../headers/Resource.hpp"
 
 namespace Slyvina {
 	namespace Kthura {
@@ -10,6 +36,13 @@ namespace Slyvina {
 			using namespace std;
 			using namespace Units;
 			using namespace June19;
+
+#pragma region "Left Sidebar"
+			June19::j19gadget* SidebarLeft{nullptr};
+			June19::j19gadget* LayerSelector{nullptr};
+			June19::j19gadget* Mascotte{nullptr};
+#pragma enregion
+
 
 #pragma region "Laziness functions"
 			static void Amber(j19gadget* g, bool back = true) {
@@ -47,6 +80,72 @@ namespace Slyvina {
 					_b{ (byte)(rgb.b * 255) };
 				g->SetForeground(_r, _g, _b);
 				g->SetBackground(_r/10, _g/10, _b/10);
+			}
+
+			static void CheckShow(j19gadget* g, j19action) {
+				if (g->checked) {
+					g->Caption = "Yes";
+					g->SetForeground(180, 255, 0);
+				} else {
+					g->Caption = "No";
+					g->SetForeground(255, 0, 0);
+				}
+			}
+
+			static void CheckImpassible(j19gadget* g, j19action) {
+				UIE::_Current->ForcePassible->Enabled = !g->checked;
+				if (!g->checked)UIE::_Current->ForcePassible->checked = false;
+			}
+			static void CheckForcePassible(j19gadget* g, j19action) {
+				UIE::_Current->Impassible->Enabled = !g->checked;
+				if (!g->checked)UIE::_Current->Impassible->checked = false;
+			}
+
+			static void CheckAnimSpeed(j19gadget* g, j19action) {
+				UIE::_Current->AnimFrame->Enabled = ToInt(g->Text) < 0;
+			}
+
+			static void AutoTexInsCheck(j19gadget* g, j19action) {
+				if (UIE::_Register["TiledArea"].AutoTexIns != g) return;
+				UIE::_Register["TiledArea"].InsX->Enabled = !g->checked;
+				UIE::_Register["TiledArea"].InsY->Enabled = !g->checked;
+			}
+
+			static void Act_HSV(j19gadget*, j19action) {
+				auto CP{ UIE::_Current };
+				CP->Hue->Text = TrSPrintF("%d", ToInt(CP->Hue->Text) % 360);
+				CP->Saturation->Text = TrSPrintF("%d", ToInt(CP->Saturation->Text) % 101);
+				CP->Value->Text = TrSPrintF("%d", ToInt(CP->Value->Text) % 101);
+				hsv _hsv{
+					(double)(ToInt(CP->Hue->Text) % 360),
+						((double)ToInt(CP->Saturation->Text)) / 100,
+						((double)ToInt(CP->Value->Text)) / 100
+				};
+				auto 
+					rgb{ hsv2rgb(_hsv) };
+				auto
+					_r{ (byte)(rgb.r * 255) },
+					_g{ (byte)(rgb.g * 255) },
+					_b{ (byte)(rgb.b * 255) };
+				CP->Red->Text = TrSPrintF("%d", _r);
+				CP->Green->Text = TrSPrintF("%d", _g);
+				CP->Blue->Text = TrSPrintF("%d", _b);				
+			}
+
+			static void Act_RGB(j19gadget*, j19action) {
+				auto CP{ UIE::_Current };
+				CP->Red->Text = TrSPrintF("%d", ToInt(CP->Red->Text) % 256);
+				CP->Green->Text = TrSPrintF("%d", ToInt(CP->Green->Text) % 256);
+				CP->Blue->Text = TrSPrintF("%d", ToInt(CP->Blue->Text) % 256);
+				rgb _rgb{
+					(double)ToInt(CP->Red->Text) / 255,
+					(double)ToInt(CP->Green->Text) / 255,
+					(double)ToInt(CP->Blue->Text) / 255
+				};
+				auto _hsv = rgb2hsv(_rgb);
+				CP->Hue->Text = TrSPrintF("%d", (int)_hsv.h);
+				CP->Saturation->Text = TrSPrintF("%d", (int)floor( _hsv.s*100));
+				CP->Value->Text = TrSPrintF("%d", (int)floor(_hsv.v * 100));
 			}
 
 #pragma endregion
@@ -109,18 +208,18 @@ namespace Slyvina {
 
 			void UIE::InitBaseGadgets() {
 				auto CX{ WBRightCX() };
-				OptionsPanel->Visible= MyRadioButton->Caption == "TiledArea";
+				OptionsPanel->Visible = MyRadioButton->Caption == "TiledArea";
 				CreateLabel("Kind:", 0, 0, CX, 20, OptionsPanel);
 				Kind = CreateLabel(MyRadioButton->Caption, CX, 0, CX, 20, OptionsPanel);
 				if (MyRadioButton->Caption == "Modify") Kind->Caption = "Nothing";
 				Amber(Kind, false);
 
 				CreateLabel("Coords:", 0, 20, CX, 20, OptionsPanel);
-				X = CreateTextfield(CX, 20, (CX / 2)-5, 20, OptionsPanel);
-				Y = CreateTextfield(CX + (CX / 2), 20, (CX / 2)-5, 20, OptionsPanel);
+				X = CreateTextfield(CX, 20, (CX / 2) - 5, 20, OptionsPanel);
+				Y = CreateTextfield(CX + (CX / 2), 20, (CX / 2) - 5, 20, OptionsPanel);
 				Amber(X); X->Enabled = false; //MyRadioButton->Caption == "Modify";
 				Amber(Y); Y->Enabled = false; //MyRadioButton->Caption == "Modify";
-				
+
 				CreateLabel("Insert:", 0, 40, CX, 20, OptionsPanel);
 				InsX = CreateTextfield(CX, 40, (CX / 2) - 5, 20, OptionsPanel);
 				InsY = CreateTextfield(CX + (CX / 2), 40, (CX / 2) - 5, 20, OptionsPanel);
@@ -145,19 +244,22 @@ namespace Slyvina {
 
 				{
 					CreateLabel("Color RGB:", 0, 125, CX, 20, OptionsPanel);
-					auto C3{ (CX-10)  / 3 };
+					auto C3{ (CX - 10) / 3 };
 					Red = CreateTextfield(CX, 125, C3, OptionsPanel, "255");
-					Green = CreateTextfield(CX+C3, 125, C3, OptionsPanel, "255");
-					Blue = CreateTextfield(CX+C3+C3, 125, C3, OptionsPanel, "255");
+					Green = CreateTextfield(CX + C3, 125, C3, OptionsPanel, "255");
+					Blue = CreateTextfield(CX + C3 + C3, 125, C3, OptionsPanel, "255");
 					Red->SetForeground(255, 0, 0, 255);
 					Red->SetBackground(25, 0, 0, 255);
 					Green->SetForeground(0, 255, 0, 255);
-					Green->SetBackground(0,25, 0, 255);
+					Green->SetBackground(0, 25, 0, 255);
 					Blue->SetForeground(0, 0, 255, 255);
 					Blue->SetBackground(0, 0, 25, 255);
 					TexLink["Red"] = Red;
 					TexLink["Green"] = Green;
 					TexLink["Blue"] = Blue;
+					Red->CBAction = Act_RGB;
+					Green->CBAction = Act_RGB;
+					Blue->CBAction = Act_RGB;
 
 					CreateLabel("Color HSV:", 0, 145, CX, 20, OptionsPanel);
 					Hue = CreateTextfield(CX, 145, C3, OptionsPanel, "0");
@@ -165,14 +267,84 @@ namespace Slyvina {
 					Value = CreateTextfield(CX + C3 + C3, 145, C3, OptionsPanel, "100");
 					Hue->CBDraw = HueLoop;
 					Saturation->SetForeground(0, 0, 0, 255);
-					Saturation->SetBackground(255,255,255, 255);
+					Saturation->SetBackground(255, 255, 255, 255);
 					Value->SetBackground(0, 0, 0, 255);
 					Value->SetForeground(255, 255, 255, 255);
 					TexLink["Hue"] = Hue;
-					TexLink["Saturation"] = Green;
-					TexLink["Value"] = Blue;
+					TexLink["Saturation"] = Saturation;
+					TexLink["Value"] = Value;
+					Hue->CBAction = Act_HSV;
+					Saturation->CBAction = Act_HSV;
+					Value->CBAction = Act_HSV;
+					Act_RGB(nullptr, j19action::Unknown);
 
 				}
+				CreateLabel("Alpha:", 0, 165, CX, 20, OptionsPanel);
+				Alpha = CreateTextfield(CX, 165, CX - 30, OptionsPanel, "255");
+				Amber(Alpha);
+				Alpha->Enabled = MyRadioButton->Caption != "Zone";
+				TexLink["Alpha"] = Alpha;
+				CreateLabel("Rotate:", 0, 185, CX, 20, OptionsPanel);
+				Rotate = CreateTextfield(CX, 185, (CX / 2) - 30, OptionsPanel, "0");
+				Amber(Rotate);
+				Rotate->Enabled = MyRadioButton->Caption == "Obstacle";
+				TexLink["Rotate"] = Alpha;
+				Radians = CreateTextfield(CX + (CX / 2), 185, (CX / 2) - 30, OptionsPanel, "0.00");
+				Radians->Enabled = false;
+				Amber(Radians);
+
+				CreateLabel("Scale:", 0, 205, CX, 20, OptionsPanel);
+				ScaleX = CreateTextfield(CX, 205, (CX / 2) - 30, OptionsPanel, "1000");
+				ScaleY = CreateTextfield(CX + (CX / 2), 205, (CX / 2) - 30, OptionsPanel, "1000");
+				Amber(ScaleX);
+				Amber(ScaleY);
+				TexLink["Scale.X"] = ScaleX;
+				TexLink["Scale.Y"] = ScaleY;
+				ScaleX->Enabled = MyRadioButton->Caption == "Obstacle";
+				ScaleY->Enabled = MyRadioButton->Caption == "Obstacle";
+
+				CreateLabel("Impassible:", 0, 225, CX, 20, OptionsPanel);
+				Impassible = CreateCheckBox("", CX, 225, CX, 20, OptionsPanel);
+				Impassible->CBDraw = CheckShow;
+				TexLink["Impassible"] = Impassible;
+				CreateLabel("Force Passible:", 0, 245, CX, 20, OptionsPanel);
+				ForcePassible = CreateCheckBox("", CX, 245, CX, 20, OptionsPanel);
+				ForcePassible->CBDraw = CheckShow;
+				TexLink["ForcePassible"] = ForcePassible;
+				Impassible->Enabled = Type == UIEType::Area;
+				ForcePassible->Enabled = Type == UIEType::Area;
+				Impassible->CBAction = CheckImpassible;
+				ForcePassible->CBAction = CheckForcePassible;
+
+				CreateLabel("AnimFrame:", 0, 265, CX, 20, OptionsPanel);
+				AnimFrame = CreateTextfield(CX, 265, (CX / 2) - 30, OptionsPanel, "0");
+				AnimFrame->Enabled = MyRadioButton->Caption == "Obstacle" || MyRadioButton->Caption == "TiledArea" || MyRadioButton->Caption == "StretchedArea";
+				CreateLabel("AnimSpeed:", 0, 285, CX, 20, OptionsPanel);
+				AnimSpeed = CreateTextfield(CX, 285, (CX / 2) - 30, OptionsPanel, "-1");
+				AnimSpeed->Enabled = MyRadioButton->Caption == "Obstacle" || MyRadioButton->Caption == "TiledArea" || MyRadioButton->Caption == "StretchedArea";
+				AnimSpeed->CBDraw = CheckAnimSpeed;
+				TexLink["Animation.Speed"] = AnimSpeed;
+				TexLink["Animation.Frame"] = AnimFrame;
+
+				CreateLabel("AutoTexIns:", 0, 305, CX, 20, OptionsPanel);
+				AutoTexIns = CreateCheckBox("", CX, 305, CX, 20, OptionsPanel);
+				AutoTexIns->CBDraw = CheckShow;
+				AutoTexIns->Enabled = MyRadioButton->Caption == "TiledArea";
+				AutoTexIns->CBAction = AutoTexInsCheck;
+				TexLink["Automated_Texture_Insertion"] = AutoTexIns;
+
+				CreateLabel("Visble:", 0, 325, CX, 20, OptionsPanel);
+				Visible = CreateCheckBox("", CX, 325, CX, 20, OptionsPanel);
+				Visible->CBDraw = CheckShow;
+				Visible->checked = true;
+				TexLink["Visible"] = Visible;
+
+				CreateLabel("Labels:", 0, 350, CX, 20, OptionsPanel);
+				Labels = CreateButton("0", CX, 348, OptionsPanel);
+				Amber(Labels);
+				CreateLabel("Tag:", 0, 375, CX, 20, OptionsPanel);
+				Tag = CreateButton("...", CX, 372, OptionsPanel);
+				Amber(Tag);
 
 			}
 #pragma endregion
@@ -195,6 +367,15 @@ namespace Slyvina {
 
 				// Other
 
+				// Left
+				auto IMascotte{ TQSG::LoadImage(Resource(),"Kthura.png") };
+				SidebarLeft = CreatePanel(0, 0, 125, UIE::EditorPanel()->H(), UIE::EditorPanel());
+				LayerSelector = CreateListBox(2, 2, 121, UIE::EditorPanel()->H() - IMascotte->Height(), UIE::EditorPanel());
+				SidebarLeft->SetBackground(111, 0, 127);
+				LayerSelector->SetForeground(0, 180, 255);
+				LayerSelector->SetBackground(0, 18, 25);
+				Mascotte = CreatePicture(0, UIE::EditorPanel()->H() - IMascotte->Height(), IMascotte->Width(), IMascotte->Height(),UIE::EditorPanel());
+				Mascotte->Image(IMascotte);
 			}
 		}
 	}

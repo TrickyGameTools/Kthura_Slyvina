@@ -220,6 +220,13 @@
     <ClInclude Include="headers\Resource.hpp" />
     <ClInclude Include="headers\UI_MainEditor_Class.hpp" />
     <ClInclude Include="headers\UserInterface.hpp" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Kthura_Editor.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Kthura_NewProjectWizard\Kthura.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

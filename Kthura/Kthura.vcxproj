@@ -171,6 +171,7 @@
     <ClInclude Include="..\SupJCR\SupJCR.hpp" />
     <ClInclude Include="builddate.hpp" />
     <ClInclude Include="Glob.hpp" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Run.hpp" />
   </ItemGroup>
   <ItemGroup>
@@ -200,6 +201,13 @@
     <CopyFileToFolders Include="..\..\..\Libs\JCR6\3rdParty\zlib\zlib.dll">
       <FileType>Document</FileType>
     </CopyFileToFolders>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Kthura.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Kthura_NewProjectWizard\Kthura.ico" />
+    <Image Include="..\Kthura_NewProjectWizard\Kthura.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
