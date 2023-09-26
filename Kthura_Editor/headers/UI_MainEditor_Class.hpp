@@ -41,7 +41,7 @@ namespace Slyvina {
 			extern June19::j19gadget* LayerSelector;
 			extern June19::j19gadget* Mascotte;
 
-			extern bool DrawGrid;
+			extern bool DrawGrid,GridMode;
 			extern int ScrollX, ScrollY;
 
 			class UIE;

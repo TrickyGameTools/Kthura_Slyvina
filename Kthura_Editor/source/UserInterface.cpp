@@ -54,6 +54,7 @@ namespace Slyvina {
 #pragma region "PullDownMenu CallBacks"
 			
 			static void PDM_ToggleGrid(j19gadget*, j19action) { DrawGrid = !DrawGrid; }
+			static void PDM_ToggleGridMode(j19gadget*, j19action) { GridMode = !GridMode; }
 			static void PDM_ScrollUp(j19gadget* , j19action) { ScrollY -= CurrentLayer()->gridy / 2; }
 			static void PDM_ScrollDn(j19gadget* , j19action) { ScrollY += CurrentLayer()->gridy / 2; }
 			static void PDM_ScrollLf(j19gadget* , j19action) { ScrollX -= CurrentLayer()->gridx / 2; }
@@ -77,6 +78,7 @@ namespace Slyvina {
 				pdm->AddItem("Remove Layer", Act_RemoveLayer, SDLK_KP_PERIOD);
 				pdm = _WorkScreen->AddMenu("Grid");
 				pdm->AddItem("Toggle Draw Grid", PDM_ToggleGrid, SDLK_d);
+				pdm->AddItem("Toggle Grid Mode", PDM_ToggleGridMode, SDLK_g);
 				pdm = _WorkScreen->AddMenu("Scroll");
 				pdm->AddItem("Scroll Up", PDM_ScrollUp, SDLK_UP);
 				pdm->AddItem("Scroll Down", PDM_ScrollDn, SDLK_DOWN);

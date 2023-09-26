@@ -56,7 +56,7 @@ namespace Slyvina {
 
 #pragma region "General globals"
 			int ScrollX{ 0 }, ScrollY{ 0 };
-			bool DrawGrid{ true };
+			bool DrawGrid{ true }, GridMode{ true };
 #pragma endregion
 
 
@@ -385,13 +385,28 @@ namespace Slyvina {
 					for (int y = (ScrollY % GY); y <= MapPanel->H(); y += GY) Line(0, MapPanel->DrawY() + y, ScreenWidth(), MapPanel->DrawY() + y);
 				}
 				string coords{ "" };
+				string strgridmode{ " " }; if (GridMode) strgridmode = "Grid Mode";
 				if (MouseX() >= MapPanel->DrawX() && MouseY() >= MapPanel->DrawY() && MouseX() < MapPanel->DrawX() + MapPanel->W() && MouseY() < MapPanel->DrawY() + MapPanel->H()) {
 					int
-						MX{ (MouseX() - MapPanel->DrawX())+ScrollX },
-						MY{ (MouseY() - MapPanel->DrawY())+ScrollY };
-					coords = TrSPrintF("Mouse(%4d,%4d)", MX, MY);
+						MX{ (MouseX() - MapPanel->DrawX()) + ScrollX },
+						MY{ (MouseY() - MapPanel->DrawY()) + ScrollY },
+						DX{ MX },
+						DY{ MY };
+					if (GridMode) {
+						switch (UIE::_Current->Type) {
+						case UIEType::Area: 
+							DX = floor(((double)MX) / CurrentLayer()->gridx) * CurrentLayer()->gridx;
+							DY = floor(((double)MY) / CurrentLayer()->gridy) * CurrentLayer()->gridy;
+							break;
+						case UIEType::Spot:
+							DX = (floor(((double)MX) / CurrentLayer()->gridx) * CurrentLayer()->gridx)+(CurrentLayer()->gridx/2);
+							DY = (floor(((double)MY) / CurrentLayer()->gridy) * CurrentLayer()->gridy)+CurrentLayer()->gridy;
+							break;
+						}
+					}
+					coords = TrSPrintF("Mouse(%4d,%4d) -> (%4d,%4d)", MX, MY, DX, DY);
 				}
-				j19gadget::StatusText(ProjectName() + "::" + MapName() + "\t" + coords+"\tScroll"+TrSPrintF("(%4d,%4d)",ScrollX,ScrollY));
+				j19gadget::StatusText(ProjectName() + "::" + MapName() + "\t" + coords+"\tScroll"+TrSPrintF("(%4d,%4d)",ScrollX,ScrollY)+"\t"+strgridmode);
 			}
 #pragma endregion
 
