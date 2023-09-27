@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 23.09.26
+// Version: 23.09.27
 // EndLic
 
 #pragma once
@@ -93,7 +93,7 @@ namespace Slyvina {
 					* Labels{ nullptr }, * Tag{ nullptr };
 			};
 
-			typedef void(*UIEMouseCB)(int X, Y);
+			typedef void(*UIEMouseCB)(int X, int Y);
 
 			class UIEAct {
 			private:
@@ -101,6 +101,7 @@ namespace Slyvina {
 				static std::map<UIEType, UIEAct> Reg;
 				UIEMouseCB Pressed{ nullptr };
 				UIEMouseCB Released{ nullptr };
+				UIEMouseCB Draw{ nullptr };
 			};
 
 			void InitMainEditor();

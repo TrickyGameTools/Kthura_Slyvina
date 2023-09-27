@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 23.09.26
+// Version: 23.09.27
 // EndLic
 
 #pragma once
@@ -30,7 +30,7 @@
 namespace Slyvina {
 	namespace Kthura {
 		namespace Editor {
-
+			void InitEditArea();
 		}
 	}
 }

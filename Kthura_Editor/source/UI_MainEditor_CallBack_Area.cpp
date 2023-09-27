@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 23.09.26
+// Version: 23.09.27
 // EndLic
 
 #include "../headers/UI_MainEditor_CallBack_Area.hpp"
@@ -30,6 +30,16 @@ namespace Slyvina {
 	namespace Kthura {
 		namespace Editor {
 
+			static void AreaPressed(int x, int y) {}
+			static void AreaReleased(int x, int y) {}
+			static void AreaDraw(int x, y) {}
+
+
+			void InitEditArea() {
+				UIEAct::Reg[UIEType::Area].Pressed = AreaPressed;
+				UIEAct::Reg[UIEType::Area].Released = AreaReleased;
+				UIEAct::Reg[UIEType::Area].Draw = AreaDraw;
+			}
 		}
 	}
 }
