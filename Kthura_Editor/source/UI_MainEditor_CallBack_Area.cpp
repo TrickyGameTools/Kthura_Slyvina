@@ -32,7 +32,7 @@ namespace Slyvina {
 
 			static void AreaPressed(int x, int y) {}
 			static void AreaReleased(int x, int y) {}
-			static void AreaDraw(int x, y) {}
+			static void AreaDraw(int x, int y) {}
 
 
 			void InitEditArea() {

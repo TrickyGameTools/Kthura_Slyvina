@@ -36,7 +36,7 @@ using namespace Slyvina::Units;
 namespace Slyvina {
 	namespace Kthura {
 		namespace Editor {
-			using namespace Launcher;
+			
 			UGINIE _PrjCfg{ nullptr };
 
 			std::string ProjectDir() { return ProjectsDir() + "/" + ProjectName(); }

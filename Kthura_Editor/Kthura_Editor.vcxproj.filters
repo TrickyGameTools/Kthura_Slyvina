@@ -177,6 +177,12 @@
     <ClCompile Include="..\..\..\Libs\JCR6\Source\JCR6_RealDir.cpp">
       <Filter>Source Files\Slyvina\JCR6</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Kthura\Source\Kthura_Draw.cpp">
+      <Filter>Source Files\Slyvina\Kthura</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Kthura\Source\Kthura_Draw_TQSG.cpp">
+      <Filter>Source Files\Slyvina\Kthura</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="..\..\..\Libs\TQSL\SDL2\libjpeg-9.dll">
@@ -246,6 +252,12 @@
     </ClInclude>
     <ClInclude Include="headers\UI_MainEditor_CallBack_Area.hpp">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Libs\Kthura\Headers\Kthura_Draw.hpp">
+      <Filter>Header Files\Slyvina\Kthura</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Libs\Kthura\Headers\Kthura_Draw_TQSG.hpp">
+      <Filter>Header Files\Slyvina\Kthura</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

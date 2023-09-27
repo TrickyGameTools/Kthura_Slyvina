@@ -24,6 +24,7 @@
 // Version: 23.09.27
 // EndLic
 #pragma once
+#include <JCR6_Core.hpp>
 
 
 
