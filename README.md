@@ -1,3 +1,9 @@
+# Current Status
+
+WIP
+
+When this app is functional enough to actually be used, it will replaced the old Kthura project.
+
 # Kthura
 ![](https://raw.githubusercontent.com/TrickyGameTools/KthuraTextEditor/master/Properties/Kthura.png)
 
