@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 23.09.26
+// Version: 23.09.27
 // EndLic
 
 #include <string>
@@ -44,7 +44,7 @@ using namespace Slyvina::JCR6;
 
 namespace Slyvina {
 	namespace Kthura {
-		namespace Launcher {
+		namespace Editor {
 			std::string MyDir{ "." };
 			JT_Dir JAS{ nullptr };
 

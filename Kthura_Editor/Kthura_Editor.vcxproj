@@ -138,6 +138,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Libs\JCR6\Source\JCR6_Core.cpp" />
+    <ClCompile Include="..\..\..\Libs\JCR6\Source\JCR6_JQL.cpp" />
+    <ClCompile Include="..\..\..\Libs\JCR6\Source\JCR6_RealDir.cpp" />
     <ClCompile Include="..\..\..\Libs\JCR6\Source\JCR6_Write.cpp" />
     <ClCompile Include="..\..\..\Libs\JCR6\Source\JCR6_zlib.cpp" />
     <ClCompile Include="..\..\..\Libs\June19\src\june19_button.cpp" />
@@ -174,6 +176,7 @@
     <ClCompile Include="source\Project.cpp" />
     <ClCompile Include="source\Resource.cpp" />
     <ClCompile Include="source\UI_Layers.cpp" />
+    <ClCompile Include="source\UI_MainEditor_CallBack_Area.cpp" />
     <ClCompile Include="source\UI_MainEditor_Class.cpp" />
     <ClCompile Include="source\UserInterface.cpp" />
   </ItemGroup>
@@ -228,6 +231,7 @@
     <ClInclude Include="headers\Project.hpp" />
     <ClInclude Include="headers\Resource.hpp" />
     <ClInclude Include="headers\UI_Layers.hpp" />
+    <ClInclude Include="headers\UI_MainEditor_CallBack_Area.hpp" />
     <ClInclude Include="headers\UI_MainEditor_Class.hpp" />
     <ClInclude Include="headers\UserInterface.hpp" />
     <ClInclude Include="resource.h" />

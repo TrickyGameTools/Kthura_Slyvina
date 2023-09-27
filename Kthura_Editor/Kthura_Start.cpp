@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 23.09.26
+// Version: 23.09.27
 // EndLic
 
 #define ERROR_CATCHING
@@ -39,6 +39,8 @@
 #include "../SupJCR/SupJCR.hpp"
 
 #include <JCR6_Core.hpp>
+#include <JCR6_RealDir.hpp>
+#include <JCR6_JQL.hpp>
 
 #include <TQSG.hpp>
 
@@ -63,9 +65,10 @@ int main(int ac, char** arg) {
 		QCol->Doing("PlatformX", Platform(false));
 		QCol->Doing("Kthura Dir", MyDir);
 		QCol->Doing("Called from", ChReplace(CurrentDir(), '\\', '/'));		
-
 		if (!CLIParse(ac, arg)) return 1;
 		std::cout << "\n\n";
+		JCR6::InitJQL();
+		JCR6::JCR6_InitRealDir();
 		//QCol->Doing("Loading map", MapFile());
 		QCol->Doing("Initizing", "Graphics Window");
 		Graphics(WW(), WH(), "Kthura Map Editor - (c) Jeroen P. Broks"); Cls(); Flip();

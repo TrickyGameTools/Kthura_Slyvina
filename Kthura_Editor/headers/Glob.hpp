@@ -21,13 +21,20 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 23.09.25
+// Version: 23.09.27
 // EndLic
 #pragma once
 
 
-// DIRTY CODE STRAIGHT FROM HELL!
 
-#include "../../Kthura/Glob.hpp"
-
-// The header definitions are the same. It's just a few changes in the code. XD
+namespace Slyvina {
+	namespace Kthura {
+		namespace Editor {
+			extern std::string MyDir;
+			extern JCR6::JT_Dir JAS;
+			std::string ProjectsDir();
+			int WW();
+			int WH();
+		}
+	}
+}

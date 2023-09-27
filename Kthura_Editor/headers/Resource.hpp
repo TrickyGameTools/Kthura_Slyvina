@@ -21,9 +21,17 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 23.09.25
+// Version: 23.09.27
 // EndLic
 #pragma once
 #include <JCR6_Core.hpp>
 
-namespace Slyvina { namespace Kthura { namespace Editor { JCR6::JT_Dir Resource(); } } }
+namespace Slyvina { 
+	namespace Kthura {
+		namespace Editor { 
+			JCR6::JT_Dir Resource(); 
+			JCR6::JT_Dir TexResource();
+			VecString TextureList();
+		} 
+	} 
+}

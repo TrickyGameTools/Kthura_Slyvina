@@ -168,6 +168,15 @@
     <ClCompile Include="source\UI_Layers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\UI_MainEditor_CallBack_Area.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\JCR6\Source\JCR6_JQL.cpp">
+      <Filter>Source Files\Slyvina\JCR6</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\JCR6\Source\JCR6_RealDir.cpp">
+      <Filter>Source Files\Slyvina\JCR6</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="..\..\..\Libs\TQSL\SDL2\libjpeg-9.dll">
@@ -233,6 +242,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="headers\UI_Layers.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\UI_MainEditor_CallBack_Area.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
