@@ -180,6 +180,7 @@
     <ClCompile Include="source\UI_Layers.cpp" />
     <ClCompile Include="source\UI_MainEditor_CallBack_Area.cpp" />
     <ClCompile Include="source\UI_MainEditor_Class.cpp" />
+    <ClCompile Include="source\UI_Textures.cpp" />
     <ClCompile Include="source\UserInterface.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -237,6 +238,7 @@
     <ClInclude Include="headers\UI_Layers.hpp" />
     <ClInclude Include="headers\UI_MainEditor_CallBack_Area.hpp" />
     <ClInclude Include="headers\UI_MainEditor_Class.hpp" />
+    <ClInclude Include="headers\UI_Textures.hpp" />
     <ClInclude Include="headers\UserInterface.hpp" />
     <ClInclude Include="resource.h" />
   </ItemGroup>

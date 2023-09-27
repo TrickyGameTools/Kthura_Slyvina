@@ -183,6 +183,9 @@
     <ClCompile Include="..\..\..\Libs\Kthura\Source\Kthura_Draw_TQSG.cpp">
       <Filter>Source Files\Slyvina\Kthura</Filter>
     </ClCompile>
+    <ClCompile Include="source\UI_Textures.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="..\..\..\Libs\TQSL\SDL2\libjpeg-9.dll">
@@ -258,6 +261,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\Libs\Kthura\Headers\Kthura_Draw_TQSG.hpp">
       <Filter>Header Files\Slyvina\Kthura</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\UI_Textures.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
