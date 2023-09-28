@@ -428,7 +428,7 @@ namespace Slyvina {
 					UIEAct::Reg[UIE::_Current->Type].Draw(DX, DY);
 					if (MouseHit(SDL_BUTTON_LEFT)) UIEAct::Reg[UIE::_Current->Type].Pressed(DX, DY);
 					if (MouseReleased(SDL_BUTTON_LEFT)) UIEAct::Reg[UIE::_Current->Type].Released(DX, DY);
-				}
+				} else { StopArea(); }
 				j19gadget::StatusText(ProjectName() + "::" + MapName() + "\t" + MapData->CurrentLayerTag()+"\t"+ coords + "\tScroll" + TrSPrintF("(%4d,%4d)", ScrollX, ScrollY) + "\t" + strgridmode);
 				MapData->Draw->AllowDraw[KthuraKind::Zone] = UIE::_Current && (UIE::_Current->Kind->Caption == "Zone" || UIE::_Current->Kind->Caption == "Modify");
 			}
