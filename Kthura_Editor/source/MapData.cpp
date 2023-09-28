@@ -52,6 +52,7 @@ namespace Slyvina {
 				QCol->Error(msg);
 				QCol->Cyan(xdata);
 				QCol->Reset();
+				std::cout << std::endl;
 				exit(8);
 			}
 
