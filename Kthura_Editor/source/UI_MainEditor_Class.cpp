@@ -415,8 +415,8 @@ namespace Slyvina {
 					if (GridMode) {
 						switch (UIE::_Current->Type) {
 						case UIEType::Area: 
-							DX = floor(((double)MX) / CurrentLayer()->gridx) * CurrentLayer()->gridx;
-							DY = floor(((double)MY) / CurrentLayer()->gridy) * CurrentLayer()->gridy;
+							DX = (floor(((double)MX) / CurrentLayer()->gridx) * CurrentLayer()->gridx) - (ScrollX % CurrentLayer()->gridx);
+							DY = (floor(((double)MY) / CurrentLayer()->gridy) * CurrentLayer()->gridy) - (ScrollY % CurrentLayer()->gridy);
 							break;
 						case UIEType::Spot:
 							DX = (floor(((double)MX) / CurrentLayer()->gridx) * CurrentLayer()->gridx) + (CurrentLayer()->gridx / 2) - (ScrollX % CurrentLayer()->gridx);

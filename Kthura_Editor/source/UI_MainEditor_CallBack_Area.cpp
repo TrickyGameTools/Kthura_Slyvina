@@ -141,7 +141,7 @@ namespace Slyvina {
 					if (recw && rech) {
 						SetColorHSV(hue, 1,1);
 						SetAlpha(120);
-						ARect(recx + MapPanel->DrawX(), recy + MapPanel->DrawY(), recw, rech);
+						ARect((recx + MapPanel->DrawX())-ScrollX, (recy + MapPanel->DrawY())-ScrollY, recw, rech);
 						SetAlpha(255);
 					}
 				}
