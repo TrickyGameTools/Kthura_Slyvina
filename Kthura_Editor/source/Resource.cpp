@@ -24,6 +24,8 @@
 // Version: 23.09.28
 // EndLic
 
+#include <TQSE.hpp>
+
 #include <SlyvGINIE.hpp>
 #include <SlyvDir.hpp>
 
@@ -38,10 +40,19 @@ using namespace Slyvina::Units;
 namespace Slyvina {
 	namespace Kthura {
 		namespace Editor {
+
+			static void JCR6PANIEKROUTINE(std::string M) {
+				QCol->Error(M);
+				QCol->Doing("Main", JCR6::Last()->MainFile);
+				QCol->Doing("Entry", JCR6::Last()->Entry);
+				TQSE::Notify("JCR6 ERROR!\n\n" + M + "\n\n" + JCR6::Last()->MainFile + "::" + JCR6::Last()->Entry);
+				exit(9);
+			}
 			JCR6::JT_Dir _Res{nullptr};
 			JCR6::JT_Dir _TexRes{nullptr};
 
 			JCR6::JT_Dir Resource() {
+				JCR6PANIC = JCR6PANIEKROUTINE;
 				if (!_Res) {
 					_Res = SupJCR6::STED_Assets(ExeDir());
 					auto LE{ JCR6::Last() };
