@@ -21,13 +21,15 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 23.09.26
+// Version: 23.09.28
 // EndLic
 #pragma once
 
 #include <SlyvGINIE.hpp>
 
 #include <Kthura_Core.hpp>
+#include <Kthura_Draw.hpp>
+#include <Kthura_Draw_TQSG.hpp>
 
 namespace Slyvina {
 	namespace Kthura {
@@ -42,11 +44,20 @@ namespace Slyvina {
 				TMapData();
 				std::string MapFile{};
 				Kthura TheMap{ nullptr };
+				KthuraDraw Draw{ nullptr };
 				UGINIE TextureSettings{ nullptr };
 				std::string TextureSettingsDir();
 				std::string TextureSettingsFile();
 
+
+				std::string CurrentLayerTag();
+				KthuraLayer* CurrentLayer();
+
 				void Load();
+				void DrawLayer(KthuraLayer* L);
+				void DrawLayer(std::string LayTag);
+				void DrawLayer();
+
 			};
 
 		}

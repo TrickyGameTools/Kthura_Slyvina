@@ -31,10 +31,12 @@
 #include <TQSG.hpp>
 #include <TQSE.hpp>
 
+
 #include "../headers/UserInterface.hpp"
 #include "../headers/UI_MainEditor_Class.hpp"
 #include "../headers/Resource.hpp"
 #include "../headers/UI_Layers.hpp"
+#include "../headers/MapData.hpp"
 
 using namespace Slyvina;
 using namespace June19;
@@ -68,6 +70,7 @@ namespace Slyvina {
 				auto RJ{ Resource() };
 				QCol->Doing("Initizing", "User Interface");
 				j19gadget::SetDefaultFont(RJ, "DOSFont.jfbf");
+				TQSGKthuraFont(j19gadget::GetDefaultFont());
 				// auto DE{ RJ->Entries() }; for (auto k : *DE) std::cout << "RJ Entry: " << k->Name() << "\n";
 				_Screen = Screen();
 				_WorkScreen = WorkScreen();

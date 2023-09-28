@@ -23,13 +23,21 @@
 // 
 // Version: 23.09.26
 // EndLic
+
 #include <TQSE.hpp>
 #include <SlyvQCol.hpp>
 #include <SlyvHSVRGB.hpp>
+
+#include <Kthura_Draw.hpp>
+
 #include "../headers/ConfigCLI.hpp"
+#include "../headers/Resource.hpp"
+#include "../headers/MapData.hpp"
 #include "../headers/UI_MainEditor_Class.hpp"
 #include "../headers/UI_Layers.hpp"
-#include "../headers/Resource.hpp"
+#include "../headers/UI_Textures.hpp"
+#include "../headers/UI_MainEditor_CallBack_Spot.hpp"
+#include "../headers/UI_MainEditor_CallBack_Area.hpp"
 
 
 
@@ -44,7 +52,7 @@ namespace Slyvina {
 			using namespace TQSE;
 
 #pragma region Locals
-			static j19gadget* MapPanel{nullptr };
+			j19gadget* MapPanel{nullptr };
 #pragma endregion
 
 #pragma region "Left Sidebar"
@@ -252,7 +260,8 @@ namespace Slyvina {
 				CreateLabel("Texture:", 0, 80, CX, 20, OptionsPanel);
 				Tex = CreateButton("...", CX, 80, OptionsPanel);
 				Amber(Tex); Tex->Enabled = MyRadioButton->Caption == "TiledArea" || MyRadioButton->Caption == "StretchedArea" || MyRadioButton->Caption == "Obstacle";
-				Tex->CBAction = HitTextureSelector;
+				//Tex->CBAction = HitTextureSelector;
+				Tex->CBAction = ToTexSelector;
 
 				CreateLabel("Dominance:", 0, 105, CX, 20, OptionsPanel);
 				Dominance = CreateTextfield(CX, 105, CX - 5, 20, OptionsPanel);
@@ -388,6 +397,7 @@ namespace Slyvina {
 				}
 				string coords{ "" };
 				string strgridmode{ " " }; if (GridMode) strgridmode = "Grid Mode";
+				MapData->DrawLayer();
 				if (MouseX() >= MapPanel->DrawX() && MouseY() >= MapPanel->DrawY() && MouseX() < MapPanel->DrawX() + MapPanel->W() && MouseY() < MapPanel->DrawY() + MapPanel->H()) {
 					int
 						MX{ (MouseX() - MapPanel->DrawX()) + ScrollX },
@@ -401,14 +411,17 @@ namespace Slyvina {
 							DY = floor(((double)MY) / CurrentLayer()->gridy) * CurrentLayer()->gridy;
 							break;
 						case UIEType::Spot:
-							DX = (floor(((double)MX) / CurrentLayer()->gridx) * CurrentLayer()->gridx)+(CurrentLayer()->gridx/2);
-							DY = (floor(((double)MY) / CurrentLayer()->gridy) * CurrentLayer()->gridy)+CurrentLayer()->gridy;
+							DX = (floor(((double)MX) / CurrentLayer()->gridx) * CurrentLayer()->gridx) + (CurrentLayer()->gridx / 2) - (ScrollX % CurrentLayer()->gridx);
+							DY = (floor(((double)MY) / CurrentLayer()->gridy) * CurrentLayer()->gridy) + CurrentLayer()->gridy - (ScrollY % CurrentLayer()->gridy);
 							break;
 						}
 					}
 					coords = TrSPrintF("Mouse(%4d,%4d) -> (%4d,%4d)", MX, MY, DX, DY);
+					UIEAct::Reg[UIE::_Current->Type].Draw(DX, DY);
+					if (MouseHit(SDL_BUTTON_LEFT)) UIEAct::Reg[UIE::_Current->Type].Pressed(DX, DY);
+					if (MouseReleased(SDL_BUTTON_LEFT)) UIEAct::Reg[UIE::_Current->Type].Released(DX, DY);
 				}
-				j19gadget::StatusText(ProjectName() + "::" + MapName() + "\t" + coords+"\tScroll"+TrSPrintF("(%4d,%4d)",ScrollX,ScrollY)+"\t"+strgridmode);
+				j19gadget::StatusText(ProjectName() + "::" + MapName() + "\t" + MapData->CurrentLayerTag()+"\t"+ coords + "\tScroll" + TrSPrintF("(%4d,%4d)", ScrollX, ScrollY) + "\t" + strgridmode);
 			}
 #pragma endregion
 
@@ -452,6 +465,11 @@ namespace Slyvina {
 				// Crude callbacks
 				auto ES{ UI::GetStage("Editor") };
 				ES->PreJune = MainEditorBack;
+
+				// UIE types callbacks
+				InitEditArea(); 
+				InitEditSpot();
+
 			}
 		}
 	}

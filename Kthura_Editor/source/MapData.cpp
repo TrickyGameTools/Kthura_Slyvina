@@ -29,11 +29,16 @@
 #include <SlyvTime.hpp>
 #include <TQSE.hpp>
 
+
+
 #include "../builddate.hpp"
 
 #include "../headers/ConfigCLI.hpp"
 #include "../headers/Project.hpp"
 #include "../headers/MapData.hpp"
+#include "../headers/Resource.hpp"
+#include "../headers/UserInterface.hpp"
+#include "../headers/UI_MainEditor_Class.hpp"
 
 using namespace Slyvina::Units;
 
@@ -49,11 +54,12 @@ namespace Slyvina {
 				exit(8);
 			}
 
-			std::unique_ptr<TMapData> MapData{new TMapData()};
+			std::unique_ptr<TMapData> MapData{nullptr};
 
 			TMapData::TMapData() {
-				
+				QCol->Doing("Initizing", "Map Data");
 				KthuraPanic = KthuraInPaniek;
+				Draw = Init_TQSG_For_Kthura(TexResource());				
 			}
 
 			std::string TMapData::TextureSettingsDir() {
@@ -63,6 +69,18 @@ namespace Slyvina {
 			std::string TMapData::TextureSettingsFile() {
 				return TextureSettingsDir() + "/" + MapName()+".ini";
 			}
+			std::string TMapData::CurrentLayerTag() {
+				if (LayerSelector->SelectedItem() < 0) return "";
+				return LayerSelector->ItemText();
+			}
+
+			KthuraLayer* TMapData::CurrentLayer() {
+				if (CurrentLayerTag() == "") return nullptr;
+				return TheMap->Layer(CurrentLayerTag());
+			}
+
+
+
 			void TMapData::Load() {
 				if (!FileExists(TextureSettingsFile())) {
 					if (!DirectoryExists(TextureSettingsDir())) {
@@ -87,6 +105,15 @@ namespace Slyvina {
 					QCol->Doing("Loading", MapFile);
 					TheMap = LoadKthura(MapFile);
 				}
+			}
+
+			inline int ScX() { return ScrollX - MapPanel->DrawX(); }
+			inline int ScY() { return ScrollY - MapPanel->DrawY(); }
+
+			void TMapData::DrawLayer(KthuraLayer* L) { Draw->DrawLayer(L, ScX(), ScY()); }
+			void TMapData::DrawLayer(std::string LayTag) { Draw->DrawLayer(TheMap->Layer(LayTag), ScX(), ScY()); }
+			void TMapData::DrawLayer() {
+				if (CurrentLayer()) Draw->DrawLayer(CurrentLayer(), ScX(), ScY());
 			}
 		}
 	}

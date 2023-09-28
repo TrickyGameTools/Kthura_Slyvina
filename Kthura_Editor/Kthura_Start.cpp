@@ -72,6 +72,7 @@ int main(int ac, char** arg) {
 		//QCol->Doing("Loading map", MapFile());
 		QCol->Doing("Initizing", "Graphics Window");
 		Graphics(WW(), WH(), "Kthura Map Editor - (c) Jeroen P. Broks"); Cls(); Flip();
+		MapData = std::unique_ptr<TMapData>(new TMapData());
 		MapData->MapFile = MapFile();
 		MapData->Load();
 		UserInterFace_Init();

@@ -186,6 +186,9 @@
     <ClCompile Include="source\UI_Textures.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\UI_MainEditor_CallBack_Spot.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="..\..\..\Libs\TQSL\SDL2\libjpeg-9.dll">
@@ -263,6 +266,9 @@
       <Filter>Header Files\Slyvina\Kthura</Filter>
     </ClInclude>
     <ClInclude Include="headers\UI_Textures.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\UI_MainEditor_CallBack_Spot.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

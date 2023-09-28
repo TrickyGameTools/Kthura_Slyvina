@@ -68,7 +68,7 @@ namespace Slyvina {
 							QCol->Doing("Tex Main", D);
 							auto Dirs{ FileList(D,DirWant::Directories) };
 							for (auto PatchDir : *Dirs) {
-								auto PD{ ChReplace(D + "/" + PatchDir,'\\','/ ') };
+								auto PD{ ChReplace(D + "/" + PatchDir,'\\','/') };
 								QCol->Doing("=> TexDir", PD);
 								_TexRes->Patch(PD);
 							}
@@ -76,7 +76,7 @@ namespace Slyvina {
 							QCol->Doing("TexDir", D);
 							_TexRes->Patch(D);
 						}
-					}					
+					}
 				}
 				return _TexRes;
 			}
@@ -84,6 +84,7 @@ namespace Slyvina {
 			static VecString _TexLst{nullptr};
 			VecString TextureList() {
 				if (!_TexLst) {
+					_TexLst = NewVecString();
 					auto extensies = { "PNG","JPG","JPEG","BMP" };
 					auto _Res{ TexResource() };
 					QCol->Doing("Indexing", "Textures");
@@ -92,15 +93,21 @@ namespace Slyvina {
 					for (auto entry : *_Entries) {
 						auto _ED{ ExtractDir(entry->Name()) };
 						auto _EDU{ Upper(_ED) };
+						// std::cout << entry->Name() << " Dir: " << _ED << " -> " << _EDU << "(" << ExtractExt(_EDU) << ")\n"; // debug
 						if (ExtractExt(_EDU) == "JPBF") {
+							// std::cout << "Bundle:" << _ED << "\n";
 							if (!_JPBF.count(_EDU)) {
 								_JPBF[_EDU] = true;
-								_TexLst->push_back(_ED);
-							} else {
-								auto herkend{ false };
-								for (auto ex : extensies) herkend = herkend || ExtractExt(Upper(entry->Name())) == ex;
-								if (herkend) _TexLst->push_back(entry->Name());
+								_TexLst->push_back(_ED);	
+								//std::cout << "Bundle:" << _ED << " added\n";
 							}
+						} else if (ExtractExt(_EDU) == "JFBF") {
+							// Ignoring FONT bundles
+						} else {
+							auto herkend{ false };
+							for (auto ex : extensies) herkend = herkend || ExtractExt(Upper(entry->Name())) == ex;
+							// std::cout << entry->Name() << "; herkend = " << herkend << "\n"; // debug only!
+							if (herkend) _TexLst->push_back(entry->Name());
 						}
 					}
 					SortVecString(_TexLst);

@@ -40,6 +40,7 @@ namespace Slyvina {
 			extern June19::j19gadget* SidebarLeft;
 			extern June19::j19gadget* LayerSelector;
 			extern June19::j19gadget* Mascotte;
+			extern June19::j19gadget* MapPanel;
 
 			extern bool DrawGrid,GridMode;
 			extern int ScrollX, ScrollY;
