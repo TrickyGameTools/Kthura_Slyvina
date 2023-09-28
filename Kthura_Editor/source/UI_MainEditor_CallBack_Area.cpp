@@ -153,6 +153,7 @@ namespace Slyvina {
 				UIEAct::Reg[UIEType::Area].Released = AreaReleased;
 				UIEAct::Reg[UIEType::Area].Draw = AreaDraw;
 			}
+			void StopArea() { started = false; }
 		}
 	}
 }
