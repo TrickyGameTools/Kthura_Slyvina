@@ -36,6 +36,7 @@
 #include "../headers/UI_MainEditor_Class.hpp"
 #include "../headers/Resource.hpp"
 #include "../headers/UI_Layers.hpp"
+#include "../headers/UI_Meta.hpp"
 #include "../headers/MapData.hpp"
 
 using namespace Slyvina;
@@ -62,6 +63,8 @@ namespace Slyvina {
 			static void PDM_ScrollLf(j19gadget* , j19action) { ScrollX -= CurrentLayer()->gridx / 2; }
 			static void PDM_ScrollRg(j19gadget* , j19action) { ScrollX += CurrentLayer()->gridx / 2; }
 
+			static void PDM_Save(j19gadget*, j19action) { MapData->Save(); }
+
 			
 #pragma endregion
 
@@ -75,6 +78,8 @@ namespace Slyvina {
 				_Screen = Screen();
 				_WorkScreen = WorkScreen();
 				auto pdm = _WorkScreen->AddMenu("File");
+				pdm->AddItem("Save", PDM_Save, SDLK_s);
+				pdm->AddItem("Meta Data", GoToMetaData, SDLK_m);
 				pdm = _WorkScreen->AddMenu("Layers");
 				pdm->AddItem("New layer", PDM_NewLayer, SDLK_n);
 				pdm->AddItem("Rename Layer", PDM_RenameLayer, SDLK_KP_5);
