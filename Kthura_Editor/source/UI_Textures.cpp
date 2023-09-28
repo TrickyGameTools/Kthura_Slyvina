@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 23.09.27
+// Version: 23.09.28
 // EndLic
 
 #pragma once
@@ -29,6 +29,7 @@
 #include "../headers/UserInterface.hpp"
 #include "../headers/Resource.hpp"
 #include "../headers/UI_MainEditor_Class.hpp"
+#include "../headers/MapData.hpp"
 
 using namespace Slyvina;
 using namespace June19;
@@ -133,6 +134,18 @@ namespace Slyvina {
 			static void SelectTex(j19gadget* g, j19action a) {
 				if (a == j19action::DoubleClick) {
 					if (g->SelectedItem() < 0) return;
+					if (UIE::_Current->Type == UIEType::Modify) {
+						std::cout << "\7Tex modification not yet available for modifications!\n";
+						return;
+					}
+					if (TexCheckSettings->checked && MapData->TexKind(g->ItemText()) != "") {
+						auto Knopje{ UIE::_Register[MapData->TexKind(g->ItemText())].MyRadioButton };
+						MapData->RestoreTexSettings(MapData->TexKind(g->ItemText()), g->ItemText());
+						UIE::_Register[MapData->TexKind(g->ItemText())].Tex->Caption = g->ItemText();
+						Knopje->CBAction(Knopje, j19action::Check);
+						UI::GoToStage("Editor");
+						return;
+					}
 					if (TexSentBy) {
 						TexSentBy->Caption = g->ItemText();
 						UI::GoToStage("Editor");

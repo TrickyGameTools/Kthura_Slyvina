@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 23.09.26
+// Version: 23.09.28
 // EndLic
 
 #include <TQSE.hpp>
@@ -38,6 +38,7 @@
 #include "../headers/UI_Textures.hpp"
 #include "../headers/UI_MainEditor_CallBack_Spot.hpp"
 #include "../headers/UI_MainEditor_CallBack_Area.hpp"
+
 
 
 
@@ -264,11 +265,12 @@ namespace Slyvina {
 				Tex->CBAction = ToTexSelector;
 
 				CreateLabel("Dominance:", 0, 105, CX, 20, OptionsPanel);
-				Dominance = CreateTextfield(CX, 105, CX - 5, 20, OptionsPanel);
+				Dominance = CreateTextfield(CX, 105, CX - 5, 20, OptionsPanel, "20");
 				Amber(Dominance);
 				TexLink["Dominance"] = Dominance;
 
 				{
+					auto nozone{ MyRadioButton->Caption != "Zone" };
 					CreateLabel("Color RGB:", 0, 125, CX, 20, OptionsPanel);
 					auto C3{ (CX - 10) / 3 };
 					Red = CreateTextfield(CX, 125, C3, OptionsPanel, "255");
@@ -286,16 +288,22 @@ namespace Slyvina {
 					Red->CBAction = Act_RGB;
 					Green->CBAction = Act_RGB;
 					Blue->CBAction = Act_RGB;
+					Red->Enabled = nozone;
+					Green->Enabled = nozone;
+					Blue->Enabled = nozone;
 
 					CreateLabel("Color HSV:", 0, 145, CX, 20, OptionsPanel);
 					Hue = CreateTextfield(CX, 145, C3, OptionsPanel, "0");
 					Saturation = CreateTextfield(CX + C3, 145, C3, OptionsPanel, "100");
 					Value = CreateTextfield(CX + C3 + C3, 145, C3, OptionsPanel, "100");
+					Hue->Enabled = nozone;
 					Hue->CBDraw = HueLoop;
 					Saturation->SetForeground(0, 0, 0, 255);
 					Saturation->SetBackground(255, 255, 255, 255);
+					Saturation->Enabled = nozone;
 					Value->SetBackground(0, 0, 0, 255);
 					Value->SetForeground(255, 255, 255, 255);
+					Value->Enabled = nozone;
 					TexLink["Hue"] = Hue;
 					TexLink["Saturation"] = Saturation;
 					TexLink["Value"] = Value;
@@ -314,7 +322,7 @@ namespace Slyvina {
 				Rotate = CreateTextfield(CX, 185, (CX / 2) - 30, OptionsPanel, "0");
 				Amber(Rotate);
 				Rotate->Enabled = MyRadioButton->Caption == "Obstacle";
-				TexLink["Rotate"] = Alpha;
+				TexLink["Rotate"] = Rotate;
 				Radians = CreateTextfield(CX + (CX / 2), 185, (CX / 2) - 30, OptionsPanel, "0.00");
 				Radians->Enabled = false;
 				Amber(Radians);
@@ -422,6 +430,7 @@ namespace Slyvina {
 					if (MouseReleased(SDL_BUTTON_LEFT)) UIEAct::Reg[UIE::_Current->Type].Released(DX, DY);
 				}
 				j19gadget::StatusText(ProjectName() + "::" + MapName() + "\t" + MapData->CurrentLayerTag()+"\t"+ coords + "\tScroll" + TrSPrintF("(%4d,%4d)", ScrollX, ScrollY) + "\t" + strgridmode);
+				MapData->Draw->AllowDraw[KthuraKind::Zone] = UIE::_Current && (UIE::_Current->Kind->Caption == "Zone" || UIE::_Current->Kind->Caption == "Modify");
 			}
 #pragma endregion
 

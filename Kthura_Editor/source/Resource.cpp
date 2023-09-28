@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 23.09.27
+// Version: 23.09.28
 // EndLic
 
 #include <SlyvGINIE.hpp>
@@ -110,7 +110,7 @@ namespace Slyvina {
 							if (herkend) _TexLst->push_back(entry->Name());
 						}
 					}
-					SortVecString(_TexLst);
+					//SortVecString(_TexLst);
 				}
 				return _TexLst;
 			}

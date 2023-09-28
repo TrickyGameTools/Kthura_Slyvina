@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 23.09.26
+// Version: 23.09.28
 // EndLic
 #include <SlyvVolumes.hpp>
 #include <SlyvStream.hpp>
@@ -41,6 +41,7 @@
 #include "../headers/UI_MainEditor_Class.hpp"
 
 using namespace Slyvina::Units;
+using namespace Slyvina::June19;
 
 namespace Slyvina {
 	namespace Kthura {
@@ -114,6 +115,80 @@ namespace Slyvina {
 			void TMapData::DrawLayer(std::string LayTag) { Draw->DrawLayer(TheMap->Layer(LayTag), ScX(), ScY()); }
 			void TMapData::DrawLayer() {
 				if (CurrentLayer()) Draw->DrawLayer(CurrentLayer(), ScX(), ScY());
+			}
+
+
+			void TMapData::StoreTexSettings(UIE* Panel, std::string _kind, std::string _tex) {
+				static std::map<bool, std::string> bname{{false, "No"}, { true,"Yes" }};
+				auto _tag{ "TEX::" + _kind + "::" + _tex };
+				TextureSettings->Value("Kinds", _tex, _kind);
+				
+				for (auto& gg : Panel->TexLink) {
+					switch (gg.second->GetKind()) {
+					case j19kind::Button:
+					case j19kind::Label:
+						TextureSettings->Value(_tag, gg.first, gg.second->Caption);
+						break;
+					case j19kind::CheckBox:
+					case j19kind::RadioButton:
+						TextureSettings->Value(_tag, gg.first, bname[gg.second->checked]);
+						break;
+					case j19kind::TextField: // ?
+					case j19kind::Textfield:
+						TextureSettings->Value(_tag, gg.first, gg.second->Text);
+						break;
+					default:
+						throw std::runtime_error(TrSPrintF("StoreTexSettings(<Panel>,\"%s\",\"%s\"): Unknown gadget kind (%d)", _kind.c_str(), _tex.c_str(), (int)gg.second->GetKind()));
+					}
+				}
+			}
+			void TMapData::RestoreTexSettings(UIE* Panel, std::string _tex) {
+				static std::map<bool, std::string> bname{{false, "No"}, { true,"Yes" }};
+				auto _kind{ Panel->MyRadioButton->Caption };
+				auto _tag{ "TEX::" + _kind + "::" + _tex };
+				TextureSettings->Value("Kinds", _tex, _kind);
+
+				for (auto& gg : Panel->TexLink) {
+					switch (gg.second->GetKind()) {
+					case j19kind::Button:
+					case j19kind::Label:
+						TextureSettings->NewValue(_tag, gg.first, gg.second->Caption);
+						gg.second->Caption = TextureSettings->Value(_tag, gg.first);
+						break;
+					case j19kind::CheckBox:
+					case j19kind::RadioButton:
+						TextureSettings->NewValue(_tag, gg.first, bname[gg.second->checked]);
+						gg.second->checked = Upper(TextureSettings->Value(_tag, gg.first)) == "YES";
+						break;
+					case j19kind::TextField:
+					case j19kind::Textfield:
+						TextureSettings->NewValue(_tag, gg.first, gg.second->Text);
+						gg.second->Text = TextureSettings->Value(_tag, gg.first);
+						break;
+					default:
+						throw std::runtime_error(TrSPrintF("RestoreTexSettings(<Panel>,\"%s\"): Unknown gadget kind (%d)", _tex.c_str(), (int)gg.second->GetKind()));
+					}
+				}
+			}
+
+			void TMapData::RestoreTexSettings(std::string _kind, std::string _tex) {
+				for (auto panelitem : UIE::_Register) {
+					auto panel{ &UIE::_Register[panelitem.first] };
+					panel->MyRadioButton->checked = _kind == panel->MyRadioButton->Caption;
+					if (panel->MyRadioButton->checked) RestoreTexSettings(panel, _tex);
+				}
+			}
+			void TMapData::SaveSettings() {
+				QCol->Doing("Saving", TextureSettingsFile());
+				TextureSettings->SaveSource(TextureSettingsFile(), "Kthura texture settings!");
+			}
+			void TMapData::SaveMap() {
+				QCol->Doing("Saving", MapFile);
+				Kthura_Save(TheMap, MapFile);
+			}
+			std::string TMapData::TexKind(std::string _tex) {
+				if (!TextureSettings->HasValue("Kinds", _tex)) return "";
+				return TextureSettings->Value("Kinds", _tex);				
 			}
 		}
 	}

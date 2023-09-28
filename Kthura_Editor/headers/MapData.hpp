@@ -28,8 +28,11 @@
 #include <SlyvGINIE.hpp>
 
 #include <Kthura_Core.hpp>
+#include <Kthura_Save.hpp>
 #include <Kthura_Draw.hpp>
 #include <Kthura_Draw_TQSG.hpp>
+
+#include "../headers/UI_MainEditor_Class.hpp"
 
 namespace Slyvina {
 	namespace Kthura {
@@ -57,6 +60,23 @@ namespace Slyvina {
 				void DrawLayer(KthuraLayer* L);
 				void DrawLayer(std::string LayTag);
 				void DrawLayer();
+
+
+				void StoreTexSettings(UIE* Panel, std::string _kind, std::string _tex);
+				inline void StoreTexSettings(UIE* Panel, std::string k) { StoreTexSettings(Panel, Panel->Kind->Caption, k); }
+				inline void StoreTexSettings(UIE* Panel) { StoreTexSettings(Panel, Panel->Tex->Caption); }
+				inline void StoreTexSettings() { StoreTexSettings(UIE::_Current); }
+
+				void RestoreTexSettings(UIE* Panel, std::string _tex);
+				void RestoreTexSettings(std::string _kind, std::string _tex);
+
+				void SaveSettings();
+				void SaveMap();
+				inline void Save() { SaveSettings(); SaveMap(); }
+
+				std::string TexKind(std::string _tex);
+
+				inline ~TMapData() { Save(); }
 
 			};
 
