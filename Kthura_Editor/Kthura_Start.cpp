@@ -41,6 +41,7 @@
 #include <JCR6_Core.hpp>
 #include <JCR6_RealDir.hpp>
 #include <JCR6_JQL.hpp>
+#include <JCR6_zlib.hpp>
 
 #include <TQSG.hpp>
 
@@ -69,6 +70,7 @@ int main(int ac, char** arg) {
 		std::cout << "\n\n";
 		JCR6::InitJQL();
 		JCR6::JCR6_InitRealDir();
+		JCR6::init_zlib();
 		//QCol->Doing("Loading map", MapFile());
 		QCol->Doing("Initizing", "Graphics Window");
 		Graphics(WW(), WH(), "Kthura Map Editor - (c) Jeroen P. Broks"); Cls(); Flip();
