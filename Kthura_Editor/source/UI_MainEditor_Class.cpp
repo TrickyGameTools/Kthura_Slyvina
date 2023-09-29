@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 23.09.29
+// Version: 23.09.30
 // EndLic
 
 #include <TQSE.hpp>
@@ -447,7 +447,7 @@ namespace Slyvina {
 					auto siz = MapData->Draw->ObjectSize(ModifyObject);
 					hue = ( ++hue ) % 360;
 					SetColorHSV(hue, 1, 1);
-					Rect(siz.x+MapPanel->DrawX(), siz.y+MapPanel->DrawY(), siz.w, siz.h, true);
+					Rect(siz.x+MapPanel->DrawX()-ScrollX, siz.y+MapPanel->DrawY()-ScrollY, siz.w, siz.h, true);
 				}
 			}
 #pragma endregion

@@ -21,11 +21,13 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 23.09.29
+// Version: 23.09.30
 // EndLic
 
 
 #undef Modify_Debug
+#define _mint(ofld,mfld) if (mui->mfld->Enabled) ModifyObject->ofld(ToInt(mui->mfld->Text))
+#define _mbool(ofld,mfld) if (mui->mfld->Enabled) ModifyObject->ofld(mui->mfld->checked)
 
 #include <SlyvQCol.hpp>
 
@@ -50,7 +52,32 @@ namespace Slyvina {
 #pragma region "ONLY WHEN AN OBJECT IS SELECTED"
 			void ONLY_WHEN_AN_OBJECT_IS_SELECTED(j19gadget* g, j19action) {
 				g->Enabled = ModifyObject != nullptr;
+				if (!ModifyObject) return;
+				// Not the most beautiful solution, but it works
+				static auto mui{ &UIE::_Register["Modify"] };
+				ModifyObject->alpha(ToInt(mui->Alpha->Text));
+				ModifyObject->x(ToInt(mui->X->Text));
+				ModifyObject->y(ToInt(mui->Y->Text));
+				_mint(w, W);
+				_mint(h, H);
+				_mint(insertx, InsX);
+				_mint(inserty, InsY);
+				_mint(red, Red);
+				_mint(green, Green);
+				_mint(blue, Blue);
+				_mint(dominance, Dominance);
+				_mint(scalex, ScaleX);
+				_mint(scaley, ScaleY);
+				_mint(animframe, AnimFrame);
+				_mint(animspeed, AnimSpeed);
+				_mint(rotatedeg, Rotate);
+				_mbool(impassible, Impassible);
+				_mbool(forcepassible, ForcePassible);
+				_mbool(visible, Visible);
 			}
+#pragma endregion
+
+
 
 #pragma region "Call backs for modifications"
 
