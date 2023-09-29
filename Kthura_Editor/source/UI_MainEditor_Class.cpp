@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 23.09.28
+// Version: 23.09.29
 // EndLic
 
 #include <TQSE.hpp>
@@ -38,6 +38,7 @@
 #include "../headers/UI_Textures.hpp"
 #include "../headers/UI_MainEditor_CallBack_Spot.hpp"
 #include "../headers/UI_MainEditor_CallBack_Area.hpp"
+#include "../headers/UI_MainEditor_Other.hpp"
 
 
 
@@ -78,7 +79,7 @@ namespace Slyvina {
 #pragma endregion
 
 #pragma region "Callback functions"
-			static void UIETypeSelect(j19gadget* g, j19action a) {
+			void UIETypeSelect(j19gadget* g, j19action a) {
 				for (auto& item : UIE::_Register) {
 					auto ITM{ &UIE::_Register[item.first] };
 					ITM->OptionsPanel->Visible = ITM->MyRadioButton == g;
@@ -451,6 +452,7 @@ namespace Slyvina {
 				citem = UIE::NewArea("Zone");
 
 				// Other
+				InitOther();
 
 				// Modify
 
