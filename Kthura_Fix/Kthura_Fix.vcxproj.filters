@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Slyvina">
+      <UniqueIdentifier>{8009867f-d6d1-4e53-91dc-a041d02fef91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Slyvina\Units">
+      <UniqueIdentifier>{dc32601f-82f6-4055-851b-3801fa0147a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Slyvina\JCR6">
+      <UniqueIdentifier>{d8203268-07b8-48bf-8fa0-06f916fd54c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Slyvina\Kthura">
+      <UniqueIdentifier>{b7f20273-8333-4de5-bb46-d38c0485cab5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Kthura_Fix.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Units\Source\SlyvBank.cpp">
+      <Filter>Source Files\Slyvina\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Units\Source\SlyvQCol.cpp">
+      <Filter>Source Files\Slyvina\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Units\Source\SlyvSTOI.cpp">
+      <Filter>Source Files\Slyvina\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Units\Source\SlyvStream.cpp">
+      <Filter>Source Files\Slyvina\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Units\Source\SlyvString.cpp">
+      <Filter>Source Files\Slyvina\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Units\Source\SlyvTime.cpp">
+      <Filter>Source Files\Slyvina\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\JCR6\Source\JCR6_Core.cpp">
+      <Filter>Source Files\Slyvina\JCR6</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\JCR6\Source\JCR6_zlib.cpp">
+      <Filter>Source Files\Slyvina\JCR6</Filter>
+    </ClCompile>
+    <ClCompile Include="Kthura_Fix_Work.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Kthura\Source\Kthura_Core.cpp">
+      <Filter>Source Files\Slyvina\Kthura</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Kthura\Source\Kthura_Save.cpp">
+      <Filter>Source Files\Slyvina\Kthura</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\JCR6\Source\JCR6_Write.cpp">
+      <Filter>Source Files\Slyvina\JCR6</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Kthura_Fix_Work.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
