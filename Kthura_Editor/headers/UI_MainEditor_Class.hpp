@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 23.09.28
+// Version: 23.09.29
 // EndLic
 
 #pragma once
@@ -51,12 +51,12 @@ namespace Slyvina {
 
 			class UIE {
 			private:
-				static int NextY;
 				static UI* _EditorPanel;
 				static June19::j19gadget* ZijBalkRechts;
 				//static std::map<std::string, June19::j19gadget*> RadioButtons;
 				void InitBaseGadgets();
 			public:
+				static int NextY;
 				static UIE* _Current;
 				June19::j19gadget* OptionsPanel;
 				std::map<std::string, June19::j19gadget*> TexLink{};
@@ -106,6 +106,7 @@ namespace Slyvina {
 			};
 
 			void InitMainEditor();
+			void UIETypeSelect(June19::j19gadget* g, June19::j19action a);
 		}
 	}
 
