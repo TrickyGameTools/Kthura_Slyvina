@@ -34,11 +34,22 @@ namespace Slyvina {
 	namespace Kthura {
 
 		namespace Editor {
+
+#pragma region Listboxes
+			j19gadget
+				* OLB_Area{ nullptr },
+				* OLB_Spot{ nullptr };
+#pragma endregion
 			
 
 #pragma region "Call backs for editing"
 			void ODraw(int x, int y) {}
+#pragma endregion
 
+
+#pragma region "Gadget callbacks"
+			static void ViewArea(j19gadget* g, j19action) { OLB_Area->Enabled = g->checked; }
+			static void ViewSpot(j19gadget* g, j19action) { OLB_Spot->Enabled = g->checked; }
 #pragma endregion
 
 			void InitOther() {
@@ -53,6 +64,18 @@ namespace Slyvina {
 				Other->Kind = Other->MyRadioButton; // Dirty code straight from Hell! Do NOT try this at home, kids!
 				Other->OptionsPanel->Visible = false;
 				Other->OptionsPanel->SetBackground(0, 25, 0);
+				auto MidY{ Other->OptionsPanel->H() / 2 };
+				auto RadioArea{ CreateRadioButton("Area effect",0,0,Other->OptionsPanel->W(),20,Other->OptionsPanel) };
+				RadioArea->CBDraw = ViewArea;
+				OLB_Area = CreateListBox(0, 20, Other->OptionsPanel->W(), MidY - 20, Other->OptionsPanel);
+				OLB_Area->SetForeground(255, 180, 0);
+				OLB_Area->SetBackground(25, 18, 0);
+				auto RadioSpot{ CreateRadioButton("Spot effect",0,MidY,Other->OptionsPanel->W(),20,Other->OptionsPanel,true) };
+				RadioSpot->CBDraw = ViewSpot;
+				OLB_Spot = CreateListBox(0, MidY+20, Other->OptionsPanel->W(), MidY - 20, Other->OptionsPanel);
+				OLB_Spot->SetForeground(255, 180, 0);
+				OLB_Spot->SetBackground(25, 18, 0);
+				OLB_Spot->AddItem("Exit");
 			}
 		}
 	}
