@@ -74,7 +74,7 @@ namespace Slyvina {
 				static UIE* NewSpot(std::string t);
 
 				June19::j19gadget
-					* Kind{nullptr},
+					* Kind{nullptr}, * ModifyKind{ nullptr },
 					* X{ nullptr }, * Y{ nullptr },
 					* InsX{ nullptr }, * InsY{ nullptr },
 					* W{ nullptr }, * H{ nullptr },

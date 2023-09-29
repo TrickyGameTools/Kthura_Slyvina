@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 23.09.28
+// Version: 23.09.29
 // EndLic
 
 #include <TQSG.hpp>
@@ -90,7 +90,11 @@ namespace Slyvina {
 				UIEAct::Reg[UIEType::Spot].Pressed = SpotPressed;
 				UIEAct::Reg[UIEType::Spot].Released = SpotReleased;
 				UIEAct::Reg[UIEType::Spot].Draw = SpotDraw;
+				UIEAct::Reg[UIEType::Modify].Released = SpotReleased;
+				UIEAct::Reg[UIEType::Modify].Draw = SpotDraw;
+
 			}
+
 		}
 	}
 }

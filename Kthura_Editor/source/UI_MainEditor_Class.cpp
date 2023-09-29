@@ -39,6 +39,7 @@
 #include "../headers/UI_MainEditor_CallBack_Spot.hpp"
 #include "../headers/UI_MainEditor_CallBack_Area.hpp"
 #include "../headers/UI_MainEditor_Other.hpp"
+#include "../headers/UI_MainEditor_Modify.hpp"
 
 
 
@@ -238,7 +239,11 @@ namespace Slyvina {
 				OptionsPanel->Visible = MyRadioButton->Caption == "TiledArea";
 				CreateLabel("Kind:", 0, 0, CX, 20, OptionsPanel);
 				Kind = CreateLabel(MyRadioButton->Caption, CX, 0, CX, 20, OptionsPanel);
-				if (MyRadioButton->Caption == "Modify") Kind->Caption = "Nothing";
+				if (MyRadioButton->Caption == "Modify") {
+					//Kind->Caption = "Nothing";
+					Kind->Visible = false;
+					ModifyKind = CreateLabel("Nothing", CX, 0, CX, 20, OptionsPanel);
+				}
 				Amber(Kind, false);
 
 				CreateLabel("Coords:", 0, 20, CX, 20, OptionsPanel);
@@ -433,6 +438,18 @@ namespace Slyvina {
 				j19gadget::StatusText(ProjectName() + "::" + MapName() + "\t" + MapData->CurrentLayerTag()+"\t"+ coords + "\tScroll" + TrSPrintF("(%4d,%4d)", ScrollX, ScrollY) + "\t" + strgridmode);
 				MapData->Draw->AllowDraw[KthuraKind::Zone] = UIE::_Current && (UIE::_Current->Kind->Caption == "Zone" || UIE::_Current->Kind->Caption == "Modify");
 			}
+
+			void MainEditorFront() {
+				// printf("Current Type: %d\n", (int)UIE::_Current->Type); // DEBUG ONLY!
+				if (UIE::_Current->Type != UIEType::Modify) ModifyObject = nullptr;
+				if (ModifyObject) {
+					static int hue;
+					auto siz = MapData->Draw->ObjectSize(ModifyObject);
+					hue = ( ++hue ) % 360;
+					SetColorHSV(hue, 1, 1);
+					Rect(siz.x+MapPanel->DrawX(), siz.y+MapPanel->DrawY(), siz.w, siz.h, true);
+				}
+			}
 #pragma endregion
 
 			void InitMainEditor() {
@@ -455,6 +472,7 @@ namespace Slyvina {
 				InitOther();
 
 				// Modify
+				InitModify();
 
 				// Left
 				auto IMascotte{ TQSG::LoadImage(Resource(),"Kthura.png") };
@@ -476,6 +494,7 @@ namespace Slyvina {
 				// Crude callbacks
 				auto ES{ UI::GetStage("Editor") };
 				ES->PreJune = MainEditorBack;
+				ES->PostJune = MainEditorFront;
 
 				// UIE types callbacks
 				InitEditArea(); 

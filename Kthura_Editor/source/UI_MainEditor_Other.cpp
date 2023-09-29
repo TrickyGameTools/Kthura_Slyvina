@@ -61,6 +61,7 @@ namespace Slyvina {
 				UIE::_Register[t].Type = UIEType::Other;
 				UIE::_Register[t].MyRadioButton = CreateRadioButton(t, 0, UIE::NextY, UIE::SideBarRight()->W(), UIENextRadio, UIE::SideBarRight(), false);
 				UIE::_Register[t].MyRadioButton->CBAction = UIETypeSelect;
+				UIE::NextY += UIENextRadio;
 				Other->Kind = Other->MyRadioButton; // Dirty code straight from Hell! Do NOT try this at home, kids!
 				Other->OptionsPanel->Visible = false;
 				Other->OptionsPanel->SetBackground(0, 25, 0);

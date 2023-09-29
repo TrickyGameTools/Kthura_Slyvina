@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 23.09.28
+// Version: 23.09.29
 // EndLic
 
 #include <SlyvQCol.hpp>
@@ -107,6 +107,7 @@ namespace Slyvina {
 					if (AppTerminate()) Application_Ended = true;
 					if (UI::CurrentStage() && UI::CurrentStage()->PreJune) UI::CurrentStage()->PreJune();
 					_Screen->Draw();
+					if (UI::CurrentStage() && UI::CurrentStage()->PostJune) UI::CurrentStage()->PostJune();
 					Flip();
 				} while (!Application_Ended);
 			}
