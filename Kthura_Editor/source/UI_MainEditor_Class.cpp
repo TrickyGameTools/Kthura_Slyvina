@@ -448,6 +448,7 @@ namespace Slyvina {
 					hue = ( ++hue ) % 360;
 					SetColorHSV(hue, 1, 1);
 					Rect(siz.x+MapPanel->DrawX()-ScrollX, siz.y+MapPanel->DrawY()-ScrollY, siz.w, siz.h, true);
+					if (ModifyObject->Parent() != CurrentLayer()) ModifyObject = nullptr;
 				}
 			}
 #pragma endregion
