@@ -88,7 +88,7 @@ namespace Slyvina {
 
 #pragma region "Call backs for modifications"
 
-			static void ModifyUpdateWorkPanel(KthuraObject* o) {
+			void ModifyUpdateWorkPanel(KthuraObject* o) {
 				static auto mui{ &UIE::_Register["Modify"] };
 				static auto pan{ mui->OptionsPanel };
 				if (o) {
@@ -158,7 +158,7 @@ namespace Slyvina {
 				}
 			}
 
-			inline void ModifyUpdateWorkPanel() { ModifyUpdateWorkPanel(ModifyObject); }
+			void ModifyUpdateWorkPanel() { ModifyUpdateWorkPanel(ModifyObject); }
 
 			void MPressed(int x, int y) {
 				ModifyObject = nullptr;

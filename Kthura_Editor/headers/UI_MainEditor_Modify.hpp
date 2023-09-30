@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 23.09.29
+// Version: 23.09.30
 // EndLic
 
 #pragma once
@@ -33,6 +33,8 @@ namespace Slyvina {
 			extern KthuraObject* ModifyObject;
 
 			void InitModify();
+			void ModifyUpdateWorkPanel(KthuraObject* o);
+			void ModifyUpdateWorkPanel();
 		}
 	}
 }
