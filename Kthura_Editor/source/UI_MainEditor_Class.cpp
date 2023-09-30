@@ -36,6 +36,7 @@
 #include "../headers/UI_MainEditor_Class.hpp"
 #include "../headers/UI_Tag.hpp"
 #include "../headers/UI_Layers.hpp"
+#include "../headers/UI_Labels.hpp"
 #include "../headers/UI_Textures.hpp"
 #include "../headers/UI_MainEditor_CallBack_Spot.hpp"
 #include "../headers/UI_MainEditor_CallBack_Area.hpp"
@@ -384,6 +385,7 @@ namespace Slyvina {
 				Labels = CreateButton("0", CX, 348, OptionsPanel);
 				Amber(Labels);
 				CreateLabel("Tag:", 0, 375, CX, 20, OptionsPanel);
+				Labels->CBAction = GoLabels;
 				Tag = CreateButton("...", CX, 372, OptionsPanel);
 				Amber(Tag);
 				Tag->Enabled = false;
