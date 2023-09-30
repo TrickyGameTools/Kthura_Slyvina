@@ -151,6 +151,7 @@ namespace Slyvina {
 					mui->Visible->Enabled = true;
 
 					mui->Labels->Enabled = true;
+					mui->Labels->Caption = to_string(Split(o->labels(), ',')->size());
 					mui->Tag->Enabled = true;
 					if (o->Tag().size()) mui->Tag->Caption = o->Tag(); else mui->Tag->Caption = "...";
 				} else {
@@ -162,6 +163,7 @@ namespace Slyvina {
 
 			void MPressed(int x, int y) {
 				ModifyObject = nullptr;
+				UIE::_Register["Modify"].Labels->Caption = "N/A";
 				for (auto o = MapData->CurrentLayer()->DomFirst; o; o=o->DomNext) {
 #ifdef Modify_Debug
 					auto chk{ MapData->Draw->ObjectSize(o) };

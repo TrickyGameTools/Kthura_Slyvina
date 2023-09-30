@@ -30,6 +30,7 @@
 #include "../headers/MapData.hpp"
 #include "../headers/UI_MainEditor_CallBack_Area.hpp"
 #include "../headers/UI_Layers.hpp"
+#include "../headers/UI_Labels.hpp"
 
 
 using namespace Slyvina::TQSG;
@@ -111,7 +112,7 @@ namespace Slyvina {
 					//O->scalex(ToInt(D->ScaleX->Text));
 					//O->scaley(ToInt(D->ScaleY->Text));
 					O->visible(D->Visible->checked);
-					// O->labels // Comes later!
+					O->labels(GetLabString(UIE::_Current));
 					//O->rotatedeg(ToInt(D->Rotate->Text));
 					L->TotalRemap();
 					QCol->Doing("Created", O->SKind() + TrSPrintF(" (%d) at (%5d,%5d)", O->ID(), O->x(), O->y()));

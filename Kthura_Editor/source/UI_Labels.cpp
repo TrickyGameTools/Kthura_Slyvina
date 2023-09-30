@@ -120,6 +120,7 @@ namespace Slyvina {
 				LabCancel = CreateButton("Cancel", 0, 0, Panel);
 				LabOkay->CBDraw = OkayCancelv;
 				LabCancel->CBAction = Cancela;
+				LabOkay->CBAction = Okaya;
 			}
 
 
@@ -139,6 +140,8 @@ namespace Slyvina {
 					}
 				}
 			}
+
+			std::string GetLabString(UIE* FromUI) { return StrByKind[FromUI->Kind->Caption]; }
 
 		}
 	}

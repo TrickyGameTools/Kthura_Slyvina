@@ -26,10 +26,13 @@
 
 #pragma once
 #include <june19_core.hpp>
+#include "../headers/UI_MainEditor_Class.hpp"
+
 namespace Slyvina {
 	namespace Kthura {
 		namespace Editor {
 			void GoLabels(June19::j19gadget*,June19::j19action);
+			std::string GetLabString(UIE* FromUI);
 		}
 	}
 }
