@@ -34,6 +34,7 @@
 #include "../headers/Resource.hpp"
 #include "../headers/MapData.hpp"
 #include "../headers/UI_MainEditor_Class.hpp"
+#include "../headers/UI_Tag.hpp"
 #include "../headers/UI_Layers.hpp"
 #include "../headers/UI_Textures.hpp"
 #include "../headers/UI_MainEditor_CallBack_Spot.hpp"
@@ -386,6 +387,7 @@ namespace Slyvina {
 				Tag = CreateButton("...", CX, 372, OptionsPanel);
 				Amber(Tag);
 				Tag->Enabled = false;
+				Tag->CBAction = TagButton;
 
 			}
 #pragma endregion
@@ -449,6 +451,21 @@ namespace Slyvina {
 					SetColorHSV(hue, 1, 1);
 					Rect(siz.x+MapPanel->DrawX()-ScrollX, siz.y+MapPanel->DrawY()-ScrollY, siz.w, siz.h, true);
 					if (ModifyObject->Parent() != CurrentLayer()) ModifyObject = nullptr;
+					if (KeyHit(SDLK_TAB)) {
+						ModifyObject = ModifyObject->Next();
+						if (!ModifyObject) ModifyObject = CurrentLayer()->FirstObject();
+						ModifyUpdateWorkPanel(ModifyObject);
+					}
+					if (KeyHit(SDLK_DELETE)) {
+						string A{ TrSPrintF("Object #%d (%s",ModifyObject->ID(),ModifyObject->SKind().c_str()) };
+						if (ModifyObject->Tag().size()) A += "::" + ModifyObject->Tag();
+						A += ") will be deleted.\n\nAre you sure?";
+						if (Yes(A)) CurrentLayer()->Kill(ModifyObject);
+						ModifyObject = nullptr;
+						CurrentLayer()->TotalRemap();
+						
+						return; // make sure no conflicts with possible later code pop up!
+					}
 				}
 			}
 #pragma endregion
