@@ -37,6 +37,7 @@
 #include "../headers/UI_MainEditor_Class.hpp"
 #include "../headers/UI_MainEditor_Modify.hpp"
 #include "../headers/MapData.hpp"
+#include "../headers/UI_Layers.hpp"
 
 namespace Slyvina {
 
@@ -55,6 +56,8 @@ namespace Slyvina {
 				if (!ModifyObject) return;
 				// Not the most beautiful solution, but it works
 				static auto mui{ &UIE::_Register["Modify"] };
+				bool domchanged = ModifyObject->dominance() != ToInt(mui->Dominance->Text);
+				//printf("%d -> %d     --> %d\n", ModifyObject->dominance(), ToInt(mui->Dominance->Text), ModifyObject->dominance() != ToInt(mui->Dominance->Text)); // DEBUG!
 				ModifyObject->alpha(ToInt(mui->Alpha->Text));
 				ModifyObject->x(ToInt(mui->X->Text));
 				ModifyObject->y(ToInt(mui->Y->Text));
@@ -74,6 +77,10 @@ namespace Slyvina {
 				_mbool(impassible, Impassible);
 				_mbool(forcepassible, ForcePassible);
 				_mbool(visible, Visible);
+				if (domchanged) {
+					QCol->Doing("Remap", "Dominance");
+					CurrentLayer()->RemapDominance();
+				}
 			}
 #pragma endregion
 
@@ -85,7 +92,8 @@ namespace Slyvina {
 				static auto mui{ &UIE::_Register["Modify"] };
 				static auto pan{ mui->OptionsPanel };
 				if (o) {
-					mui->ModifyKind->Caption = o->SKind();
+					mui->ModifyKind->Caption = o->SKind()+TrSPrintF("     (#%d)",o->ID());
+					mui->ModifyKind->SetForeground(255, 180, 0);
 					mui->Alpha->Text = to_string(o->alpha());
 					mui->Alpha->Enabled = o->Kind() != KthuraKind::Zone && o->Kind() != KthuraKind::Pivot && o->Kind() != KthuraKind::Exit && o->Kind() != KthuraKind::Custom;
 					mui->Red->Text = to_string(o->red());
