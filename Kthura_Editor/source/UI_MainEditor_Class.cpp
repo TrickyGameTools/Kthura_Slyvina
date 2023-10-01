@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 23.09.30
+// Version: 23.10.01
 // EndLic
 
 #include <TQSE.hpp>
@@ -423,7 +423,11 @@ namespace Slyvina {
 						DX{ MX },
 						DY{ MY };
 					if (GridMode) {
-						switch (UIE::_Current->Type) {
+						auto MyType{ UIE::_Current->Type };
+						if (MyType == UIEType::Other) {
+							if (OtherSpot()) MyType = UIEType::Spot; else MyType = UIEType::Area;
+						}
+						switch (MyType) {
 						case UIEType::Area: 
 							DX = (floor(((double)MX) / CurrentLayer()->gridx) * CurrentLayer()->gridx) - (ScrollX % CurrentLayer()->gridx);
 							DY = (floor(((double)MY) / CurrentLayer()->gridy) * CurrentLayer()->gridy) - (ScrollY % CurrentLayer()->gridy);

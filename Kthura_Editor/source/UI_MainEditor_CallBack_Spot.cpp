@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 23.09.29
+// Version: 23.10.01
 // EndLic
 
 #include <TQSG.hpp>
@@ -73,7 +73,7 @@ namespace Slyvina {
 
 
 			static void SpotReleased(int x, int y) {}
-			static void SpotDraw(int x, int y) {
+			void SpotDraw(int x, int y) {
 				static auto
 					EPX{ MapPanel->DrawX() },
 					EPY{ MapPanel->DrawY() };

@@ -21,37 +21,81 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 23.09.29
+// Version: 23.10.01
 // EndLic
+
+#include <TQSE.hpp>
 
 #include "../headers/UserInterface.hpp"
 #include "../headers/UI_MainEditor_Class.hpp"
+#include "../headers/UI_MainEditor_CallBack_Area.hpp"
+#include "../headers/UI_MainEditor_CallBack_Spot.hpp"
+#include "../headers/UI_MainEditor_Other.hpp"
 
 namespace Slyvina {
 
+	using namespace TQSE;
 	using namespace June19;
 
 	namespace Kthura {
 
 		namespace Editor {
 
+			enum class OtherType { Unknown, Area, Spot };
+			OtherType OT{ OtherType::Unknown };
+
 #pragma region Listboxes
 			j19gadget
 				* OLB_Area{ nullptr },
 				* OLB_Spot{ nullptr };
 #pragma endregion
-			
+
+#pragma region "Built-in linkthroughs"
+
+			static void GoToExit(int x, int y, std::string item) {
+			}
+
+			typedef void (*LinkBuiltIn)(int x,int y,std::string item);
+			static std::map<std::string, LinkBuiltIn> LBI_Area{};
+			static std::map<std::string, LinkBuiltIn> LBI_Spot{
+				{"Exit",GoToExit}
+			};
+#pragma endregion
+
+
 
 #pragma region "Call backs for editing"
-			void ODraw(int x, int y) {}
+			void ODraw(int x, int y) {
+				switch (OT) {
+				case OtherType::Spot: SpotDraw(x, y); break;
+				}
+			}
+
+			void OHit(int x, int y) {
+				if (OLB_Spot->SelectedItem() < 0) return;
+				auto Item{ OLB_Spot->ItemText() };
+				if (Prefixed(Item, "$")) {
+					Notify("Custom objects not yet supported");
+					return;
+				} else {
+					if (!LBI_Spot.count(Item)) {
+						Notify("No actions found for Other::Spot::" + Item + "\n\nYou may have encountered a Kthura version in the middle of active development.\n\nCome back later!");
+						return;
+					}
+					LBI_Spot[Item](x, y, Item);
+				}
+			}
 #pragma endregion
 
 
 #pragma region "Gadget callbacks"
-			static void ViewArea(j19gadget* g, j19action) { OLB_Area->Enabled = g->checked; }
-			static void ViewSpot(j19gadget* g, j19action) { OLB_Spot->Enabled = g->checked; }
+			static void ViewArea(j19gadget* g, j19action) { OLB_Area->Enabled = g->checked; if (g->checked) OT = OtherType::Area; }
+			static void ViewSpot(j19gadget* g, j19action) { OLB_Spot->Enabled = g->checked; if (g->checked) OT = OtherType::Spot; }
 #pragma endregion
 
+
+
+#pragma region Init
 			void InitOther() {
 				UIEAct::Reg[UIEType::Other].Draw = ODraw;
 				UIEAct::Reg[UIEType::Other].Pressed = ODraw; // Actual function comes later!
@@ -78,6 +122,11 @@ namespace Slyvina {
 				OLB_Spot->SetBackground(25, 18, 0);
 				OLB_Spot->AddItem("Exit");
 			}
+
+			bool OtherSpot() {
+				return OT==OtherType::Spot;
+			}
+#pragma endregion
 		}
 	}
 }

@@ -1,10 +1,10 @@
 // Lic:
 // Kthura
-// Spot call backs (header)
+// Exit placement
 // 
 // 
 // 
-// (c) Jeroen P. Broks, 2015-2021, 2023
+// (c) Jeroen P. Broks, 2015, 2016, 2017, 2019, 2021, 2023
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -24,13 +24,11 @@
 // Version: 23.10.01
 // EndLic
 
-#pragma once
+
 
 namespace Slyvina {
 	namespace Kthura {
 		namespace Editor {
-			void InitEditSpot();
-			void SpotDraw(int x, int y);
 		}
 	}
 }
