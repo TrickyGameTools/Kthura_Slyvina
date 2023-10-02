@@ -26,11 +26,13 @@
 
 
 #pragma once
+#include <string>
 
 
 namespace Slyvina {
 	namespace Kthura {
 		namespace Editor {
+			void GoToExit(int x, int y, std::string item);
 		}
 	}
 }

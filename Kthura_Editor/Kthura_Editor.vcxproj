@@ -185,6 +185,7 @@
     <ClCompile Include="source\UI_MainEditor_Modify.cpp" />
     <ClCompile Include="source\UI_MainEditor_Other.cpp" />
     <ClCompile Include="source\UI_Meta.cpp" />
+    <ClCompile Include="source\UI_Other_Spot_Exit.cpp" />
     <ClCompile Include="source\UI_Tag.cpp" />
     <ClCompile Include="source\UI_Textures.cpp" />
     <ClCompile Include="source\UserInterface.cpp" />
@@ -249,6 +250,7 @@
     <ClInclude Include="headers\UI_MainEditor_Modify.hpp" />
     <ClInclude Include="headers\UI_MainEditor_Other.hpp" />
     <ClInclude Include="headers\UI_Meta.hpp" />
+    <ClInclude Include="headers\UI_Other_Spot_Exit.hpp" />
     <ClInclude Include="headers\UI_Tag.hpp" />
     <ClInclude Include="headers\UI_Textures.hpp" />
     <ClInclude Include="headers\UserInterface.hpp" />

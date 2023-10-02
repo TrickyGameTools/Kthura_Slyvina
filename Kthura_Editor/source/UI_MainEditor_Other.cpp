@@ -31,6 +31,7 @@
 #include "../headers/UI_MainEditor_CallBack_Area.hpp"
 #include "../headers/UI_MainEditor_CallBack_Spot.hpp"
 #include "../headers/UI_MainEditor_Other.hpp"
+#include "../headers/UI_Other_Spot_Exit.hpp"
 
 namespace Slyvina {
 
@@ -52,8 +53,6 @@ namespace Slyvina {
 
 #pragma region "Built-in linkthroughs"
 
-			static void GoToExit(int x, int y, std::string item) {
-			}
 
 			typedef void (*LinkBuiltIn)(int x,int y,std::string item);
 			static std::map<std::string, LinkBuiltIn> LBI_Area{};
@@ -98,7 +97,7 @@ namespace Slyvina {
 #pragma region Init
 			void InitOther() {
 				UIEAct::Reg[UIEType::Other].Draw = ODraw;
-				UIEAct::Reg[UIEType::Other].Pressed = ODraw; // Actual function comes later!
+				UIEAct::Reg[UIEType::Other].Pressed = OHit; 
 				UIEAct::Reg[UIEType::Other].Released = ODraw; // Actual function comes later!
 				auto t{ "Other" };
 				auto Other{ &UIE::_Register[t] };

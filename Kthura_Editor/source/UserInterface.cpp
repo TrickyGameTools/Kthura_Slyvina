@@ -95,7 +95,8 @@ namespace Slyvina {
 				_WorkScreen->SetForeground(0, 180, 255);
 				_WorkScreen->SetBackground(180, 0, 255, 255);
 				j19gadget::StatusText("Welcome to Kthura!");
-
+				MapData->Draw->AllowDraw[KthuraKind::Exit] = true;
+				MapData->Draw->CheckPivotExitSelf = true;
 				InitMainEditor();
 				UI::GoToStage("Editor");
 			}
@@ -110,6 +111,7 @@ namespace Slyvina {
 					if (UI::CurrentStage() && UI::CurrentStage()->PostJune) UI::CurrentStage()->PostJune();
 					Flip();
 				} while (!Application_Ended);
+				FreeJune19();
 			}
 #pragma endregion
 
