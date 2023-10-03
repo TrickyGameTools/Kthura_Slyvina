@@ -1,6 +1,6 @@
 // Lic:
 // Kthura
-// Exit placement
+// Exit placement (header)
 // 
 // 
 // 
@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 23.10.01
+// Version: 23.10.03
 // EndLic
 
 
