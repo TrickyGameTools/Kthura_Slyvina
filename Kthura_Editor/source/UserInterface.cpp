@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 23.10.03
+// Version: 23.10.08
 // EndLic
 
 #include <SlyvQCol.hpp>
@@ -37,6 +37,8 @@
 #include "../headers/Resource.hpp"
 #include "../headers/UI_Layers.hpp"
 #include "../headers/UI_Meta.hpp"
+#include "../headers/UI_Blockmap.hpp"
+#include "../headers/UI_Tags_Overview.hpp"
 #include "../headers/MapData.hpp"
 
 using namespace Slyvina;
@@ -84,9 +86,11 @@ namespace Slyvina {
 				pdm->AddItem("New layer", PDM_NewLayer, SDLK_n);
 				pdm->AddItem("Rename Layer", PDM_RenameLayer, SDLK_KP_5);
 				pdm->AddItem("Remove Layer", Act_RemoveLayer, SDLK_KP_PERIOD);
+				pdm->AddItem("Tag overview", GoToTagOverview, SDLK_z);
 				pdm = _WorkScreen->AddMenu("Grid");
 				pdm->AddItem("Toggle Draw Grid", PDM_ToggleGrid, SDLK_d);
 				pdm->AddItem("Toggle Grid Mode", PDM_ToggleGridMode, SDLK_g);
+				pdm->AddItem("View BlockMap", SeeTheBlockMap, SDLK_b);
 				pdm = _WorkScreen->AddMenu("Scroll");
 				pdm->AddItem("Scroll Up", PDM_ScrollUp, SDLK_UP);
 				pdm->AddItem("Scroll Down", PDM_ScrollDn, SDLK_DOWN);

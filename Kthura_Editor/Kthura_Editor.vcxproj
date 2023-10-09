@@ -177,6 +177,7 @@
     <ClCompile Include="source\MapData.cpp" />
     <ClCompile Include="source\Project.cpp" />
     <ClCompile Include="source\Resource.cpp" />
+    <ClCompile Include="source\UI_Blockmap.cpp" />
     <ClCompile Include="source\UI_Labels.cpp" />
     <ClCompile Include="source\UI_Layers.cpp" />
     <ClCompile Include="source\UI_MainEditor_CallBack_Area.cpp" />
@@ -187,6 +188,7 @@
     <ClCompile Include="source\UI_Meta.cpp" />
     <ClCompile Include="source\UI_Other_Spot_Exit.cpp" />
     <ClCompile Include="source\UI_Tag.cpp" />
+    <ClCompile Include="source\UI_Tags_Overview.cpp" />
     <ClCompile Include="source\UI_Textures.cpp" />
     <ClCompile Include="source\UserInterface.cpp" />
   </ItemGroup>
@@ -242,6 +244,7 @@
     <ClInclude Include="headers\MapData.hpp" />
     <ClInclude Include="headers\Project.hpp" />
     <ClInclude Include="headers\Resource.hpp" />
+    <ClInclude Include="headers\UI_Blockmap.hpp" />
     <ClInclude Include="headers\UI_Labels.hpp" />
     <ClInclude Include="headers\UI_Layers.hpp" />
     <ClInclude Include="headers\UI_MainEditor_CallBack_Area.hpp" />
@@ -252,6 +255,7 @@
     <ClInclude Include="headers\UI_Meta.hpp" />
     <ClInclude Include="headers\UI_Other_Spot_Exit.hpp" />
     <ClInclude Include="headers\UI_Tag.hpp" />
+    <ClInclude Include="headers\UI_Tags_Overview.hpp" />
     <ClInclude Include="headers\UI_Textures.hpp" />
     <ClInclude Include="headers\UserInterface.hpp" />
     <ClInclude Include="resource.h" />
