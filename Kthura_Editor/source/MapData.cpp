@@ -4,7 +4,7 @@
 // 
 // 
 // 
-// (c) Jeroen P. Broks, 2015, 2016, 2017, 2019, 2021, 2023
+// (c) Jeroen P. Broks, 2015, 2016, 2017, 2019, 2021, 2023, 2024
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 23.09.28
+// Version: 24.02.18
 // EndLic
 #include <SlyvVolumes.hpp>
 #include <SlyvStream.hpp>
@@ -98,15 +98,18 @@ namespace Slyvina {
 					));
 				}
 				QCol->Doing("Reading", TextureSettingsFile());
-				TextureSettings = LoadUGINIE(TextureSettingsFile());
-
+				TextureSettings = LoadUGINIE(TextureSettingsFile());				
 				if (!FileExists(MapFile)) {
 					QCol->Doing("Creating", "New Map");
 					TheMap = CreateKthura();
 				} else {
 					QCol->Doing("Loading", MapFile);
 					TheMap = LoadKthura(MapFile);
+					auto Layers{ TheMap->Layers() };
+					for (auto Layer : *Layers) TheMap->Layer(Layer)->TotalRemap();
 				}
+				ScrollX = ToInt(TheMap->Option("Scroll", "X"));
+				ScrollY = ToInt(TheMap->Option("Scroll", "Y"));
 			}
 
 			inline int ScX() { return ScrollX - MapPanel->DrawX(); }
@@ -134,7 +137,7 @@ namespace Slyvina {
 					case j19kind::RadioButton:
 						TextureSettings->Value(_tag, gg.first, bname[gg.second->checked]);
 						break;
-					case j19kind::TextField: // ?
+					//case j19kind::TextField: // ?
 					case j19kind::Textfield:
 						TextureSettings->Value(_tag, gg.first, gg.second->Text);
 						break;
@@ -161,7 +164,7 @@ namespace Slyvina {
 						TextureSettings->NewValue(_tag, gg.first, bname[gg.second->checked]);
 						gg.second->checked = Upper(TextureSettings->Value(_tag, gg.first)) == "YES";
 						break;
-					case j19kind::TextField:
+					//case j19kind::TextField:
 					case j19kind::Textfield:
 						TextureSettings->NewValue(_tag, gg.first, gg.second->Text);
 						gg.second->Text = TextureSettings->Value(_tag, gg.first);
