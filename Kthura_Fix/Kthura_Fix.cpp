@@ -4,7 +4,7 @@
 // 
 // 
 // 
-// (c) Jeroen P. Broks, 2023
+// (c) Jeroen P. Broks, 2023, 2024
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 23.09.29
+// Version: 24.02.18
 // EndLic
 
 #include "builddate.hpp"
@@ -56,6 +56,8 @@ int main(int countargs,char** args) {
 	if (countargs<=1) {
 		Help();
 	} else {
+		QCol->Reset();
+		for (int i = 1; i < countargs; ++i) printf("%3d/%3d -> %s\n", i, countargs - 1, args[i]);
 		init_zlib();
 		for (int i = 1; i < countargs; ++i)
 			Process(i, countargs - 1, args[i]);
