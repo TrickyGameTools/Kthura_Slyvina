@@ -4,7 +4,7 @@
 // 
 // 
 // 
-// (c) Jeroen P. Broks, 2015, 2016, 2017, 2019, 2021, 2023
+// (c) Jeroen P. Broks, 2015, 2016, 2017, 2019, 2021, 2023, 2024
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 23.10.08
+// Version: 24.02.18
 // EndLic
 
 #include <SlyvQCol.hpp>
@@ -60,10 +60,10 @@ namespace Slyvina {
 			
 			static void PDM_ToggleGrid(j19gadget*, j19action) { DrawGrid = !DrawGrid; }
 			static void PDM_ToggleGridMode(j19gadget*, j19action) { GridMode = !GridMode; }
-			static void PDM_ScrollUp(j19gadget* , j19action) { ScrollY -= CurrentLayer()->gridy / 2; }
-			static void PDM_ScrollDn(j19gadget* , j19action) { ScrollY += CurrentLayer()->gridy / 2; }
-			static void PDM_ScrollLf(j19gadget* , j19action) { ScrollX -= CurrentLayer()->gridx / 2; }
-			static void PDM_ScrollRg(j19gadget* , j19action) { ScrollX += CurrentLayer()->gridx / 2; }
+			static void PDM_ScrollUp(j19gadget*, j19action) { ScrollY -= CurrentLayer()->gridy / 2; MapData->TheMap->Option("Scroll", "Y", std::to_string(ScrollY)); }
+			static void PDM_ScrollDn(j19gadget*, j19action) { ScrollY += CurrentLayer()->gridy / 2; MapData->TheMap->Option("Scroll", "Y", std::to_string(ScrollY)); }
+			static void PDM_ScrollLf(j19gadget*, j19action) { ScrollX -= CurrentLayer()->gridx / 2; MapData->TheMap->Option("Scroll", "X", std::to_string(ScrollX)); }
+			static void PDM_ScrollRg(j19gadget*, j19action) { ScrollX += CurrentLayer()->gridx / 2; MapData->TheMap->Option("Scroll", "X", std::to_string(ScrollX)); }
 
 			static void PDM_Save(j19gadget*, j19action) { MapData->Save(); }
 
