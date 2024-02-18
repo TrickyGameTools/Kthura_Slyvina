@@ -4,7 +4,7 @@
 // 
 // 
 // 
-// (c) Jeroen P. Broks, 2015, 2016, 2017, 2019, 2021, 2023
+// (c) Jeroen P. Broks, 2015, 2016, 2017, 2019, 2021, 2023, 2024
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 23.09.28
+// Version: 24.02.18
 // EndLic
 
 #pragma once
@@ -38,11 +38,13 @@ using namespace Units;
 namespace Slyvina {
 	namespace Kthura {
 		namespace Editor {
-
+#pragma region Headers
 			static void AutoScreenUpdate(j19gadget*, j19action);
 			static void SelectTex(j19gadget* g, j19action a);
 			static void CancelTex(j19gadget*, j19action) { UI::GoToStage("Editor"); }
 			static void OkayTex(j19gadget*, j19action);
+			static void RenewUsed(j19gadget*, j19action);
+			static void RenewFiltered(j19gadget*, j19action);
 
 			static j19gadget
 				* TexPanel{ nullptr },
@@ -55,10 +57,41 @@ namespace Slyvina {
 				* TexWantAll{ nullptr },
 				* TexWantUsed{ nullptr },
 				* TexWantFiltered{ nullptr },
+				* TexFilterString{ nullptr },
 				* TexCheckSettings{ nullptr },
 				* TexSentBy{ nullptr };
+#pragma endregion
+
+#pragma region Utils
+			static VecString GetUsedTextures() {
+				auto ret{ NewVecString() };
+				auto layers{ MapData->TheMap->Layers() };
+				for (auto lay : *layers) {
+					for (auto o = MapData->TheMap->Layer(lay)->FirstObject(); o; o = o->Next()) {
+						VectorAddUnique(ret, o->texture());
+					}
+				}
+				return ret;
+			}
+
+			static VecString GetFilterTextures() {
+				auto ret{ NewVecString() };
+				auto TexFiles{ TextureList() };
+				auto Want{ Upper(TexFilterString->Text) };
+				if (Want.size()) {
+					for (auto Tex : *TexFiles) {
+						for (size_t i = 1; i < Tex.size(); i++) {
+							if (Mid(Upper(Tex), i, Want.size()) == Want)
+								VectorAddUnique(ret, Tex);
+						}
+					}
+				}
+				return ret;
+			}
+#pragma endregion
 
 
+#pragma region UI
 			static void TexInit() {
 				QCol->Doing("Creating stage", "Texture selector");
 				auto TexStage{ UI::GetStage("TexSelector") };
@@ -84,8 +117,13 @@ namespace Slyvina {
 				TexWantAll->SetForeground(0, 180, 255);
 				TexWantUsed = CreateRadioButton("Used", 0, 0, 500, 20, TexOpt);
 				TexWantUsed->SetForeground(255, 180, 0);
+				TexWantUsed->CBAction = RenewUsed;
 				TexWantFiltered = CreateRadioButton("Filtered", 0, 0, 500, 20, TexOpt);
 				TexWantFiltered->SetForeground(180, 255, 0);
+				TexFilterString = CreateTextfield(0, 0, 500, 20, TexOpt);
+				TexFilterString->SetForeground(180, 255, 0);
+				TexFilterString->SetBackground(18, 25, 0);
+				TexFilterString->CBAction = RenewFiltered;
 				TexCheckSettings = CreateCheckBox("Auto Settings", 0, 0, 500, 20, TexOpt, true);
 				TexCheckSettings->SetForeground(180, 0, 255);
 				TexPanel->CBDraw = AutoScreenUpdate;
@@ -114,10 +152,12 @@ namespace Slyvina {
 				TexWantFiltered->Y(TexOkay->Y() - 25);
 				TexWantUsed->Y(TexWantFiltered->Y() - 25);
 				TexWantAll->Y(TexWantUsed->Y() - 25);
-				TexCheckSettings->Y(TexWantAll->Y() - 75);
+				TexFilterString->Y(TexWantAll->Y() - 50);
+				TexCheckSettings->Y(TexWantAll->Y() - 125);
 				TexListAll->Visible = TexWantAll->checked;
 				TexListUsed->Visible = TexWantUsed->checked;
 				TexListFiltered->Visible = TexWantFiltered->checked;
+				TexFilterString->Visible = TexWantFiltered->checked;
 				TexOkay->Enabled =
 					(TexWantFiltered->checked && TexListFiltered->SelectedItem() >= 0) ||
 					(TexWantUsed->checked && TexListUsed->SelectedItem() >= 0) ||
@@ -128,6 +168,22 @@ namespace Slyvina {
 				if (TexWantAll->checked) SelectTex(TexListAll, j19action::DoubleClick);
 				if (TexWantUsed->checked) SelectTex(TexListUsed, j19action::DoubleClick);
 				if (TexWantFiltered->checked) SelectTex(TexListFiltered, j19action::DoubleClick);
+			}
+
+			static void RenewUsed(j19gadget* g, j19action) {
+				if (g->checked) {
+					auto used{ GetUsedTextures() };
+					TexListUsed->ClearItems();
+					SortVecString(used);
+					for (auto t : *used) TexListUsed->AddItem(t);
+				}
+			}
+
+			static void RenewFiltered(j19gadget*, j19action) {
+				auto Want{ GetFilterTextures() };
+				TexListFiltered->ClearItems();
+				SortVecString(Want);
+				for (auto t : *Want) TexListFiltered->AddItem(t);
 			}
 
 
@@ -155,6 +211,7 @@ namespace Slyvina {
 				}
 
 			}
+#pragma endregion
 
 			void ToTexSelector(June19::j19gadget* sender, June19::j19action) {
 				if (UI::NewStage("TexSelector")) TexInit();
