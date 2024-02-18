@@ -4,7 +4,7 @@
 // 
 // 
 // 
-// (c) Jeroen P. Broks, 2015-2023
+// (c) Jeroen P. Broks, 2015-2023, 2024
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 23.10.01
+// Version: 24.02.18
 // EndLic
 
 #include <SlyvQCol.hpp>
@@ -31,6 +31,9 @@
 #include "../headers/UI_MainEditor_CallBack_Area.hpp"
 #include "../headers/UI_Layers.hpp"
 #include "../headers/UI_Labels.hpp"
+#include "../headers/Resource.hpp"
+
+#define AUTOINSTEX_MODULO
 
 
 using namespace Slyvina::TQSG;
@@ -105,9 +108,30 @@ namespace Slyvina {
 					O->impassible(D->Impassible->checked);
 					//O->forcepassible(false); 
 					//O->impassible(false);
-					if (O->Kind() == KthuraKind::TiledArea) {
-						O->insertx(0);
-						O->inserty(0);
+					if (O->Kind() == KthuraKind::TiledArea) {						
+						int insx{ 0 }, insy{ 0 };
+						if (D->AutoTexIns->checked) {
+							if (x > 0 && y > 0) {
+#ifdef AUTOINSTEX_MODULO
+								static auto I{ LoadUImage(TexResource(), D->Tex->Caption) };
+								static std::string Old{D->Tex->Caption};
+								if (Old != D->Tex->Caption) {
+									I = LoadUImage(TexResource(), D->Tex->Caption);
+									Old = D->Tex->Caption;
+								}
+								insx = -(recx % I->Width());
+								insy = -(recy % I->Height());
+#else
+								insx = -recx;
+								insy = -recy;
+#endif
+							}
+						} else {
+							insx = ToInt(D->InsX->Text);
+							insy = ToInt(D->InsY->Text);
+						}
+						O->insertx(insx);
+						O->inserty(insy);
 					}
 					//O->scalex(ToInt(D->ScaleX->Text));
 					//O->scaley(ToInt(D->ScaleY->Text));
