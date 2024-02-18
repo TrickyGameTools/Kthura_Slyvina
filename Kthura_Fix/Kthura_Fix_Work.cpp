@@ -4,7 +4,7 @@
 // 
 // 
 // 
-// (c) Jeroen P. Broks, 2023
+// (c) Jeroen P. Broks, 2023, 2024
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -21,11 +21,12 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 23.09.29
+// Version: 24.02.18
 // EndLic
 
 #include <string>
 
+#include <SlyvConInput.hpp>
 #include <SlyvQCol.hpp>
 #include <SlyvString.hpp>
 
@@ -55,7 +56,7 @@ namespace Slyvina {
 				if (o->texture() == "") {
 					Problem(TrSPrintF("Object #%d (%s) has no texture!", o->ID(), o->SKind().c_str()), Prob);
 					if (o->Tag().size()) QCol->Yellow("=> Object was tagged: " + o->Tag() + "\n");
-					Victims->push_back(o);
+					if (!VecSearch(Victims, o)) Victims->push_back(o); else QCol->Doing("Skipped", "Already on the kill list");
 				}
 			}
 			static void CheckSize(KthuraObject* o, std::vector<KthuraObject*>* Victims, uint32* Prob, uint32* Fixed) {
@@ -69,6 +70,28 @@ namespace Slyvina {
 				if (!(abs(o->scalex()) && abs(o->scaley()))) {
 					Problem(TrSPrintF("Object #%d (%s) has an illegal scaling (%dx%d)!", o->ID(), o->SKind().c_str(), o->scalex(), o->scaley()), Prob);
 					Victims->push_back(o);
+				}
+			}
+
+			static void CheckFrame(KthuraObject* o, std::vector<KthuraObject*>* Victims, uint32* Prob, uint32* Fixed) {
+				if (o->animframe()) {
+					if (Upper(ExtractExt(o->texture())) != "JPBF") {
+						Problem(TrSPrintF("Object #%d (%s) has an animation frame set, but not an animated texture! (%s)", o->ID(), o->SKind().c_str(), o->texture().c_str()),Prob);
+						QCol->Pink("How to deal with this issue?\n");
+						QCol->LGreen("R\t"); QCol->White("Remove\n");
+						QCol->LGreen("Z\t"); QCol->White("Set frame to zero\n");
+						do {
+							QCol->Yellow("Let me know please: ");
+							QCol->Cyan("");
+							auto a = Upper(Trim(ReadLine()))+"*";
+							switch (a[0]) {
+							case 'R': if (!VecSearch(Victims,o)) Victims->push_back(o); return;
+							case 'Z': o->animframe(0); (*Fixed)++; return;
+							}
+						} while (1);
+					} else {
+						QCol->Warn(TrSPrintF("Object #%d (%s) has an animation frame set. Texture is also animated, so it doesn't need to be a problem (%s)", o->ID(), o->SKind().c_str(), o->texture().c_str()));
+					}
 				}
 			}
 
@@ -91,6 +114,7 @@ namespace Slyvina {
 						case KthuraKind::StretchedArea:
 							CheckTex(o, &Victims, &Problems, &Fixed);
 							CheckSize(o, &Victims, &Problems, &Fixed);
+							CheckFrame(o, &Victims, &Problems, &Fixed);
 							break;
 						case KthuraKind::Rect:
 						case KthuraKind::Zone:
@@ -98,6 +122,7 @@ namespace Slyvina {
 							break;
 						case KthuraKind::Obstacle:
 							CheckScale(o, &Victims, &Problems, &Fixed);
+							CheckFrame(o, &Victims, &Problems, &Fixed);
 							// Falltrhough
 						case KthuraKind::Picture:
 							CheckTex(o, &Victims, &Problems, &Fixed);
@@ -122,6 +147,7 @@ namespace Slyvina {
 					else
 						QCol->Yellow(" objects\n");
 					for (auto Victim : Victims) {
+						std::cout << (uint32)Victim << "(" << Victim->ID() << ")" << std::endl; // debug
 						Victim->__KillMe(true);						
 						Fixed++;
 					}
