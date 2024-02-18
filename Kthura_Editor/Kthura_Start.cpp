@@ -4,7 +4,7 @@
 // 
 // 
 // 
-// (c) Jeroen P. Broks, 2015, 2016, 2017, 2019, 2021, 2023
+// (c) Jeroen P. Broks, 2015, 2016, 2017, 2019, 2021, 2023, 2024
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 23.09.28
+// Version: 24.02.18
 // EndLic
 
 #define ERROR_CATCHING
@@ -59,7 +59,7 @@ int main(int ac, char** arg) {
 		auto MyDir = ChReplace(ExtractDir(arg[0]), '\\', '/');
 		// Start
 		QCol->LGreen("Kthura - Editor\n");
-		QCol->Magenta("(c) 2015, 2016, 2017, 2019, 2021, 2023 Jeroen P. Broks - Released under the terms of the GPL3\n\n");
+		QCol->Magenta("(c) 2015, 2016, 2017, 2019, 2021, 2023, 2024 Jeroen P. Broks - Released under the terms of the GPL3\n\n");
 		QCol->Doing("Coded by", "Jeroen P. Broks");
 		QCol->Doing("Build", SuperTed_BuildDate);
 		QCol->Doing("Platform", Platform());
