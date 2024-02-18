@@ -4,7 +4,7 @@
 // 
 // 
 // 
-// (c) Jeroen P. Broks, 2015, 2016, 2017, 2019, 2021, 2023
+// (c) Jeroen P. Broks, 2015, 2016, 2017, 2019, 2021, 2023, 2024
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 23.09.26
+// Version: 24.02.18
 // EndLic
 
 #include <SlyvQCol.hpp>
@@ -75,6 +75,7 @@ namespace Slyvina {
 				auto Item{ LayerSelector->SelectedItem() };
 				if (Item < 0) return;
 				CurrentLayerTag = LayerSelector->ItemText();
+				MapData->TheMap->Layer(CurrentLayerTag)->TotalRemap();
 			}
 
 			void Act_RemoveLayer(June19::j19gadget*, June19::j19action) {
