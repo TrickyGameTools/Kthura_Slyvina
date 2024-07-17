@@ -4,7 +4,7 @@
 // 
 // 
 // 
-// (c) Jeroen P. Broks, 2015, 2016, 2017, 2019, 2021, 2023
+// (c) Jeroen P. Broks, 2015, 2016, 2017, 2019, 2021, 2023, 2024
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -21,11 +21,12 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 23.09.30
+// Version: 24.07.17
 // EndLic
 
 #pragma once
 #include <Kthura_Core.hpp>
+#include <june19_core.hpp>
 
 namespace Slyvina {
 	namespace Kthura {
@@ -35,6 +36,7 @@ namespace Slyvina {
 			void InitModify();
 			void ModifyUpdateWorkPanel(KthuraObject* o);
 			void ModifyUpdateWorkPanel();
+			void DoDelLabels(Slyvina::June19::j19gadget*, Slyvina::June19::j19action);
 		}
 	}
 }
