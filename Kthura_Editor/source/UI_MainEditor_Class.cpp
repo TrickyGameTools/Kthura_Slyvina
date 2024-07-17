@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 24.02.18
+// Version: 24.07.17
 // EndLic
 
 #include <TQSE.hpp>
@@ -64,6 +64,10 @@ namespace Slyvina {
 			June19::j19gadget* SidebarLeft{nullptr};
 			June19::j19gadget* LayerSelector{nullptr};
 			June19::j19gadget* Mascotte{nullptr};
+#pragma endregion
+
+#pragma region "Locals"
+			static June19::j19gadget* DelLabels{nullptr};
 #pragma endregion
 
 
@@ -383,6 +387,17 @@ namespace Slyvina {
 
 				CreateLabel("Labels:", 0, 350, CX, 20, OptionsPanel);
 				Labels = CreateButton("0", CX, 348, OptionsPanel);
+				if (MyRadioButton->Caption == "Modify") {
+					DelLabels = CreateButton("Del", CX + 100, 348, OptionsPanel);
+					DelLabels->FR = 255;
+					DelLabels->FG = 0;
+					DelLabels->FB = 0;
+					DelLabels->BR = 25;
+					DelLabels->BG = 0;
+					DelLabels->BB = 0;
+					DelLabels->CBAction = DoDelLabels;
+				}
+
 				Amber(Labels);
 				CreateLabel("Tag:", 0, 375, CX, 20, OptionsPanel);
 				Labels->CBAction = GoLabels;
