@@ -21,8 +21,9 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 24.07.17
+// Version: 24.07.18
 // EndLic
+
 #include <SlyvQCol.hpp>
 #include <SlyvString.hpp>
 #include <SlyvDir.hpp>
@@ -166,9 +167,10 @@ static int KPA_Origin(string mymap) {
 								y -= my;
 							}
 							string TAG{ "KTHURA_PLAY_CORRECTION_ZONE" };
+							lay->RemapTags();
 							while (lay->HasTag(TAG)) {
 								static uint64 num{0};
-								TAG = TrSPrintF("KTHURA_PLAY_CORRECTION_ZONE_%9X", ++num);
+								TAG = TrSPrintF("KTHURA_PLAY_CORRECTION_ZONE_%09X", ++num);
 							}
 							QCol->Doing("Creating", TAG);
 							auto co{ lay->NewObject(Slyvina::Kthura::KthuraKind::Zone) };
