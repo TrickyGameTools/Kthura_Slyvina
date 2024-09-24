@@ -67,6 +67,7 @@ int main(int ac, char** arg) {
 		QCol->Doing("Kthura Dir", MyDir);
 		QCol->Doing("Called from", ChReplace(CurrentDir(), '\\', '/'));		
 		if (!CLIParse(ac, arg)) return 1;
+		Slyvina::Kthura::OldAlpha = true; // Will allow Kthura to convert old Alpha tags to Alpha255 tags.
 		std::cout << "\n\n";
 		JCR6::InitJQL();
 		JCR6::JCR6_InitRealDir();
