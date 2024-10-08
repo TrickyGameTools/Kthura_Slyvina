@@ -15,7 +15,7 @@
 // with basically comes down to the same lack of
 // restriction the public domain offers. (YAY!)
 // ***********************************************************
-// Version 24.07.18
+// Version 24.09.24
 // EndLic
 #include <JCR6_zlib.hpp>
 #include <SlyvQCol.hpp>
