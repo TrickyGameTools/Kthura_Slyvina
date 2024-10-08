@@ -104,7 +104,7 @@ namespace Slyvina {
 					TheMap = CreateKthura();
 				} else {
 					QCol->Doing("Loading", MapFile);
-					TheMap = LoadKthura(MapFile);
+					TheMap = XLoadKthura(MapFile);
 					auto Layers{ TheMap->Layers() };
 					for (auto Layer : *Layers) TheMap->Layer(Layer)->TotalRemap();
 				}
