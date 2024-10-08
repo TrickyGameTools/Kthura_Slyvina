@@ -155,6 +155,7 @@
     <ClCompile Include="..\..\..\Libs\Kthura\Source\Kthura_Draw.cpp" />
     <ClCompile Include="..\..\..\Libs\Kthura\Source\Kthura_Core.cpp" />
     <ClCompile Include="..\..\..\Libs\Kthura\Source\Kthura_Draw_TQSG.cpp" />
+    <ClCompile Include="..\..\..\Libs\Kthura\Source\Kthura_LoadCompiled.cpp" />
     <ClCompile Include="..\..\..\Libs\Kthura\Source\Kthura_Save.cpp" />
     <ClCompile Include="..\..\..\Libs\TQSL\Source\TQSE.cpp" />
     <ClCompile Include="..\..\..\Libs\TQSL\Source\TQSG.cpp" />

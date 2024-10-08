@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 24.02.18
+// Version: 24.09.24
 // EndLic
 
 #define ERROR_CATCHING
@@ -44,6 +44,8 @@
 #include <JCR6_zlib.hpp>
 
 #include <TQSG.hpp>
+
+#include <Kthura_LoadCompiled.hpp>
 
 using namespace Slyvina;
 using namespace Units;
@@ -72,6 +74,7 @@ int main(int ac, char** arg) {
 		JCR6::InitJQL();
 		JCR6::JCR6_InitRealDir();
 		JCR6::init_zlib();
+		Slyvina::Kthura::RegCompiledXLoader(); // Will allow loading compiled Kthura maps, however saving WILL remain in base format only!
 		//QCol->Doing("Loading map", MapFile());
 		QCol->Doing("Initizing", "Graphics Window");
 		Graphics(WW(), WH(), "Kthura Map Editor - (c) Jeroen P. Broks"); Cls(); Flip();

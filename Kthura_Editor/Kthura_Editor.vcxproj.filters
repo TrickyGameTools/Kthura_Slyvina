@@ -213,6 +213,9 @@
     <ClCompile Include="source\UI_Tags_Overview.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Kthura\Source\Kthura_LoadCompiled.cpp">
+      <Filter>Source Files\Slyvina\Kthura</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="..\..\..\Libs\TQSL\SDL2\libjpeg-9.dll">
