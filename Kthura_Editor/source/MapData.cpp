@@ -187,8 +187,12 @@ namespace Slyvina {
 				TextureSettings->SaveSource(TextureSettingsFile(), "Kthura texture settings!");
 			}
 			void TMapData::SaveMap() {
-				QCol->Doing("Saving", MapFile);
-				Kthura_Save(TheMap, MapFile);
+				if (!TheMap) {
+					QCol->Warn("No map data so no saving!");
+				} else {
+					QCol->Doing("Saving", MapFile);
+					Kthura_Save(TheMap, MapFile);
+				}
 			}
 			std::string TMapData::TexKind(std::string _tex) {
 				if (!TextureSettings->HasValue("Kinds", _tex)) return "";
