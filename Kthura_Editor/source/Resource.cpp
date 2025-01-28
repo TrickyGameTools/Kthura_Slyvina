@@ -1,26 +1,26 @@
 // Lic:
 // Kthura
 // Resource
-// 
-// 
-// 
+//
+//
+//
 // (c) Jeroen P. Broks, 2015-2023
-// 
+//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // This program is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
-// 
+//
 // Version: 23.09.28
 // EndLic
 
@@ -28,6 +28,8 @@
 
 #include <SlyvGINIE.hpp>
 #include <SlyvDir.hpp>
+
+#include <JCR6_RealDir.hpp>
 
 #include "../../SupJCR/SupJCR.hpp"
 #include "../headers/Project.hpp"
@@ -71,7 +73,7 @@ namespace Slyvina {
 				if (!_TexRes) {
 					auto G = LoadUGINIE(ProjectFile()); // Crash prevention. Should not be needed, but somehow, it is!
 					_TexRes = std::make_shared<_JT_Dir>();
-					auto TL = G->List("Paths.Windows", "TexMaps");
+					auto TL = G->List("Paths."+Platform(), "TexMaps");
 					auto MRG = Upper(G->Value("Paths", "TexMerge")) == "YES";
 					QCol->Doing("Scannning", "Textures");
 					for (auto D : *TL) {
@@ -81,7 +83,10 @@ namespace Slyvina {
 							for (auto PatchDir : *Dirs) {
 								auto PD{ ChReplace(D + "/" + PatchDir,'\\','/') };
 								QCol->Doing("=> TexDir", PD);
-								_TexRes->Patch(PD);
+								auto TTD{GetDirAsJCR(PD)};
+								//_TexRes->Patch(PD);
+								_TexRes->Patch(TTD);
+								//std::cout << "next\n"; // debug
 							}
 						} else {
 							QCol->Doing("TexDir", D);
@@ -109,7 +114,7 @@ namespace Slyvina {
 							// std::cout << "Bundle:" << _ED << "\n";
 							if (!_JPBF.count(_EDU)) {
 								_JPBF[_EDU] = true;
-								_TexLst->push_back(_ED);	
+								_TexLst->push_back(_ED);
 								//std::cout << "Bundle:" << _ED << " added\n";
 							}
 						} else if (ExtractExt(_EDU) == "JFBF") {
