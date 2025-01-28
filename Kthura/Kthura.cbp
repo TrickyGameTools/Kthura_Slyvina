@@ -117,13 +117,14 @@
 		<Unit filename="../../../Libs/Units/Source/SlyvString.cpp" />
 		<Unit filename="../../../Libs/Units/Source/SlyvTime.cpp" />
 		<Unit filename="../../../Libs/Units/Source/SlyvVolumes.cpp" />
+		<Unit filename="../SupJCR/SupJCR.cpp" />
+		<Unit filename="../SupJCR/SupJCR.hpp" />
 		<Unit filename="Glob.cpp" />
 		<Unit filename="Glob.hpp" />
 		<Unit filename="Kthura.cpp" />
 		<Unit filename="Run.cpp" />
 		<Unit filename="Run.hpp" />
 		<Unit filename="builddate.hpp" />
-		<Unit filename="main.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1">
 				<lib name="SDL2_image" />

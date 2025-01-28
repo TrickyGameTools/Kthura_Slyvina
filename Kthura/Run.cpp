@@ -1,26 +1,26 @@
 // Lic:
 // Kthura
 // Run
-// 
-// 
-// 
+//
+//
+//
 // (c) Jeroen P. Broks, 2015, 2016, 2017, 2019, 2021, 2023
-// 
+//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // This program is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
-// 
+//
 // Version: 23.09.25
 // EndLic
 
@@ -44,12 +44,14 @@
 #include "Glob.hpp"
 #include "Run.hpp"
 
+using namespace Slyvina;
+using namespace June19;
+using namespace Units;
+using namespace TQSG;
+using namespace TQSE;
+
 
 namespace Slyvina {
-	using namespace June19;
-	using namespace Units;
-	using namespace TQSG;
-	using namespace TQSE;
 
 	namespace Kthura {
 		namespace Launcher {
@@ -134,7 +136,7 @@ namespace Slyvina {
 
 			static void StartEditor(std::string Project, std::string Map) {
 				// This looks needlessly complicated, and frankly, it is....
-				// However in Windows, execution commands are mostly taken over cmd 
+				// However in Windows, execution commands are mostly taken over cmd
 				// which is quite primitive and will me quite a load of errors, so this way I hope to prevent that
 				static std::string Editor = TrSPrintF("%s/Kthura_Editor.exe", MyDir.c_str());
 				if (!FileExists(Editor)) { Err("Editor (" + Editor + ") not found"); return; }
@@ -247,10 +249,10 @@ namespace Slyvina {
 				Cls();
 				SetColor(255, 255, 255);
 				Background->Tile(
-					0, 0, 
-					ScreenWidth(), ScreenHeight(), 
+					0, 0,
+					ScreenWidth(), ScreenHeight(),
 					0,
-					floor((ScreenWidth() / 2) + (DegSin(r) * 250)), 
+					floor((ScreenWidth() / 2) + (DegSin(r) * 250)),
 					floor((ScreenHeight() / 2) + (DegCos(r) * 250))
 				);
 				r = (r + 1) % 360;
