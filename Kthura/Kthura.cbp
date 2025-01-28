@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Kthura" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/Kthura" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="../Exe/Kthura" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="`sdl2-config --cflags`" />
+			<Add option="-Wall" />
+		</Compiler>
+		<Linker>
+			<Add option="`sdl2-config --libs`" />
+		</Linker>
+		<Unit filename="../../../Libs/JCR6/3rdParty/zlib/src/adler32.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../Libs/JCR6/3rdParty/zlib/src/compress.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../Libs/JCR6/3rdParty/zlib/src/crc32.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../Libs/JCR6/3rdParty/zlib/src/crc32.h" />
+		<Unit filename="../../../Libs/JCR6/3rdParty/zlib/src/deflate.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../Libs/JCR6/3rdParty/zlib/src/deflate.h" />
+		<Unit filename="../../../Libs/JCR6/3rdParty/zlib/src/gzclose.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../Libs/JCR6/3rdParty/zlib/src/gzguts.h" />
+		<Unit filename="../../../Libs/JCR6/3rdParty/zlib/src/gzlib.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../Libs/JCR6/3rdParty/zlib/src/gzread.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../Libs/JCR6/3rdParty/zlib/src/gzwrite.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../Libs/JCR6/3rdParty/zlib/src/infback.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../Libs/JCR6/3rdParty/zlib/src/inffast.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../Libs/JCR6/3rdParty/zlib/src/inffast.h" />
+		<Unit filename="../../../Libs/JCR6/3rdParty/zlib/src/inffixed.h" />
+		<Unit filename="../../../Libs/JCR6/3rdParty/zlib/src/inflate.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../Libs/JCR6/3rdParty/zlib/src/inflate.h" />
+		<Unit filename="../../../Libs/JCR6/3rdParty/zlib/src/inftrees.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../Libs/JCR6/3rdParty/zlib/src/inftrees.h" />
+		<Unit filename="../../../Libs/JCR6/3rdParty/zlib/src/trees.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../Libs/JCR6/3rdParty/zlib/src/trees.h" />
+		<Unit filename="../../../Libs/JCR6/3rdParty/zlib/src/uncompr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../Libs/JCR6/3rdParty/zlib/src/zconf.h" />
+		<Unit filename="../../../Libs/JCR6/3rdParty/zlib/src/zlib.h" />
+		<Unit filename="../../../Libs/JCR6/3rdParty/zlib/src/zutil.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../Libs/JCR6/3rdParty/zlib/src/zutil.h" />
+		<Unit filename="../../../Libs/JCR6/Source/JCR6_Core.cpp" />
+		<Unit filename="../../../Libs/JCR6/Source/JCR6_RealDir.cpp" />
+		<Unit filename="../../../Libs/JCR6/Source/JCR6_zlib.cpp" />
+		<Unit filename="../../../Libs/June19/src/june19_button.cpp" />
+		<Unit filename="../../../Libs/June19/src/june19_checkbox.cpp" />
+		<Unit filename="../../../Libs/June19/src/june19_core.cpp" />
+		<Unit filename="../../../Libs/June19/src/june19_label.cpp" />
+		<Unit filename="../../../Libs/June19/src/june19_listbox.cpp" />
+		<Unit filename="../../../Libs/June19/src/june19_picture.cpp" />
+		<Unit filename="../../../Libs/June19/src/june19_radio.cpp" />
+		<Unit filename="../../../Libs/June19/src/june19_scrollbar.cpp" />
+		<Unit filename="../../../Libs/June19/src/june19_tabber.cpp" />
+		<Unit filename="../../../Libs/June19/src/june19_textfield.cpp" />
+		<Unit filename="../../../Libs/TQSL/Source/TQSE.cpp" />
+		<Unit filename="../../../Libs/TQSL/Source/TQSG.cpp" />
+		<Unit filename="../../../Libs/Units/Source/SlyvAsk.cpp" />
+		<Unit filename="../../../Libs/Units/Source/SlyvBank.cpp" />
+		<Unit filename="../../../Libs/Units/Source/SlyvDir.cpp" />
+		<Unit filename="../../../Libs/Units/Source/SlyvDirry.cpp" />
+		<Unit filename="../../../Libs/Units/Source/SlyvQCol.cpp" />
+		<Unit filename="../../../Libs/Units/Source/SlyvRoman.cpp" />
+		<Unit filename="../../../Libs/Units/Source/SlyvSTOI.cpp" />
+		<Unit filename="../../../Libs/Units/Source/SlyvStream.cpp" />
+		<Unit filename="../../../Libs/Units/Source/SlyvString.cpp" />
+		<Unit filename="../../../Libs/Units/Source/SlyvTime.cpp" />
+		<Unit filename="../../../Libs/Units/Source/SlyvVolumes.cpp" />
+		<Unit filename="Glob.cpp" />
+		<Unit filename="Glob.hpp" />
+		<Unit filename="Kthura.cpp" />
+		<Unit filename="Run.cpp" />
+		<Unit filename="Run.hpp" />
+		<Unit filename="builddate.hpp" />
+		<Unit filename="main.cpp" />
+		<Extensions>
+			<lib_finder disable_auto="1">
+				<lib name="SDL2_image" />
+				<lib name="sdl2" />
+			</lib_finder>
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
